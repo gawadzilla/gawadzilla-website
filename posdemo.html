@@ -185,19 +185,6 @@
             .btn-back {
                 display: none;
             }
-            
-            /* Add mobile back button in menu */
-            .nav-links .mobile-back {
-                display: block;
-                margin-top: 10px;
-            }
-            
-            .nav-links .mobile-back a {
-                background: rgba(0,240,255,0.2);
-                border-radius: 30px;
-                padding: 8px 20px;
-                display: inline-block;
-            }
         }
         
         /* Hero Section */
@@ -234,270 +221,6 @@
             font-size: 1.1rem;
             max-width: 700px;
             margin: 0 auto;
-        }
-        
-        /* Credentials Banner */
-        .credentials-banner {
-            background: linear-gradient(135deg, rgba(0,240,255,0.1), rgba(201,0,255,0.1));
-            border: 1px solid #00F0FF;
-            border-radius: 20px;
-            padding: 20px;
-            margin: 30px 0;
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-        
-        .cred-item {
-            flex: 1;
-            text-align: center;
-        }
-        
-        .cred-item .label {
-            color: #00F0FF;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        .cred-item .value {
-            font-size: 1.2rem;
-            font-weight: 700;
-            font-family: monospace;
-            margin-top: 5px;
-        }
-        
-        /* Image Gallery */
-        .gallery-section {
-            margin: 50px 0;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        
-        .section-title h2 {
-            font-size: 2rem;
-            background: linear-gradient(135deg, #FFFFFF, #00F0FF);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            margin-bottom: 10px;
-        }
-        
-        .section-title p {
-            color: #B0B3B8;
-        }
-        
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 25px;
-        }
-        
-        .gallery-item {
-            background: rgba(255,255,255,0.03);
-            border-radius: 20px;
-            overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.05);
-            transition: all 0.3s;
-        }
-        
-        .gallery-item:hover {
-            transform: translateY(-5px);
-            border-color: #00F0FF;
-        }
-        
-        .image-container {
-            position: relative;
-            overflow: hidden;
-            background: #121417;
-            height: 250px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-        }
-        
-        .image-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s;
-        }
-        
-        .gallery-item:hover .image-container img {
-            transform: scale(1.05);
-        }
-        
-        .image-placeholder {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, #121417, #1A1C3C);
-            text-align: center;
-            padding: 20px;
-        }
-        
-        .image-placeholder i {
-            font-size: 3rem;
-            color: #00F0FF;
-            margin-bottom: 10px;
-        }
-        
-        .image-placeholder p {
-            color: #B0B3B8;
-            font-size: 0.9rem;
-        }
-        
-        .image-caption {
-            padding: 15px;
-            text-align: center;
-        }
-        
-        .image-caption h3 {
-            font-size: 1rem;
-            margin-bottom: 5px;
-        }
-        
-        .image-caption p {
-            color: #B0B3B8;
-            font-size: 0.8rem;
-        }
-        
-        /* Video Section */
-        .video-section {
-            margin: 50px 0;
-        }
-        
-        .video-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 30px;
-        }
-        
-        .video-card {
-            background: rgba(255,255,255,0.03);
-            border-radius: 20px;
-            overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.05);
-            transition: all 0.3s;
-        }
-        
-        .video-card:hover {
-            transform: translateY(-5px);
-            border-color: #00F0FF;
-        }
-        
-        .video-container {
-            position: relative;
-            background: #121417;
-            min-height: 250px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-        }
-        
-        .video-thumbnail-container {
-            width: 100%;
-            height: 250px;
-            position: relative;
-            background: #000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .video-thumbnail {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .play-button {
-            position: absolute;
-            width: 70px;
-            height: 70px;
-            background: rgba(0,240,255,0.9);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s;
-            cursor: pointer;
-            z-index: 5;
-        }
-        
-        .play-button i {
-            font-size: 2rem;
-            color: #0a0f2c;
-            margin-left: 5px;
-        }
-        
-        .video-container:hover .play-button {
-            transform: scale(1.1);
-            background: #C900FF;
-        }
-        
-        .video-placeholder {
-            width: 100%;
-            height: 250px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, #121417, #1A1C3C);
-            text-align: center;
-            padding: 20px;
-        }
-        
-        .video-placeholder i {
-            font-size: 3rem;
-            color: #00F0FF;
-            margin-bottom: 15px;
-        }
-        
-        .video-info {
-            padding: 15px;
-        }
-        
-        .video-info h3 {
-            margin-bottom: 5px;
-        }
-        
-        .video-info p {
-            color: #B0B3B8;
-            font-size: 0.85rem;
-        }
-        
-        /* Upload Instructions */
-        .upload-guide {
-            background: rgba(0,240,255,0.05);
-            border: 1px dashed #00F0FF;
-            border-radius: 20px;
-            padding: 30px;
-            margin: 50px 0;
-            text-align: center;
-        }
-        
-        .upload-guide h3 {
-            color: #00F0FF;
-            margin-bottom: 15px;
-        }
-        
-        .upload-guide code {
-            background: rgba(0,0,0,0.5);
-            padding: 8px 15px;
-            border-radius: 8px;
-            display: inline-block;
-            margin: 10px 0;
-            font-family: monospace;
         }
         
         /* Feature List */
@@ -540,6 +263,205 @@
             font-size: 0.9rem;
         }
         
+        /* Video Section */
+        .video-section {
+            margin: 50px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .section-title h2 {
+            font-size: 2rem;
+            background: linear-gradient(135deg, #FFFFFF, #00F0FF);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 10px;
+        }
+        
+        .section-title p {
+            color: #B0B3B8;
+        }
+        
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+        }
+        
+        .video-card {
+            background: rgba(255,255,255,0.03);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.3s;
+        }
+        
+        .video-card:hover {
+            transform: translateY(-5px);
+            border-color: #00F0FF;
+        }
+        
+        .video-container {
+            position: relative;
+            background: #121417;
+            min-height: 280px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            overflow: hidden;
+        }
+        
+        .video-thumbnail {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+        
+        .play-button {
+            position: absolute;
+            width: 70px;
+            height: 70px;
+            background: rgba(0,240,255,0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            z-index: 2;
+            cursor: pointer;
+        }
+        
+        .play-button i {
+            font-size: 2rem;
+            color: #0a0f2c;
+            margin-left: 5px;
+        }
+        
+        .video-container:hover .play-button {
+            transform: scale(1.1);
+            background: #C900FF;
+        }
+        
+        .video-placeholder {
+            width: 100%;
+            min-height: 280px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #121417, #1A1C3C);
+            text-align: center;
+            padding: 40px;
+        }
+        
+        .video-placeholder i {
+            font-size: 3rem;
+            color: #00F0FF;
+            margin-bottom: 15px;
+        }
+        
+        .video-info {
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .video-info h3 {
+            margin-bottom: 8px;
+        }
+        
+        .video-info p {
+            color: #B0B3B8;
+            font-size: 0.9rem;
+        }
+        
+        /* Image Gallery */
+        .gallery-section {
+            margin: 50px 0;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .gallery-item {
+            background: rgba(255,255,255,0.03);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.3s;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            border-color: #00F0FF;
+        }
+        
+        .image-container {
+            position: relative;
+            overflow: hidden;
+            background: #121417;
+            height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item:hover .image-container img {
+            transform: scale(1.05);
+        }
+        
+        .image-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #121417, #1A1C3C);
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .image-placeholder i {
+            font-size: 2.5rem;
+            color: #00F0FF;
+            margin-bottom: 10px;
+        }
+        
+        .image-caption {
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .image-caption h3 {
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+        
+        .image-caption p {
+            color: #B0B3B8;
+            font-size: 0.8rem;
+        }
+        
         /* Call to Action */
         .cta-section {
             text-align: center;
@@ -566,7 +488,7 @@
             box-shadow: 0 10px 30px rgba(0,240,255,0.3);
         }
         
-        /* Modal for Image/Video */
+        /* Modal */
         .modal {
             display: none;
             position: fixed;
@@ -575,7 +497,7 @@
             width: 100%;
             height: 100%;
             background: rgba(0,0,0,0.95);
-            z-index: 1000;
+            z-index: 2000;
             align-items: center;
             justify-content: center;
         }
@@ -605,7 +527,7 @@
             font-size: 2rem;
             cursor: pointer;
             color: white;
-            z-index: 1001;
+            z-index: 2001;
             background: rgba(0,0,0,0.5);
             width: 40px;
             height: 40px;
@@ -637,11 +559,6 @@
             
             .nav-wrapper {
                 gap: 15px;
-            }
-            
-            .credentials-banner {
-                flex-direction: column;
-                text-align: center;
             }
             
             .gallery-grid, .video-grid {
@@ -720,6 +637,18 @@
             </div>
         </div>
         
+        <!-- Video Demos -->
+        <div class="video-section">
+            <div class="section-title">
+                <h2>🎥 Video Demo</h2>
+                <p>Watch a complete walkthrough of the POS system</p>
+            </div>
+            
+            <div class="video-grid" id="videos-gallery">
+                <!-- Video will be loaded here -->
+            </div>
+        </div>
+        
         <!-- Screenshots Gallery -->
         <div class="gallery-section">
             <div class="section-title">
@@ -728,19 +657,7 @@
             </div>
             
             <div class="gallery-grid" id="screenshots-gallery">
-                <!-- Screenshots will be loaded dynamically -->
-            </div>
-        </div>
-        
-        <!-- Video Demos -->
-        <div class="video-section">
-            <div class="section-title">
-                <h2>🎥 Video Demos</h2>
-                <p>Watch walkthroughs of the POS system</p>
-            </div>
-            
-            <div class="video-grid" id="videos-gallery">
-                <!-- Videos will be loaded dynamically -->
+                <!-- Screenshots will be loaded here -->
             </div>
         </div>
         
@@ -776,81 +693,23 @@
     </div>
     
     <script>
-        // Get the base path for assets (works on both localhost and GitHub Pages)
-        function getBasePath() {
-            // Check if we're on GitHub Pages (path contains /Gawadzilla/ or similar)
-            const path = window.location.pathname;
-            if (path.includes('/Gawadzilla/') || path.includes('/gawadzilla/')) {
-                return '';
-            }
-            return '';
-        }
+        // CORRECTED FILE PATHS - Using the actual filename from your GitHub
+        // Your video file is named "pos-demo.mp4.mp4" (double extension)
+        const videoFile = "pos-demo.mp4.mp4";
+        const videoPath = "images/pos-videos/" + videoFile;
         
-        const basePath = getBasePath();
-        
-        // Screenshots data - Add your images here
+        // Screenshots data
         const screenshots = [
-            {
-                name: "POS Shopping",
-                description: "Product selection and product grid with search, filters, and cart",
-                file: "pos-shopping.jpg",
-                icon: "fas fa-shopping-cart"
-            },
-            {
-                name: "Checkout Screen",
-                description: "Payment processing with multiple payment methods",
-                file: "pos-checkout.jpg",
-                icon: "fas fa-cash-register"
-            },
-            {
-                name: "POS Dashboard",
-                description: "Main point of sale interface with product grid and cart",
-                file: "pos-dashboard.jpg",
-                icon: "fas fa-tachometer-alt"
-            },
-            {
-                name: "Product Management",
-                description: "Add, edit, and manage products with categories",
-                file: "pos-products.jpg",
-                icon: "fas fa-boxes"
-            },
-            {
-                name: "Sales Reports",
-                description: "View daily, monthly, and custom sales reports",
-                file: "pos-reports.jpg",
-                icon: "fas fa-chart-line"
-            },
-            {
-                name: "Pay Later System",
-                description: "Track customer credit and pending payments",
-                file: "pos-paylater.jpg",
-                icon: "fas fa-hand-holding-usd"
-            },
-            {
-                name: "Inventory Management",
-                description: "Real-time stock tracking and low stock alerts",
-                file: "pos-inventory.jpg",
-                icon: "fas fa-warehouse"
-            },
-            {
-                name: "User Management",
-                description: "Add users with different roles and permissions",
-                file: "pos-users.jpg",
-                icon: "fas fa-users"
-            }
+            { name: "POS Dashboard", description: "Main point of sale interface with product grid and cart", file: "pos-dashboard.jpg", icon: "fas fa-tachometer-alt" },
+            { name: "Product Management", description: "Add, edit, and manage products with categories", file: "pos-products.jpg", icon: "fas fa-boxes" },
+            { name: "Sales Reports", description: "View daily, monthly, and custom sales reports", file: "pos-reports.jpg", icon: "fas fa-chart-line" },
+            { name: "Inventory Management", description: "Real-time stock tracking and low stock alerts", file: "pos-inventory.jpg", icon: "fas fa-warehouse" },
+            { name: "Checkout Screen", description: "Payment processing with multiple payment methods", file: "pos-checkout.jpg", icon: "fas fa-cash-register" },
+            { name: "Pay Later System", description: "Track customer credit and pending payments", file: "pos-paylater.jpg", icon: "fas fa-hand-holding-usd" },
+            { name: "User Management", description: "Add users with different roles and permissions", file: "pos-users.jpg", icon: "fas fa-users" }
         ];
         
-        // Videos data - Add your videos here
-        const videos = [
-            {
-                name: "POS System Demo",
-                description: "Complete walkthrough of all features and functions",
-                file: "pos-demo.mp4",
-                icon: "fas fa-video"
-            }
-        ];
-        
-        // Function to check if a file exists via fetch
+        // Function to check if a file exists
         async function fileExists(url) {
             try {
                 const response = await fetch(url, { method: 'HEAD' });
@@ -860,38 +719,86 @@
             }
         }
         
+        // Load video
+        async function loadVideo() {
+            const gallery = document.getElementById('videos-gallery');
+            gallery.innerHTML = '';
+            
+            // Try multiple path variations
+            const pathsToTry = [
+                videoPath,
+                './' + videoPath,
+                '/' + videoPath,
+                videoFile
+            ];
+            
+            let videoExists = false;
+            let workingPath = '';
+            
+            for (const path of pathsToTry) {
+                const exists = await fileExists(path);
+                if (exists) {
+                    videoExists = true;
+                    workingPath = path;
+                    console.log("Video found at:", path);
+                    break;
+                }
+            }
+            
+            const videoCard = document.createElement('div');
+            videoCard.className = 'video-card';
+            
+            if (videoExists) {
+                videoCard.innerHTML = `
+                    <div class="video-container" onclick="openVideo('${workingPath}')">
+                        <video class="video-thumbnail" src="${workingPath}" preload="metadata"></video>
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="video-info">
+                        <h3>POS System Demo Video</h3>
+                        <p>Complete walkthrough of all features and functions - Watch how to use the POS system</p>
+                    </div>
+                `;
+            } else {
+                videoCard.innerHTML = `
+                    <div class="video-container">
+                        <div class="video-placeholder">
+                            <i class="fas fa-video"></i>
+                            <h3>Video Demo</h3>
+                            <p>POS System Overview</p>
+                            <small style="color: #ff9800; margin-top: 10px; display: block;">📹 Video file: ${videoFile}</small>
+                            <small style="color: #00F0FF;">✅ File uploaded to: images/pos-videos/</small>
+                        </div>
+                    </div>
+                    <div class="video-info">
+                        <h3>POS System Demo</h3>
+                        <p>Complete walkthrough of all features and functions</p>
+                        <small style="color: #00F0FF;">🎥 Video will appear here once loaded</small>
+                    </div>
+                `;
+            }
+            
+            gallery.appendChild(videoCard);
+        }
+        
         // Load screenshots
         async function loadScreenshots() {
             const gallery = document.getElementById('screenshots-gallery');
             gallery.innerHTML = '';
             
             for (const img of screenshots) {
-                // Try different possible paths
-                const pathsToTry = [
-                    `images/pos-screenshots/${img.file}`,
-                    `./images/pos-screenshots/${img.file}`,
-                    `/images/pos-screenshots/${img.file}`
-                ];
-                
-                let imageExists = false;
-                let workingPath = '';
-                
-                for (const path of pathsToTry) {
-                    const exists = await fileExists(path);
-                    if (exists) {
-                        imageExists = true;
-                        workingPath = path;
-                        break;
-                    }
-                }
+                const imagePath = "images/pos-screenshots/" + img.file;
+                const exists = await fileExists(imagePath);
                 
                 const galleryItem = document.createElement('div');
                 galleryItem.className = 'gallery-item';
                 
-                if (imageExists) {
+                if (exists) {
                     galleryItem.innerHTML = `
-                        <div class="image-container" onclick="openImage('${workingPath}')">
-                            <img src="${workingPath}" alt="${img.name}" loading="lazy">
+                        <div class="image-container" onclick="openImage('${imagePath}')">
+                            <img src="${imagePath}" alt="${img.name}" loading="lazy">
                         </div>
                         <div class="image-caption">
                             <h3>${img.name}</h3>
@@ -904,82 +811,18 @@
                             <div class="image-placeholder">
                                 <i class="${img.icon}"></i>
                                 <p>${img.name}</p>
-                                <small style="color: #ff9800;">📷 Add image: ${img.file}</small>
+                                <small style="color: #ff9800;">📷 Add: ${img.file}</small>
                             </div>
                         </div>
                         <div class="image-caption">
                             <h3>${img.name}</h3>
                             <p>${img.description}</p>
-                            <small style="color: #00F0FF;">Place in: /images/pos-screenshots/</small>
+                            <small style="color: #00F0FF;">Place in: images/pos-screenshots/</small>
                         </div>
                     `;
                 }
                 
                 gallery.appendChild(galleryItem);
-            }
-        }
-        
-        // Load videos
-        async function loadVideos() {
-            const gallery = document.getElementById('videos-gallery');
-            gallery.innerHTML = '';
-            
-            for (const video of videos) {
-                // Try different possible paths
-                const pathsToTry = [
-                    `images/pos-videos/${video.file}`,
-                    `./images/pos-videos/${video.file}`,
-                    `/images/pos-videos/${video.file}`
-                ];
-                
-                let videoExists = false;
-                let workingPath = '';
-                
-                for (const path of pathsToTry) {
-                    const exists = await fileExists(path);
-                    if (exists) {
-                        videoExists = true;
-                        workingPath = path;
-                        break;
-                    }
-                }
-                
-                const videoCard = document.createElement('div');
-                videoCard.className = 'video-card';
-                
-                if (videoExists) {
-                    videoCard.innerHTML = `
-                        <div class="video-container" onclick="openVideo('${workingPath}')">
-                            <div class="video-thumbnail-container">
-                                <div class="play-button">
-                                    <i class="fas fa-play"></i>
-                                </div>
-                                <video class="video-thumbnail" src="${workingPath}" preload="metadata"></video>
-                            </div>
-                        </div>
-                        <div class="video-info">
-                            <h3>${video.name}</h3>
-                            <p>${video.description}</p>
-                        </div>
-                    `;
-                } else {
-                    videoCard.innerHTML = `
-                        <div class="video-container">
-                            <div class="video-placeholder">
-                                <i class="${video.icon}"></i>
-                                <p>${video.name}</p>
-                                <small style="color: #ff9800;">🎥 Add video: ${video.file}</small>
-                            </div>
-                        </div>
-                        <div class="video-info">
-                            <h3>${video.name}</h3>
-                            <p>${video.description}</p>
-                            <small style="color: #00F0FF;">Place in: /images/pos-videos/</small>
-                        </div>
-                    `;
-                }
-                
-                gallery.appendChild(videoCard);
             }
         }
         
@@ -1025,17 +868,10 @@
             });
         }
         
-        // Close menu when clicking a link
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
             });
-        });
-        
-        // Initialize on page load
-        document.addEventListener('DOMContentLoaded', () => {
-            loadScreenshots();
-            loadVideos();
         });
         
         // Close modal with Escape key
@@ -1043,6 +879,12 @@
             if (e.key === 'Escape') {
                 closeModal();
             }
+        });
+        
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            loadVideo();
+            loadScreenshots();
         });
     </script>
 </body>
