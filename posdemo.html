@@ -700,13 +700,13 @@
         
         // Screenshots data
         const screenshots = [
-            { name: "POS Dashboard", description: "Main point of sale interface with product grid and cart", file: "pos-dashboard.jpg", icon: "fas fa-tachometer-alt" },
-            { name: "Product Management", description: "Add, edit, and manage products with categories", file: "pos-products.jpg", icon: "fas fa-boxes" },
-            { name: "Sales Reports", description: "View daily, monthly, and custom sales reports", file: "pos-reports.jpg", icon: "fas fa-chart-line" },
-            { name: "Inventory Management", description: "Real-time stock tracking and low stock alerts", file: "pos-inventory.jpg", icon: "fas fa-warehouse" },
-            { name: "Checkout Screen", description: "Payment processing with multiple payment methods", file: "pos-checkout.jpg", icon: "fas fa-cash-register" },
-            { name: "Pay Later System", description: "Track customer credit and pending payments", file: "pos-paylater.jpg", icon: "fas fa-hand-holding-usd" },
-            { name: "User Management", description: "Add users with different roles and permissions", file: "pos-users.jpg", icon: "fas fa-users" }
+            { name: "POS Dashboard", description: "Main point of sale interface with product grid and cart",  icon: "fas fa-tachometer-alt" },
+            { name: "Product Management", description: "Add, edit, and manage products with categories",  icon: "fas fa-boxes" },
+            { name: "Sales Reports", description: "View daily, monthly, and custom sales reports",  icon: "fas fa-chart-line" },
+            { name: "Inventory Management", description: "Real-time stock tracking and low stock alerts", icon: "fas fa-warehouse" },
+            { name: "Checkout Screen", description: "Payment processing with multiple payment methods", icon: "fas fa-cash-register" },
+            { name: "Pay Later System", description: "Track customer credit and pending payments", icon: "fas fa-hand-holding-usd" },
+            { name: "User Management", description: "Add users with different roles and permissions", icon: "fas fa-users" }
         ];
         
         // Function to check if a file exists
@@ -811,13 +811,11 @@
                             <div class="image-placeholder">
                                 <i class="${img.icon}"></i>
                                 <p>${img.name}</p>
-                                <small style="color: #ff9800;">📷 Add: ${img.file}</small>
                             </div>
                         </div>
                         <div class="image-caption">
                             <h3>${img.name}</h3>
                             <p>${img.description}</p>
-                            <small style="color: #00F0FF;">Place in: images/pos-screenshots/</small>
                         </div>
                     `;
                 }
