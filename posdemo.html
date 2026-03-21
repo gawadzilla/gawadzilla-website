@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="GAWADZILLA POS System Demo - Complete Point of Sale solution with real-time inventory, multi-currency support, and offline mode">
+    <title>GAWADZILLA POS | Live Demo & Features</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0a0f2c 0%, #1a1f3c 100%);
+            min-height: 100vh;
+            color: white;
+            overflow-x: hidden;
+        }
+        
+        /* Animated Background */
+        .bg-element {
+            position: fixed;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .element1 {
+            width: 400px;
+            height: 400px;
+            top: -200px;
+            right: -200px;
+            background: linear-gradient(45deg, #00F0FF, #C900FF);
+            opacity: 0.1;
+            animation: float 20s infinite;
+        }
+        
+        .element2 {
+            width: 500px;
+            height: 500px;
+            bottom: -250px;
+            left: -250px;
+            background: linear-gradient(45deg, #C900FF, #00F0FF);
+            opacity: 0.1;
+            animation: float 25s infinite reverse;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, 30px) rotate(120deg); }
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 30px;
+            position: relative;
+            z-index: 10;
+        }
+        
+        /* Navigation */
+        .navbar {
+            background: rgba(18, 20, 23, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #00F0FF;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-wrapper {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo h1 {
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, #00F0FF, #C900FF);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: #B0B3B8;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #00F0FF;
+        }
+        
+        .btn-back {
+            background: rgba(255,255,255,0.1);
+            padding: 8px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        .btn-back:hover {
+            background: #00F0FF;
+            color: #0a0f2c;
+        }
+
+        .hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background: #00F0FF;
+    margin: 3px 0;
+    transition: 0.3s;
+    border-radius: 3px;
+}
+
+@media (max-width: 768px) {
+    .nav-wrapper {
+        padding: 0 20px;
+        position: relative;
+    }
+    
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(18, 20, 23, 0.98);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        gap: 0;
+        padding: 20px;
+        border-bottom: 1px solid #00F0FF;
+    }
+    
+    .nav-links.active {
+        display: flex;
+    }
+    
+    .nav-links li {
+        width: 100%;
+        text-align: center;
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    
+    .nav-links li:last-child {
+        border-bottom: none;
+    }
+    
+    .nav-links a {
+        display: block;
+        font-size: 1rem;
+    }
+    
+    .hamburger {
+        display: flex;
+    }
+    
+    .btn-back {
+        display: none;
+    }
+    
+    /* Add mobile back button in menu */
+    .nav-links .mobile-back {
+        display: block;
+        margin-top: 10px;
+    }
+    
+    .nav-links .mobile-back a {
+        background: rgba(0,240,255,0.2);
+        border-radius: 30px;
+        padding: 8px 20px;
+        display: inline-block;
+    }
+}
+        
+        /* Hero Section */
+        .demo-hero {
+            text-align: center;
+            padding: 40px 0 30px;
+        }
+        
+        .logo-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #00F0FF, #C900FF);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            font-weight: 900;
+            color: #0a0f2c;
+            margin: 0 auto 20px;
+            border-radius: 20px;
+        }
+        
+        .demo-hero h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #FFFFFF, #00F0FF);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 15px;
+        }
+        
+        .demo-hero p {
+            color: #B0B3B8;
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Credentials Banner */
+        .credentials-banner {
+            background: linear-gradient(135deg, rgba(0,240,255,0.1), rgba(201,0,255,0.1));
+            border: 1px solid #00F0FF;
+            border-radius: 20px;
+            padding: 20px;
+            margin: 30px 0;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .cred-item {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .cred-item .label {
+            color: #00F0FF;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .cred-item .value {
+            font-size: 1.2rem;
+            font-weight: 700;
+            font-family: monospace;
+            margin-top: 5px;
+        }
+        
+        /* Image Gallery */
+        .gallery-section {
+            margin: 50px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .section-title h2 {
+            font-size: 2rem;
+            background: linear-gradient(135deg, #FFFFFF, #00F0FF);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 10px;
+        }
+        
+        .section-title p {
+            color: #B0B3B8;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+        }
+        
+        .gallery-item {
+            background: rgba(255,255,255,0.03);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.3s;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            border-color: #00F0FF;
+        }
+        
+        .image-container {
+            position: relative;
+            overflow: hidden;
+            background: #121417;
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item:hover .image-container img {
+            transform: scale(1.05);
+        }
+        
+        .image-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #121417, #1A1C3C);
+        }
+        
+        .image-placeholder i {
+            font-size: 3rem;
+            color: #00F0FF;
+            margin-bottom: 10px;
+        }
+        
+        .image-placeholder p {
+            color: #B0B3B8;
+            font-size: 0.9rem;
+        }
+        
+        .image-caption {
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .image-caption h3 {
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+        
+        .image-caption p {
+            color: #B0B3B8;
+            font-size: 0.8rem;
+        }
+        
+        /* Video Section */
+        .video-section {
+            margin: 50px 0;
+        }
+        
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+        }
+        
+        .video-card {
+            background: rgba(255,255,255,0.03);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        
+        .video-container {
+            position: relative;
+            background: #121417;
+            min-height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        
+        .video-thumbnail {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        
+        .play-button {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: rgba(0,240,255,0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            margin-left: 180px;
+            margin-top: 94px;
+        }
+        
+        .play-button i {
+            font-size: 1.8rem;
+            color: #0a0f2c;
+            margin-left: 5px;
+        }
+        
+        .video-container:hover .play-button {
+            transform: scale(1.1);
+            background: #C900FF;
+        }
+        
+        .video-placeholder {
+            width: 100%;
+            height: 250px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #121417, #1A1C3C);
+        }
+        
+        .video-placeholder i {
+            font-size: 3rem;
+            color: #00F0FF;
+            margin-bottom: 15px;
+        }
+        
+        .video-info {
+            padding: 15px;
+        }
+        
+        .video-info h3 {
+            margin-bottom: 5px;
+        }
+        
+        .video-info p {
+            color: #B0B3B8;
+            font-size: 0.85rem;
+        }
+        
+        /* Upload Instructions */
+        .upload-guide {
+            background: rgba(0,240,255,0.05);
+            border: 1px dashed #00F0FF;
+            border-radius: 20px;
+            padding: 30px;
+            margin: 50px 0;
+            text-align: center;
+        }
+        
+        .upload-guide h3 {
+            color: #00F0FF;
+            margin-bottom: 15px;
+        }
+        
+        .upload-guide code {
+            background: rgba(0,0,0,0.5);
+            padding: 8px 15px;
+            border-radius: 8px;
+            display: inline-block;
+            margin: 10px 0;
+            font-family: monospace;
+        }
+        
+        /* Feature List */
+        .features-section {
+            margin: 50px 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        
+        .feature-card {
+            background: rgba(255,255,255,0.03);
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.3s;
+        }
+        
+        .feature-card:hover {
+            border-color: #00F0FF;
+            transform: translateY(-5px);
+        }
+        
+        .feature-card i {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #00F0FF, #C900FF);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 15px;
+        }
+        
+        .feature-card h3 {
+            margin-bottom: 10px;
+        }
+        
+        .feature-card p {
+            color: #B0B3B8;
+            font-size: 0.9rem;
+        }
+        
+        /* Call to Action */
+        .cta-section {
+            text-align: center;
+            margin: 50px 0;
+            padding: 40px;
+            background: linear-gradient(135deg, rgba(0,240,255,0.05), rgba(201,0,255,0.05));
+            border-radius: 30px;
+        }
+        
+        .btn-demo {
+            display: inline-block;
+            padding: 14px 40px;
+            background: linear-gradient(135deg, #00F0FF, #C900FF);
+            color: #0a0f2c;
+            text-decoration: none;
+            border-radius: 40px;
+            font-weight: 700;
+            margin-top: 20px;
+            transition: all 0.3s;
+        }
+        
+        .btn-demo:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0,240,255,0.3);
+        }
+        
+        /* Modal for Image/Video */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+        }
+        
+        .modal-content img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+        
+        .modal-content video {
+            width: 100%;
+            max-height: 80vh;
+            border-radius: 10px;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 2rem;
+            cursor: pointer;
+            color: white;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            margin-top: 50px;
+            color: #6B7280;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            .nav-wrapper {
+                gap: 15px;
+            }
+            
+            .credentials-banner {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .gallery-grid, .video-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .demo-hero h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-element element1"></div>
+    <div class="bg-element element2"></div>
+    
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-wrapper">
+            <div class="logo">
+                <h1>GAWADZILLA</h1>
+            </div>
+                    <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul class="nav-links" id="navLinks">
+
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="index.html#pos">POS Systems</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+            <a href="index.html" class="btn-back">← Back to Home</a>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="demo-hero">
+            <div class="logo-icon">G</div>
+            <h1>GAWADZILLA POS System</h1>
+            <p>Experience the complete Point of Sale solution with real-time inventory, multi-currency support, and offline mode. Perfect for restaurants, cafes, and retail stores.</p>
+        </div>
+        
+        <!-- Features Section -->
+        <div class="features-section">
+            <div class="feature-card">
+                <i class="fas fa-chart-line"></i>
+                <h3>Real-time Analytics</h3>
+                <p>Track sales, inventory, and employee performance in real-time</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-wifi"></i>
+                <h3>Offline Mode</h3>
+                <p>Keep selling even without internet. Syncs automatically when connection returns</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-money-bill-wave"></i>
+                <h3>Multi-Currency</h3>
+                <p>Support for USD and LBP with automatic exchange rate updates</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-hand-holding-usd"></i>
+                <h3>Pay Later System</h3>
+                <p>Track pending payments and collect when ready</p>
+            </div>
+        </div>
+        
+        <!-- Screenshots Gallery -->
+        <div class="gallery-section">
+            <div class="section-title">
+                <h2>📸 Screenshots</h2>
+                <p>See the POS system in action</p>
+            </div>
+            
+            <div class="gallery-grid" id="screenshots-gallery">
+                <!-- Screenshots will be loaded dynamically -->
+                <div class="gallery-item">
+                    <div class="image-container">
+                        <div class="image-placeholder">
+                            <i class="fas fa-camera"></i>
+                            <p>Add your screenshots</p>
+                            <small>Place images in /images/pos-screenshots/</small>
+                        </div>
+                    </div>
+                    <div class="image-caption">
+                        <h3>POS Interface</h3>
+                        <p>Main point of sale screen</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Video Demos -->
+        <div class="video-section">
+            <div class="section-title">
+                <h2>🎥 Video Demos</h2>
+                <p>Watch walkthroughs of the POS system</p>
+            </div>
+            
+            <div class="video-grid" id="videos-gallery">
+                <div class="video-card">
+                    <div class="video-container" onclick="openVideo('pos-overview')">
+                        <div class="video-placeholder">
+                            <i class="fas fa-play-circle"></i>
+                            <p>Add your video demo</p>
+                            <small>Place videos in /images/pos-videos/</small>
+                        </div>
+                    </div>
+                    <div class="video-info">
+                        <h3>POS System Overview</h3>
+                        <p>Complete walkthrough of all features</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Live Demo CTA -->
+        <div class="cta-section">
+            <h2>🚀 Ready to Try the POS System?</h2>
+            <p>Experience the full system with our live demo. Contact us for access or schedule a personalized walkthrough.</p>
+            <a href="index.html#contact" class="btn-demo">📞 Request Live Demo Access</a>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <p>© 2026 GAWADZILLA. All rights reserved. | Where Business Meets Technology</p>
+        </div>
+    </div>
+    
+    <!-- Modal for Lightbox -->
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <span class="close-modal">&times;</span>
+        <div class="modal-content">
+            <img id="modalImage" src="" alt="">
+        </div>
+    </div>
+    
+    <div id="videoModal" class="modal" onclick="closeModal()">
+        <span class="close-modal">&times;</span>
+        <div class="modal-content">
+            <video id="modalVideo" controls>
+                <source src="" type="video/mp4">
+            </video>
+        </div>
+    </div>
+    
+    <script>
+        // Screenshots data - Add your images here
+        const screenshots = [
+            {
+                name: "POS index-page",
+                description: "product selection and product grid with search,filters,and cart",
+                file: "pos-shopping.jpg",
+                icon: "fas fa-car-alt"
+            },
+            {
+                name: "Checkout Screen",
+                description: "Payment processing with multiple payment methods",
+                file: "pos-checkout.jpg.pn",
+                icon: "fas fa-cash-register"
+            },
+            {
+                name: "POS Dashboard",
+                description: "Main point of sale interface with product grid and cart",
+                file: "pos-dashboard.jpg",
+                icon: "fas fa-tachometer-alt"
+            },
+            {
+                name: "Product Management",
+                description: "Add, edit, and manage products with categories",
+                file: "pos-products.jpg",
+                icon: "fas fa-boxes"
+            },
+            {
+                name: "Sales Reports",
+                description: "View daily, monthly, and custom sales reports",
+                file: "pos-reports.jpg",
+                icon: "fas fa-chart-line"
+            },
+            {
+                name: "Pay Later System",
+                description: "Track customer credit and pending payments",
+                file: "pos-paylater.jpg",
+                icon: "fas fa-hand-holding-usd"
+            },
+            {
+                name: "Inventory Management",
+                description: "Real-time stock tracking and low stock alerts",
+                file: "pos-inventory.jpg",
+                icon: "fas fa-warehouse"
+            },
+            {
+                name: "User Management",
+                description: "add users with different roles and permissions",
+                file: "pos-users.jpg",
+                icon: "fas fa-users"
+            }
+        ];
+        
+        // Videos data - Add your videos here
+        const videos = [
+            {
+                name: "POS System Demo",
+                description: "Complete walkthrough of all features and functions",
+                file: "pos-demo.mp4.mp4",
+                icon: "fas fa-video"
+            }
+        ];
+        
+        // Load screenshots
+        function loadScreenshots() {
+            const gallery = document.getElementById('screenshots-gallery');
+            gallery.innerHTML = '';
+            
+            screenshots.forEach(img => {
+                const imagePath = `/images/pos-screenshots/${img.file}`;
+                const hasImage = checkImageExists(imagePath);
+                
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item';
+                
+                if (hasImage) {
+                    galleryItem.innerHTML = `
+                        <div class="image-container" onclick="openImage('${imagePath}')">
+                            <img src="${imagePath}" alt="${img.name}">
+                        </div>
+                        <div class="image-caption">
+                            <h3>${img.name}</h3>
+                            <p>${img.description}</p>
+                        </div>
+                    `;
+                } else {
+                    galleryItem.innerHTML = `
+                        <div class="image-container">
+                            <div class="image-placeholder">
+                                <i class="${img.icon}"></i>
+                                <p>${img.name}</p>
+                               
+                            </div>
+                        </div>
+                        <div class="image-caption">
+                            <h3>${img.name}</h3>
+                            <p>${img.description}</p>
+                            
+                        </div>
+                    `;
+                }
+                
+                gallery.appendChild(galleryItem);
+            });
+        }
+        
+        // Load videos
+        function loadVideos() {
+            const gallery = document.getElementById('videos-gallery');
+            gallery.innerHTML = '';
+            
+            videos.forEach(video => {
+                const videoPath = `/images/pos-videos/${video.file}`;
+                const hasVideo = checkVideoExists(videoPath);
+                
+                const videoCard = document.createElement('div');
+                videoCard.className = 'video-card';
+                
+                if (hasVideo) {
+                    videoCard.innerHTML = `
+                        <div class="video-container" onclick="openVideo('${videoPath}')">
+                            <div class="video-thumbnail-container">
+                                <div class="play-button">
+                                    <i class="fas fa-play"></i>
+                                </div>
+                                <video class="video-thumbnail" src="${videoPath}" preload="metadata"></video>
+                            </div>
+                        </div>
+                        <div class="video-info">
+                            <h3>${video.name}</h3>
+                            <p>${video.description}</p>
+                        </div>
+                    `;
+                } else {
+                    videoCard.innerHTML = `
+                        <div class="video-container" onclick="alert('Please add your video to /images/pos-videos/${video.file}')">
+                            <div class="video-placeholder">
+                                <i class="${video.icon}"></i>
+                                <p>${video.name}</p>
+                                <small>Add: ${video.file}</small>
+                            </div>
+                        </div>
+                        <div class="video-info">
+                            <h3>${video.name}</h3>
+                            <p>${video.description}</p>
+                            <small style="color: #ff9800;">🎥 Upload video to see preview</small>
+                        </div>
+                    `;
+                }
+                
+                gallery.appendChild(videoCard);
+            });
+        }
+        
+        // Check if image exists
+        function checkImageExists(url) {
+            const http = new XMLHttpRequest();
+            http.open('HEAD', url, false);
+            http.send();
+            return http.status !== 404;
+        }
+        
+        // Check if video exists
+        function checkVideoExists(url) {
+            const http = new XMLHttpRequest();
+            http.open('HEAD', url, false);
+            http.send();
+            return http.status !== 404;
+        }
+        
+        // Open image modal
+        function openImage(src) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            modal.classList.add('active');
+            modalImg.src = src;
+        }
+        
+        // Open video modal
+        function openVideo(src) {
+            const modal = document.getElementById('videoModal');
+            const modalVideo = document.getElementById('modalVideo');
+            modal.classList.add('active');
+            modalVideo.src = src;
+            modalVideo.load();
+            modalVideo.play();
+        }
+        
+        // Close modal
+        function closeModal() {
+            const modals = document.querySelectorAll('.modal');
+            const modalVideo = document.getElementById('modalVideo');
+            modals.forEach(modal => modal.classList.remove('active'));
+            if (modalVideo) {
+                modalVideo.pause();
+                modalVideo.src = '';
+            }
+        }
+        // Hamburger menu toggle
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+
+if (hamburger) {
+    hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+    });
+}
+
+// Close menu when clicking a link
+document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+    });
+});
+        
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            loadScreenshots();
+            loadVideos();
+        });
+    </script>
+</body>
+</html>
