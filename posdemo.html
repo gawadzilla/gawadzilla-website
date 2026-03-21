@@ -124,81 +124,81 @@
         }
 
         .hamburger {
-    display: none;
-    flex-direction: column;
-    cursor: pointer;
-}
-
-.hamburger span {
-    width: 25px;
-    height: 3px;
-    background: #00F0FF;
-    margin: 3px 0;
-    transition: 0.3s;
-    border-radius: 3px;
-}
-
-@media (max-width: 768px) {
-    .nav-wrapper {
-        padding: 0 20px;
-        position: relative;
-    }
-    
-    .nav-links {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: rgba(18, 20, 23, 0.98);
-        backdrop-filter: blur(10px);
-        flex-direction: column;
-        gap: 0;
-        padding: 20px;
-        border-bottom: 1px solid #00F0FF;
-    }
-    
-    .nav-links.active {
-        display: flex;
-    }
-    
-    .nav-links li {
-        width: 100%;
-        text-align: center;
-        padding: 12px 0;
-        border-bottom: 1px solid rgba(255,255,255,0.05);
-    }
-    
-    .nav-links li:last-child {
-        border-bottom: none;
-    }
-    
-    .nav-links a {
-        display: block;
-        font-size: 1rem;
-    }
-    
-    .hamburger {
-        display: flex;
-    }
-    
-    .btn-back {
-        display: none;
-    }
-    
-    /* Add mobile back button in menu */
-    .nav-links .mobile-back {
-        display: block;
-        margin-top: 10px;
-    }
-    
-    .nav-links .mobile-back a {
-        background: rgba(0,240,255,0.2);
-        border-radius: 30px;
-        padding: 8px 20px;
-        display: inline-block;
-    }
-}
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #00F0FF;
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 3px;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-wrapper {
+                padding: 0 20px;
+                position: relative;
+            }
+            
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(18, 20, 23, 0.98);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                gap: 0;
+                padding: 20px;
+                border-bottom: 1px solid #00F0FF;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                width: 100%;
+                text-align: center;
+                padding: 12px 0;
+                border-bottom: 1px solid rgba(255,255,255,0.05);
+            }
+            
+            .nav-links li:last-child {
+                border-bottom: none;
+            }
+            
+            .nav-links a {
+                display: block;
+                font-size: 1rem;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+            
+            .btn-back {
+                display: none;
+            }
+            
+            /* Add mobile back button in menu */
+            .nav-links .mobile-back {
+                display: block;
+                margin-top: 10px;
+            }
+            
+            .nav-links .mobile-back a {
+                background: rgba(0,240,255,0.2);
+                border-radius: 30px;
+                padding: 8px 20px;
+                display: inline-block;
+            }
+        }
         
         /* Hero Section */
         .demo-hero {
@@ -318,6 +318,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            cursor: pointer;
         }
         
         .image-container img {
@@ -339,6 +340,8 @@
             align-items: center;
             justify-content: center;
             background: linear-gradient(135deg, #121417, #1A1C3C);
+            text-align: center;
+            padding: 20px;
         }
         
         .image-placeholder i {
@@ -383,6 +386,12 @@
             border-radius: 20px;
             overflow: hidden;
             border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.3s;
+        }
+        
+        .video-card:hover {
+            transform: translateY(-5px);
+            border-color: #00F0FF;
         }
         
         .video-container {
@@ -395,28 +404,38 @@
             cursor: pointer;
         }
         
-        .video-thumbnail {
+        .video-thumbnail-container {
             width: 100%;
             height: 250px;
+            position: relative;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .video-thumbnail {
+            width: 100%;
+            height: 100%;
             object-fit: cover;
         }
         
         .play-button {
             position: absolute;
-            width: 60px;
-            height: 60px;
+            width: 70px;
+            height: 70px;
             background: rgba(0,240,255,0.9);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: all 0.3s;
-            margin-left: 180px;
-            margin-top: 94px;
+            cursor: pointer;
+            z-index: 5;
         }
         
         .play-button i {
-            font-size: 1.8rem;
+            font-size: 2rem;
             color: #0a0f2c;
             margin-left: 5px;
         }
@@ -434,6 +453,8 @@
             align-items: center;
             justify-content: center;
             background: linear-gradient(135deg, #121417, #1A1C3C);
+            text-align: center;
+            padding: 20px;
         }
         
         .video-placeholder i {
@@ -553,7 +574,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.9);
+            background: rgba(0,0,0,0.95);
             z-index: 1000;
             align-items: center;
             justify-content: center;
@@ -566,18 +587,15 @@
         .modal-content {
             max-width: 90%;
             max-height: 90%;
+            position: relative;
         }
         
-        .modal-content img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-        }
-        
+        .modal-content img,
         .modal-content video {
-            width: 100%;
-            max-height: 80vh;
+            max-width: 100%;
+            max-height: 85vh;
             border-radius: 10px;
+            box-shadow: 0 0 30px rgba(0,240,255,0.3);
         }
         
         .close-modal {
@@ -587,6 +605,20 @@
             font-size: 2rem;
             cursor: pointer;
             color: white;
+            z-index: 1001;
+            background: rgba(0,0,0,0.5);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        
+        .close-modal:hover {
+            color: #00F0FF;
+            transform: scale(1.1);
         }
         
         /* Footer */
@@ -619,6 +651,15 @@
             .demo-hero h1 {
                 font-size: 1.8rem;
             }
+            
+            .play-button {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .play-button i {
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -632,13 +673,12 @@
             <div class="logo">
                 <h1>GAWADZILLA</h1>
             </div>
-                    <div class="hamburger" id="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <ul class="nav-links" id="navLinks">
-
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="navLinks">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="index.html#services">Services</a></li>
                 <li><a href="index.html#pos">POS Systems</a></li>
@@ -689,19 +729,6 @@
             
             <div class="gallery-grid" id="screenshots-gallery">
                 <!-- Screenshots will be loaded dynamically -->
-                <div class="gallery-item">
-                    <div class="image-container">
-                        <div class="image-placeholder">
-                            <i class="fas fa-camera"></i>
-                            <p>Add your screenshots</p>
-                            <small>Place images in /images/pos-screenshots/</small>
-                        </div>
-                    </div>
-                    <div class="image-caption">
-                        <h3>POS Interface</h3>
-                        <p>Main point of sale screen</p>
-                    </div>
-                </div>
             </div>
         </div>
         
@@ -713,21 +740,10 @@
             </div>
             
             <div class="video-grid" id="videos-gallery">
-                <div class="video-card">
-                    <div class="video-container" onclick="openVideo('pos-overview')">
-                        <div class="video-placeholder">
-                            <i class="fas fa-play-circle"></i>
-                            <p>Add your video demo</p>
-                            <small>Place videos in /images/pos-videos/</small>
-                        </div>
-                    </div>
-                    <div class="video-info">
-                        <h3>POS System Overview</h3>
-                        <p>Complete walkthrough of all features</p>
-                    </div>
-                </div>
+                <!-- Videos will be loaded dynamically -->
             </div>
         </div>
+        
         <!-- Live Demo CTA -->
         <div class="cta-section">
             <h2>🚀 Ready to Try the POS System?</h2>
@@ -754,23 +770,36 @@
         <div class="modal-content">
             <video id="modalVideo" controls>
                 <source src="" type="video/mp4">
+                Your browser does not support the video tag.
             </video>
         </div>
     </div>
     
     <script>
+        // Get the base path for assets (works on both localhost and GitHub Pages)
+        function getBasePath() {
+            // Check if we're on GitHub Pages (path contains /Gawadzilla/ or similar)
+            const path = window.location.pathname;
+            if (path.includes('/Gawadzilla/') || path.includes('/gawadzilla/')) {
+                return '';
+            }
+            return '';
+        }
+        
+        const basePath = getBasePath();
+        
         // Screenshots data - Add your images here
         const screenshots = [
             {
-                name: "POS index-page",
-                description: "product selection and product grid with search,filters,and cart",
+                name: "POS Shopping",
+                description: "Product selection and product grid with search, filters, and cart",
                 file: "pos-shopping.jpg",
-                icon: "fas fa-car-alt"
+                icon: "fas fa-shopping-cart"
             },
             {
                 name: "Checkout Screen",
                 description: "Payment processing with multiple payment methods",
-                file: "pos-checkout.jpg.pn",
+                file: "pos-checkout.jpg",
                 icon: "fas fa-cash-register"
             },
             {
@@ -805,7 +834,7 @@
             },
             {
                 name: "User Management",
-                description: "add users with different roles and permissions",
+                description: "Add users with different roles and permissions",
                 file: "pos-users.jpg",
                 icon: "fas fa-users"
             }
@@ -816,27 +845,53 @@
             {
                 name: "POS System Demo",
                 description: "Complete walkthrough of all features and functions",
-                file: "pos-demo.mp4.mp4",
+                file: "pos-demo.mp4",
                 icon: "fas fa-video"
             }
         ];
         
+        // Function to check if a file exists via fetch
+        async function fileExists(url) {
+            try {
+                const response = await fetch(url, { method: 'HEAD' });
+                return response.ok;
+            } catch (error) {
+                return false;
+            }
+        }
+        
         // Load screenshots
-        function loadScreenshots() {
+        async function loadScreenshots() {
             const gallery = document.getElementById('screenshots-gallery');
             gallery.innerHTML = '';
             
-            screenshots.forEach(img => {
-                const imagePath = `/images/pos-screenshots/${img.file}`;
-                const hasImage = checkImageExists(imagePath);
+            for (const img of screenshots) {
+                // Try different possible paths
+                const pathsToTry = [
+                    `images/pos-screenshots/${img.file}`,
+                    `./images/pos-screenshots/${img.file}`,
+                    `/images/pos-screenshots/${img.file}`
+                ];
+                
+                let imageExists = false;
+                let workingPath = '';
+                
+                for (const path of pathsToTry) {
+                    const exists = await fileExists(path);
+                    if (exists) {
+                        imageExists = true;
+                        workingPath = path;
+                        break;
+                    }
+                }
                 
                 const galleryItem = document.createElement('div');
                 galleryItem.className = 'gallery-item';
                 
-                if (hasImage) {
+                if (imageExists) {
                     galleryItem.innerHTML = `
-                        <div class="image-container" onclick="openImage('${imagePath}')">
-                            <img src="${imagePath}" alt="${img.name}">
+                        <div class="image-container" onclick="openImage('${workingPath}')">
+                            <img src="${workingPath}" alt="${img.name}" loading="lazy">
                         </div>
                         <div class="image-caption">
                             <h3>${img.name}</h3>
@@ -849,41 +904,57 @@
                             <div class="image-placeholder">
                                 <i class="${img.icon}"></i>
                                 <p>${img.name}</p>
-                               
+                                <small style="color: #ff9800;">📷 Add image: ${img.file}</small>
                             </div>
                         </div>
                         <div class="image-caption">
                             <h3>${img.name}</h3>
                             <p>${img.description}</p>
-                            
+                            <small style="color: #00F0FF;">Place in: /images/pos-screenshots/</small>
                         </div>
                     `;
                 }
                 
                 gallery.appendChild(galleryItem);
-            });
+            }
         }
         
         // Load videos
-        function loadVideos() {
+        async function loadVideos() {
             const gallery = document.getElementById('videos-gallery');
             gallery.innerHTML = '';
             
-            videos.forEach(video => {
-                const videoPath = `/images/pos-videos/${video.file}`;
-                const hasVideo = checkVideoExists(videoPath);
+            for (const video of videos) {
+                // Try different possible paths
+                const pathsToTry = [
+                    `images/pos-videos/${video.file}`,
+                    `./images/pos-videos/${video.file}`,
+                    `/images/pos-videos/${video.file}`
+                ];
+                
+                let videoExists = false;
+                let workingPath = '';
+                
+                for (const path of pathsToTry) {
+                    const exists = await fileExists(path);
+                    if (exists) {
+                        videoExists = true;
+                        workingPath = path;
+                        break;
+                    }
+                }
                 
                 const videoCard = document.createElement('div');
                 videoCard.className = 'video-card';
                 
-                if (hasVideo) {
+                if (videoExists) {
                     videoCard.innerHTML = `
-                        <div class="video-container" onclick="openVideo('${videoPath}')">
+                        <div class="video-container" onclick="openVideo('${workingPath}')">
                             <div class="video-thumbnail-container">
                                 <div class="play-button">
                                     <i class="fas fa-play"></i>
                                 </div>
-                                <video class="video-thumbnail" src="${videoPath}" preload="metadata"></video>
+                                <video class="video-thumbnail" src="${workingPath}" preload="metadata"></video>
                             </div>
                         </div>
                         <div class="video-info">
@@ -893,39 +964,23 @@
                     `;
                 } else {
                     videoCard.innerHTML = `
-                        <div class="video-container" onclick="alert('Please add your video to /images/pos-videos/${video.file}')">
+                        <div class="video-container">
                             <div class="video-placeholder">
                                 <i class="${video.icon}"></i>
                                 <p>${video.name}</p>
-                                <small>Add: ${video.file}</small>
+                                <small style="color: #ff9800;">🎥 Add video: ${video.file}</small>
                             </div>
                         </div>
                         <div class="video-info">
                             <h3>${video.name}</h3>
                             <p>${video.description}</p>
-                            <small style="color: #ff9800;">🎥 Upload video to see preview</small>
+                            <small style="color: #00F0FF;">Place in: /images/pos-videos/</small>
                         </div>
                     `;
                 }
                 
                 gallery.appendChild(videoCard);
-            });
-        }
-        
-        // Check if image exists
-        function checkImageExists(url) {
-            const http = new XMLHttpRequest();
-            http.open('HEAD', url, false);
-            http.send();
-            return http.status !== 404;
-        }
-        
-        // Check if video exists
-        function checkVideoExists(url) {
-            const http = new XMLHttpRequest();
-            http.open('HEAD', url, false);
-            http.send();
-            return http.status !== 404;
+            }
         }
         
         // Open image modal
@@ -940,10 +995,11 @@
         function openVideo(src) {
             const modal = document.getElementById('videoModal');
             const modalVideo = document.getElementById('modalVideo');
+            const videoSource = modalVideo.querySelector('source');
             modal.classList.add('active');
-            modalVideo.src = src;
+            videoSource.src = src;
             modalVideo.load();
-            modalVideo.play();
+            modalVideo.play().catch(e => console.log('Video play error:', e));
         }
         
         // Close modal
@@ -953,30 +1009,40 @@
             modals.forEach(modal => modal.classList.remove('active'));
             if (modalVideo) {
                 modalVideo.pause();
-                modalVideo.src = '';
+                const videoSource = modalVideo.querySelector('source');
+                if (videoSource) videoSource.src = '';
+                modalVideo.load();
             }
         }
+        
         // Hamburger menu toggle
-const hamburger = document.getElementById('hamburger');
-const navLinks = document.getElementById('navLinks');
-
-if (hamburger) {
-    hamburger.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-    });
-}
-
-// Close menu when clicking a link
-document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
-        navLinks.classList.remove('active');
-    });
-});
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+        }
+        
+        // Close menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
         
         // Initialize on page load
         document.addEventListener('DOMContentLoaded', () => {
             loadScreenshots();
             loadVideos();
+        });
+        
+        // Close modal with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
         });
     </script>
 </body>
