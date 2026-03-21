@@ -816,7 +816,7 @@
             {
                 name: "POS System Demo",
                 description: "Complete walkthrough of all features and functions",
-                file: "pos-demo.mp4",
+                file: "pos-demo.mp4.mp4",
                 icon: "fas fa-video"
             }
         ];
@@ -864,66 +864,53 @@
             });
         }
         
-        // Load videos with debugging
-function loadVideos() {
-    const gallery = document.getElementById('videos-gallery');
-    gallery.innerHTML = '';
-    
-    videos.forEach(video => {
-        // Fix: Remove leading slash
-        const videoPath = `images/pos-videos/${video.file}`;
-        
-        console.log('Looking for video at:', videoPath); // Debug
-        
-        const videoCard = document.createElement('div');
-        videoCard.className = 'video-card';
-        
-        // Check if video exists
-        const testVideo = document.createElement('video');
-        testVideo.oncanplaythrough = function() {
-            console.log('✅ Video found:', videoPath);
-            // Show video with play button
-            videoCard.innerHTML = `
-                <div class="video-container" onclick="openVideo('${videoPath}')">
-                    <div class="video-thumbnail-container" style="position: relative;">
-                        <div class="play-button" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
-                            <i class="fas fa-play"></i>
+        // Load videos
+        function loadVideos() {
+            const gallery = document.getElementById('videos-gallery');
+            gallery.innerHTML = '';
+            
+            videos.forEach(video => {
+                const videoPath = `/images/pos-videos/${video.file}`;
+                const hasVideo = checkVideoExists(videoPath);
+                
+                const videoCard = document.createElement('div');
+                videoCard.className = 'video-card';
+                
+                if (hasVideo) {
+                    videoCard.innerHTML = `
+                        <div class="video-container" onclick="openVideo('${videoPath}')">
+                            <div class="video-thumbnail-container">
+                                <div class="play-button">
+                                    <i class="fas fa-play"></i>
+                                </div>
+                                <video class="video-thumbnail" src="${videoPath}" preload="metadata"></video>
+                            </div>
                         </div>
-                        <video class="video-thumbnail" src="${videoPath}" preload="metadata" style="width: 100%; height: 250px; object-fit: cover;"></video>
-                    </div>
-                </div>
-                <div class="video-info">
-                    <h3>${video.name}</h3>
-                    <p>${video.description}</p>
-                </div>
-            `;
-            gallery.appendChild(videoCard);
-        };
-        
-        testVideo.onerror = function() {
-            console.log('❌ Video NOT found:', videoPath);
-            // Show placeholder
-            videoCard.innerHTML = `
-                <div class="video-container" onclick="alert('Video not found. Please check: ${videoPath}')">
-                    <div class="video-placeholder">
-                        <i class="${video.icon}"></i>
-                        <p>${video.name}</p>
-                        <small>Video not found: ${video.file}</small>
-                        <br>
-                        <small style="color: #ff9800;">Expected at: ${videoPath}</small>
-                    </div>
-                </div>
-                <div class="video-info">
-                    <h3>${video.name}</h3>
-                    <p>${video.description}</p>
-                </div>
-            `;
-            gallery.appendChild(videoCard);
-        };
-        
-        testVideo.src = videoPath;
-    });
-}
+                        <div class="video-info">
+                            <h3>${video.name}</h3>
+                            <p>${video.description}</p>
+                        </div>
+                    `;
+                } else {
+                    videoCard.innerHTML = `
+                        <div class="video-container" onclick="alert('Please add your video to /images/pos-videos/${video.file}')">
+                            <div class="video-placeholder">
+                                <i class="${video.icon}"></i>
+                                <p>${video.name}</p>
+                                <small>Add: ${video.file}</small>
+                            </div>
+                        </div>
+                        <div class="video-info">
+                            <h3>${video.name}</h3>
+                            <p>${video.description}</p>
+                            <small style="color: #ff9800;">🎥 Upload video to see preview</small>
+                        </div>
+                    `;
+                }
+                
+                gallery.appendChild(videoCard);
+            });
+        }
         
         // Check if image exists
         function checkImageExists(url) {
