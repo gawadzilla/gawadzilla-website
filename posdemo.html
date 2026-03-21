@@ -704,6 +704,7 @@
                 </div>
             </div>
         </div>
+        
         <!-- Video Demos -->
         <div class="video-section">
             <div class="section-title">
@@ -768,17 +769,17 @@
             {
                 name: "Checkout Screen",
                 description: "Payment processing with multiple payment methods",
-                file: "pos-checkout.jpg.pn",
                 icon: "fas fa-cash-register"
             },
             {
                 name: "POS Dashboard",
-                description: "Main point of sale interface with product grid and cart",,
+                description: "Main point of sale interface with product grid and cart",
                 icon: "fas fa-tachometer-alt"
             },
             {
                 name: "Product Management",
-                description: "Add, edit, and manage products with categories",
+                description: "Add, edit, and manage products with categories"
+                file: "pos-products.jpg",
                 icon: "fas fa-boxes"
             },
             {
@@ -793,7 +794,7 @@
             },
             {
                 name: "Inventory Management",
-                description: "Real-time stock tracking and low stock alerts",,
+                description: "Real-time stock tracking and low stock alerts",
                 icon: "fas fa-warehouse"
             },
             {
@@ -819,7 +820,7 @@
             gallery.innerHTML = '';
             
             screenshots.forEach(img => {
-                const imagePath = `images/pos-screenshots/${img.file}`;
+                const imagePath = `/images/pos-screenshots/${img.file}`;
                 const hasImage = checkImageExists(imagePath);
                 
                 const galleryItem = document.createElement('div');
@@ -862,7 +863,7 @@
             gallery.innerHTML = '';
             
             videos.forEach(video => {
-                const videoPath = `images/pos-videos/${video.file}`;
+                const videoPath = `/images/pos-videos/${video.file}`;
                 const hasVideo = checkVideoExists(videoPath);
                 
                 const videoCard = document.createElement('div');
