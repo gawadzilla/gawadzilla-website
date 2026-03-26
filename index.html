@@ -10,6 +10,330 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Additional styles for the professional animated logo - fade black to reveal image left to right */
+        .hero-logo {
+            text-align: center;
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        /* Professional Logo Container with Reveal Animation */
+        .logo-reveal-container {
+            display: inline-block;
+            position: relative;
+            margin-bottom: 1rem;
+            cursor: pointer;
+        }
+
+        .logo-wrapper {
+            position: relative;
+            display: inline-block;
+            overflow: hidden;
+            border-radius: 0px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .logo-wrapper:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 240, 255, 0.2);
+        }
+
+        /* Base Logo Image */
+        .logo-base-img {
+            display: block;
+            width: 140px;
+            height: 140px;
+            object-fit: cover;
+            background: linear-gradient(135deg, #0a0f2c, #1a1f3c);
+        }
+
+        /* Reveal Overlay - Black to Transparent Gradient from Left to Right */
+        .logo-reveal-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, #000000 0%, #000000 40%, transparent 100%);
+            animation: revealLeftToRight 2.2s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* Shine Effect on Logo after reveal */
+        .logo-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.3), transparent);
+            transition: left 0.6s ease;
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        .logo-wrapper:hover::after {
+            left: 100%;
+        }
+
+        /* Glow border on hover */
+        .logo-wrapper {
+            position: relative;
+            border: 2px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+
+        .logo-wrapper:hover {
+            border-color: #00F0FF;
+        }
+
+        /* Logo Text Styling */
+        .logo-name {
+            font-size: 2.5rem;
+            font-weight: 900;
+            letter-spacing: 4px;
+            background: linear-gradient(135deg, #FFFFFF, #00F0FF);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-top: 1rem;
+            position: relative;
+            display: inline-block;
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.6);
+        }
+
+        .logo-name::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, #00F0FF, #C900FF);
+            transition: width 0.5s ease;
+        }
+
+        .logo-reveal-container:hover .logo-name::after {
+            width: 100%;
+        }
+
+        .logo-tagline {
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            color: #00F0FF;
+            font-weight: 500;
+            text-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
+            margin-top: 0.5rem;
+            opacity: 0;
+            animation: fadeInText 0.8s ease forwards 1.2s;
+        }
+
+        /* Keyframe Animations */
+        @keyframes revealLeftToRight {
+            0% {
+                background: linear-gradient(90deg, #000000 0%, #000000 95%, transparent 100%);
+                opacity: 1;
+            }
+            30% {
+                background: linear-gradient(90deg, #000000 0%, #000000 70%, transparent 100%);
+            }
+            60% {
+                background: linear-gradient(90deg, #000000 0%, #000000 30%, transparent 100%);
+            }
+            100% {
+                background: linear-gradient(90deg, transparent 0%, transparent 100%);
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInText {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes imageReveal {
+            from {
+                opacity: 0;
+                transform: scale(1.05);
+            }
+            to {
+                opacity: 0.65;
+                transform: scale(1);
+            }
+        }
+
+        /* Hero Section with Enhanced Background Image Visibility */
+        .hero {
+            position: relative;
+            background: linear-gradient(135deg, #0A0C1A 0%, #1A0B2E 50%, #0A0C1A 100%);
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            box-shadow: inset 0 0 50px rgba(0, 240, 255, 0.05);
+        }
+
+        /* Hero Background Image - Enhanced Visibility */
+        .hero-bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            opacity: 0.65;
+            z-index: 0;
+            pointer-events: none;
+            filter: brightness(1.1) contrast(1.05);
+            transition: opacity 0.5s ease, filter 0.4s ease;
+            animation: imageReveal 1.2s ease-out forwards;
+        }
+
+        /* Darker gradient overlay for better text contrast while preserving image visibility */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                135deg,
+                rgba(10, 12, 26, 0.6) 0%,
+                rgba(26, 11, 46, 0.65) 50%,
+                rgba(10, 12, 26, 0.6) 100%
+            );
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Additional subtle radial gradient to enhance image focus */
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, transparent 30%, rgba(0, 0, 0, 0.2) 100%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Ensure hero content appears above background with better readability */
+        .hero .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Enhance text shadows for better readability on images */
+        .hero-title, 
+        .hero-subtitle, 
+        .hero-description {
+            text-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Enhanced Hero Content Styling */
+        .hero-content {
+            backdrop-filter: blur(2px);
+            border-radius: 20px;
+            padding: 20px;
+        }
+
+        /* Hover effect - subtle image enhancement */
+        .hero:hover .hero-bg-image {
+            opacity: 0.72;
+            filter: brightness(1.12) contrast(1.08);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .logo-base-img {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .logo-name {
+                font-size: 1.8rem;
+                letter-spacing: 2px;
+            }
+            
+            .logo-tagline {
+                font-size: 0.6rem;
+                letter-spacing: 2px;
+            }
+            
+            .hero-bg-image {
+                opacity: 0.55;
+                filter: brightness(1.05) contrast(1.02);
+            }
+            
+            .hero::before {
+                background: linear-gradient(
+                    135deg,
+                    rgba(10, 12, 26, 0.7) 0%,
+                    rgba(26, 11, 46, 0.75) 100%
+                );
+            }
+            
+            .hero-content {
+                backdrop-filter: blur(1px);
+                padding: 10px;
+            }
+            
+            .hero-title {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* For larger screens, keep image vibrant */
+        @media (min-width: 1200px) {
+            .hero-bg-image {
+                opacity: 0.7;
+                filter: brightness(1.15) contrast(1.08);
+            }
+        }
+
+        /* Optional: Add a subtle pulse effect after reveal */
+        @keyframes subtleGlow {
+            0% {
+                box-shadow: 0 0 0 0 rgba(0, 240, 255, 0);
+            }
+            50% {
+                box-shadow: 0 0 0 8px rgba(0, 240, 255, 0.2);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(0, 240, 255, 0);
+            }
+        }
+
+        .logo-wrapper {
+            animation: subtleGlow 1.2s ease 2s 1;
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
@@ -37,27 +361,33 @@
         </div>
     </nav>
 
- <!-- Hero Section -->
-<section id="home" class="hero">
-    <div class="container">
-        <div class="hero-content">
-            <!-- GAWADZILLA Logo Design -->
-            <div class="hero-logo">
-                <div class="logo-icon">G</div>
-                <h1 class="logo-name">GAWADZILLA</h1>
-                <p class="logo-tagline">WHERE BUSINESS MEETS TECHNOLOGY</p>
-            </div>
-            
-            <h2 class="hero-title">Your Complete <span class="highlight">Technology Partner</span></h2>
-            <p class="hero-subtitle">Web Development | POS Systems | Hardware Sales | Laptop Repair</p>
-            <p class="hero-description">One trusted partner for all your business technology needs. Serving businesses and individuals with professional, reliable solutions.</p>
-            <div class="hero-buttons">
-                <a href="#contact" class="btn btn-primary">Get Free Quote</a>
-                <a href="#services" class="btn btn-secondary">View Services</a>
+    <!-- Hero Section with Background Image Behind Text -->
+    <section id="home" class="hero">
+        <!-- Background Image - positioned behind all content -->
+        <img class="hero-bg-image" src="images/pos-screenshots/header-background.jpeg" alt="Gawadzilla Background" onerror="this.style.display='none'">
+        
+        <div class="container">
+            <div class="hero-content">
+                <!-- GAWADZILLA Logo Design with Professional Left-to-Right Fade Reveal -->
+                <div class="hero-logo">
+                    <div class="logo-reveal-container">
+                        <div class="logo-wrapper"> <div class="logo-reveal-overlay"></div>
+                        </div>
+                        <h1 class="logo-name">GAWADZILLA</h1>
+                        <p class="logo-tagline">WHERE BUSINESS MEETS TECHNOLOGY</p>
+                    </div>
+                </div>
+                
+                <h2 class="hero-title">Your Complete <span class="highlight">Technology Partner</span></h2>
+                <p class="hero-subtitle">Web Development | POS Systems | Hardware Sales | Laptop Repair</p>
+                <p class="hero-description">One trusted partner for all your business technology needs. Serving businesses and individuals with professional, reliable solutions.</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary">Get Free Quote</a>
+                    <a href="#services" class="btn btn-secondary">View Services</a>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <!-- Services Overview -->
     <section id="services" class="services">
@@ -95,194 +425,124 @@
         </div>
     </section>
 
-   <!-- POS Systems Section -->
-<section id="pos" class="pos-section">
-    <div class="container">
-        <div class="section-header">
-            <h2>💼 POS Systems</h2>
-            <p>Complete Point of Sale solutions for restaurants, cafes, and retail stores</p>
-        </div>
-        
-        <div class="pos-grid">
-            <div class="pos-content">
-                <h3>🚀 All-in-One POS Solution</h3>
-                <p>Gawadzilla delivers a powerful, professional POS system designed to streamline your business operations. Built with a modern interface and robust features that work offline & online.</p>
-                
-                <!-- Core Features -->
-                <div class="features-list">
-                    <h4 style="color: #00F0FF; margin: 20px 0 10px 0;">✨ Core Features</h4>
-                    <div class="feature">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Real-time inventory management with stock tracking</span>
-                    </div>
-                    <div class="feature">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Multi-currency support (USD/LBP) with automatic exchange rate updates</span>
-                    </div>
-                    <div class="feature">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Barcode scanning & product search for fast checkout</span>
-                    </div>
-                    <div class="feature">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Discount management (percentage or fixed amount)</span>
-                    </div>
-                    <div class="feature">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Pay Later system with payment tracking and history</span>
-                    </div>
-                </div>
-                
-                <!-- Business Management -->
-                <div class="features-list">
-                    <h4 style="color: #C900FF; margin: 20px 0 10px 0;">📊 Business Management</h4>
-                    <div class="feature">
-                        <i class="fas fa-chart-line"></i>
-                        <span>Sales reports by day, week, month, year, or custom date range</span>
-                    </div>
-                    <div class="feature">
-                        <i class="fas fa-file-invoice-dollar"></i>
-                        <span>End of Day reports with detailed cash, card, and mobile payment breakdowns</span>
-                    </div>
-                    <div class="feature">
-                        <i class="fas fa-users"></i>
-                        <span>User management with role-based access (Admin, Manager, Cashier)</span>
-                    </div>
-                    <div class="feature">
-                        <i class="fas fa-boxes"></i>
-                        <span>Stock history tracking and low stock alerts</span>
-                    </div>
-                    <div class="feature">
-                        <i class="fas fa-chart-pie"></i>
-                        <span>Product performance analytics and top-selling items</span>
-                    </div>
-                </div>
-                
-                <!-- Payment Methods -->
-                <div class="hardware-list">
-                    <h4>💳 Payment Methods that POS support</h4>
-                    <div class="hardware-tags">
-                        <span>Cash</span>
-                        <span>Credit/Debit Card</span>
-                        <span>Mobile Payments</span>
-                        <span>Pay Later (Credit)</span>
-                    </div>
-                </div>
-                
-                <a href="posdemo.html" class="btn btn-primary">Get Demo </a>
+    <!-- POS Systems Section -->
+    <section id="pos" class="pos-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>💼 POS Systems</h2>
+                <p>Complete Point of Sale solutions for restaurants, cafes, and retail stores</p>
             </div>
             
-             <div class="pos-image">
-                <div class="pos-demo-box" onclick="openImageModal('images/pos-system-preview.jpg')">
-                    <img src="images/pos-screenshots/pos-store-demo.jpeg" 
-                         alt="POS System Preview" 
-                         class="pos-demo-img"
-                         onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22400%22%20height%3D%22300%22%20viewBox%3D%220%200%20400%20300%22%3E%3Crect%20width%3D%22400%22%20height%3D%22300%22%20fill%3D%22%23121417%22%2F%3E%3Ctext%20x%3D%2250%25%22%20y%3D%2250%25%22%20text-anchor%3D%22middle%22%20fill%3D%22%2300F0FF%22%20font-size%3D%2214%22%3E%F0%9F%93%B8%20Click%20to%20add%20POS%20image%3C%2Ftext%3E%3C%2Fsvg%3E'">
+            <div class="pos-grid">
+                <div class="pos-content">
+                    <h3>🚀 All-in-One POS Solution</h3>
+                    <p>Gawadzilla delivers a powerful, professional POS system designed to streamline your business operations. Built with a modern interface and robust features that work offline & online.</p>
+                    
+                    <!-- Core Features -->
+                    <div class="features-list">
+                        <h4 style="color: #00F0FF; margin: 20px 0 10px 0;">✨ Core Features</h4>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Real-time inventory management with stock tracking</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Multi-currency support (USD/LBP) with automatic exchange rate updates</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Barcode scanning & product search for fast checkout</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Discount management (percentage or fixed amount)</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Pay Later system with payment tracking and history</span>
+                        </div>
+                    </div>
+                    
+                    <a href="posdemo.html" class="btn btn-primary">Get Demo</a>
                 </div>
-                <div class="pos-image-details">
-                    <p class="image-caption">Click on the image to view full size</p>
-                    <div class="pos-badges">
-                        <small style="color: #00F0FF;">⚡ Offline & Online Mode</small>
-                        <small style="color: #C900FF;">📱 Works on any device</small>
+                
+                <div class="pos-image">
+                    <div class="pos-demo-box" onclick="openImageModal('images/pos-screenshots/pos-store-demo.jpeg')">
+                        <img src="images/pos-screenshots/pos-store-demo.jpeg" 
+                             alt="POS System Preview" 
+                             class="pos-demo-img"
+                             onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22400%22%20height%3D%22300%22%20viewBox%3D%220%200%20400%20300%22%3E%3Crect%20width%3D%22400%22%20height%3D%22300%22%20fill%3D%22%23121417%22%2F%3E%3Ctext%20x%3D%2250%25%22%20y%3D%2250%25%22%20text-anchor%3D%22middle%22%20fill%3D%22%2300F0FF%22%20font-size%3D%2214%22%3E%F0%9F%93%B8%20POS%20Demo%20Image%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                    </div>
+                    <div class="pos-image-details">
+                        <p class="image-caption">Click on the image to view full size</p>
+                        <div class="pos-badges">
+                            <small style="color: #00F0FF;">⚡ Offline & Online Mode</small>
+                            <small style="color: #C900FF;">📱 Works on any device</small>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
-<!-- POS Features Highlight -->
-<section class="pos-features" style="background: rgba(0, 0, 0, 0.3); padding: 60px 0;">
-    <div class="container">
-        <div class="section-header">
-            <h2>⚡ Why Choose Gawadzilla POS?</h2>
-            <p>Built for Lebanese businesses with local needs in mind</p>
-        </div>
-        
-        <div class="features-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px;">
-            <div class="feature-card" style="background: rgba(255,255,255,0.03); border-radius: 20px; padding: 30px; border: 1px solid rgba(0,240,255,0.2);">
-                <i class="fas fa-wifi" style="font-size: 40px; color: #00F0FF; margin-bottom: 20px;"></i>
-                <h3>Offline Mode</h3>
-                <p style="color: #B0B3B8;">Keep selling even without internet. Syncs automatically when connection returns.</p>
-            </div>
-            
-            <div class="feature-card" style="background: rgba(255,255,255,0.03); border-radius: 20px; padding: 30px; border: 1px solid rgba(201,0,255,0.2);">
-                <i class="fas fa-shield-alt" style="font-size: 40px; color: #C900FF; margin-bottom: 20px;"></i>
-                <h3>Local Data Security</h3>
-                <p style="color: #B0B3B8;">All your data stays on your local server. No third-party cloud storage risks.</p>
-            </div>
-            
-            <div class="feature-card" style="background: rgba(255,255,255,0.03); border-radius: 20px; padding: 30px; border: 1px solid rgba(0,240,255,0.2);">
-                <i class="fas fa-chart-simple" style="font-size: 40px; color: #00F0FF; margin-bottom: 20px;"></i>
-                <h3>Real-Time Reports</h3>
-                <p style="color: #B0B3B8;">Track sales, inventory, and employee performance instantly from any device.</p>
-            </div>
-            
-            <div class="feature-card" style="background: rgba(255,255,255,0.03); border-radius: 20px; padding: 30px; border: 1px solid rgba(201,0,255,0.2);">
-                <i class="fas fa-hand-holding-usd" style="font-size: 40px; color: #C900FF; margin-bottom: 20px;"></i>
-                <h3>Pay Later System</h3>
-                <p style="color: #B0B3B8;">Perfect for regular customers. Track pending payments and collect when ready.</p>
-            </div>
-        </div>
-    </div>
-</section>
+    </section>
+
     <!-- Web Development Section -->
-<section id="web" class="web-section">
-    <div class="container">
-        <div class="section-header">
-            <h2>Web Development</h2>
-            <p>Professional websites that grow your business</p>
-        </div>
-        <div class="web-grid">
-            <div class="web-image">
-                <div class="web-demo-box" onclick="openImageModal('images/web-demo-preview.jpg')">
-                    <img src="images/pos-screenshots/web-demo.jpeg" 
-                         alt="Website Demo Preview" 
-                         class="web-demo-img"
-                         onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22400%22%20height%3D%22300%22%20viewBox%3D%220%200%20400%20300%22%3E%3Crect%20width%3D%22400%22%20height%3D%22300%22%20fill%3D%22%23121417%22%2F%3E%3Ctext%20x%3D%2250%25%22%20y%3D%2250%25%22%20text-anchor%3D%22middle%22%20fill%3D%22%2300F0FF%22%20font-size%3D%2216%22%3E%F0%9F%93%B8%20Click%20to%20add%20image%3C%2Ftext%3E%3C%2Fsvg%3E'">
-                </div>
-                <p class="image-caption">Click on the image to view full size</p>
+    <section id="web" class="web-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Web Development</h2>
+                <p>Professional websites that grow your business</p>
             </div>
-            <div class="web-content">
-                <h3>Custom Websites Built for Results</h3>
-                <p>I build responsive, fast, and SEO-friendly websites that help businesses attract more customers.</p>
-                
-                <div class="services-offered">
-                    <div class="service-item">
-                        <i class="fas fa-building"></i>
-                        <div>
-                            <h4>Business Websites</h4>
-                            <p>Professional sites that build credibility</p>
-                        </div>
+            <div class="web-grid">
+                <div class="web-image">
+                    <div class="web-demo-box" onclick="openImageModal('images/pos-screenshots/web-demo.jpeg')">
+                        <img src="images/pos-screenshots/web-demo.jpeg" 
+                             alt="Website Demo Preview" 
+                             class="web-demo-img"
+                             onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22400%22%20height%3D%22300%22%20viewBox%3D%220%200%20400%20300%22%3E%3Crect%20width%3D%22400%22%20height%3D%22300%22%20fill%3D%22%23121417%22%2F%3E%3Ctext%20x%3D%2250%25%22%20y%3D%2250%25%22%20text-anchor%3D%22middle%22%20fill%3D%22%2300F0FF%22%20font-size%3D%2216%22%3E%F0%9F%8C%90%20Web%20Dev%20Preview%3C%2Ftext%3E%3C%2Fsvg%3E'">
                     </div>
-                    <div class="service-item">
-                        <i class="fas fa-shopping-cart"></i>
-                        <div>
-                            <h4>E-commerce Stores</h4>
-                            <p>Sell products online with ease</p>
-                        </div>
-                    </div>
-                    <div class="service-item">
-                        <i class="fas fa-tools"></i>
-                        <div>
-                            <h4>Maintenance & Support</h4>
-                            <p>Keep your site secure and updated</p>
-                        </div>
-                    </div>
+                    <p class="image-caption">Click on the image to view full size</p>
                 </div>
-                
-                <div class="offer-badge">
-                    <i class="fas fa-gift"></i>
-                    <div>
-                        <strong>Limited Offer</strong>
-                        <p>20% off for first 3 clients - Building my portfolio</p>
+                <div class="web-content">
+                    <h3>Custom Websites Built for Results</h3>
+                    <p>I build responsive, fast, and SEO-friendly websites that help businesses attract more customers.</p>
+                    
+                    <div class="services-offered">
+                        <div class="service-item">
+                            <i class="fas fa-building"></i>
+                            <div>
+                                <h4>Business Websites</h4>
+                                <p>Professional sites that build credibility</p>
+                            </div>
+                        </div>
+                        <div class="service-item">
+                            <i class="fas fa-shopping-cart"></i>
+                            <div>
+                                <h4>E-commerce Stores</h4>
+                                <p>Sell products online with ease</p>
+                            </div>
+                        </div>
+                        <div class="service-item">
+                            <i class="fas fa-tools"></i>
+                            <div>
+                                <h4>Maintenance & Support</h4>
+                                <p>Keep your site secure and updated</p>
+                            </div>
+                        </div>
                     </div>
+                    
+                    <div class="offer-badge">
+                        <i class="fas fa-gift"></i>
+                        <div>
+                            <strong>Limited Offer</strong>
+                            <p>20% off for first 3 clients - Building my portfolio</p>
+                        </div>
+                    </div>
+                    
+                    <a href="#contact" class="btn btn-primary">Get Early-Bird Pricing</a>
                 </div>
-                
-                <a href="#contact" class="btn btn-primary">Get Early-Bird Pricing</a>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <!-- Hardware & Repair Section -->
     <section id="hardware" class="hardware-section">
@@ -329,7 +589,6 @@
                 <div class="repair-table">
                     <div class="repair-row header">
                         <span>Service</span>
-                        
                         <span>Turnaround</span>
                     </div>
                     <div class="repair-row">
@@ -353,10 +612,10 @@
                         <span>Same day</span>
                     </div>
                     <div class="repair-row">
-                        <span>other</span>
-                        <span>Dependes On The Problem</span>
+                        <span>Other</span>
+                        <span>Depends On The Problem</span>
                     </div>
-
+                </div>
                 <div class="warranty-note">
                     <i class="fas fa-shield-alt"></i>
                     <p>30-day warranty on all repairs | Genuine replacement parts only</p>
@@ -377,8 +636,8 @@
                     <i class="fas fa-quote-left"></i>
                     <p>Gawadzilla's POS system transformed our operations. We reduced order errors by 90% and saved hours on inventory management.</p>
                     <div class="client">
-                        <strong>cafe Owner</strong>
-                        <span>street cafe</span>
+                        <strong>Cafe Owner</strong>
+                        <span>Street Cafe</span>
                     </div>
                 </div>
                 <div class="testimonial-card">
@@ -394,53 +653,60 @@
     </section>
 
     <!-- Contact Section -->
-<section id="contact" class="contact">
-    <div class="container">
-        <div class="section-header">
-            <h2>Get In Touch</h2>
-            <p>Tell me about your project or repair needs</p>
-        </div>
-        <div class="contact-grid">
-            <div class="contact-form">
-                <form id="contactForm" onsubmit="sendWhatsAppMessage(event)">
-                    <input type="text" id="name" placeholder="Your Name" required>
-                    <input type="tel" id="phone" placeholder="Your Phone Number">
-                    <select id="service">
-                        <option value="Web Development">Web Development</option>
-                        <option value="POS System">POS System</option>
-                        <option value="Hardware Sales">Hardware Sales</option>
-                        <option value="Laptop Repair">Laptop Repair</option>
-                    </select>
-                    <textarea id="message" rows="5" placeholder="Tell me about your needs..."></textarea>
-                    <button type="submit" class="btn btn-primary">Send Message via WhatsApp</button>
-                </form>
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Get In Touch</h2>
+                <p>Tell me about your project or repair needs</p>
             </div>
-            <div class="contact-info">
-                <div class="info-item">
-                    <i class="fab fa-whatsapp"></i>
-                    <div>
-                        <h4>WhatsApp</h4>
-                        <p><a href="https://wa.me/96179110894" target="_blank">+961 79 110 894</a></p>
-                    </div>
+            <div class="contact-grid">
+                <div class="contact-form">
+                    <form id="contactForm" onsubmit="sendWhatsAppMessage(event)">
+                        <input type="text" id="name" placeholder="Your Name" required>
+                        <input type="tel" id="phone" placeholder="Your Phone Number">
+                        <select id="service">
+                            <option value="Web Development">Web Development</option>
+                            <option value="POS System">POS System</option>
+                            <option value="Hardware Sales">Hardware Sales</option>
+                            <option value="Laptop Repair">Laptop Repair</option>
+                        </select>
+                        <textarea id="message" rows="5" placeholder="Tell me about your needs..."></textarea>
+                        <button type="submit" class="btn btn-primary">Send Message via WhatsApp</button>
+                    </form>
                 </div>
-                <div class="info-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <div>
-                        <h4>Location</h4>
-                        <p>Aley, Lebanon</p>
+                <div class="contact-info">
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Phone</h4>
+                            <p><a href="tel:+96179110894">+961 79 110 894</a></p>
+                        </div>
                     </div>
-                </div>
-                <div class="info-item">
-                    <i class="fas fa-clock"></i>
-                    <div>
-                        <h4>Hours</h4>
-                        <p>Mon-Fri: 9AM - 6PM<br>Sat: 10AM - 4PM<br>Sun: Closed</p>
+                    <div class="info-item">
+                        <i class="fab fa-whatsapp"></i>
+                        <div>
+                            <h4>WhatsApp</h4>
+                            <p><a href="https://wa.me/96179110894" target="_blank">+961 79 110 894</a></p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Location</h4>
+                            <p>Aley, Lebanon</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h4>Hours</h4>
+                            <p>Mon-Fri: 9AM - 6PM<br>Sat: 10AM - 4PM<br>Sun: Closed</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <!-- Footer -->
     <footer class="footer">
@@ -468,5 +734,96 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        // Image Modal Functionality
+        function openImageModal(src) {
+            const modal = document.createElement('div');
+            modal.className = 'image-modal';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <img src="${src}" alt="Full Size Image">
+                    <span class="modal-close">&times;</span>
+                    <div class="modal-caption">Click anywhere to close</div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+            modal.style.display = 'flex';
+            
+            const closeModal = () => {
+                modal.remove();
+            };
+            
+            modal.addEventListener('click', closeModal);
+            modal.querySelector('.modal-close').addEventListener('click', closeModal);
+        }
+        
+        // WhatsApp Form Handler
+        function sendWhatsAppMessage(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const service = document.getElementById('service').value;
+            const message = document.getElementById('message').value;
+            
+            if (!name || !phone || !service || !message) {
+                alert('⚠️ Please fill in all required fields.');
+                return;
+            }
+            
+            let whatsappMessage = `Hello! I am ${encodeURIComponent(name)}%0A`;
+            whatsappMessage += `Phone: ${encodeURIComponent(phone)}%0A`;
+            whatsappMessage += `Service: ${encodeURIComponent(service)}%0A`;
+            whatsappMessage += `Message: ${encodeURIComponent(message)}%0A`;
+            whatsappMessage += `Date: ${new Date().toLocaleString()}`;
+            
+            const whatsappNumber = '96179110894';
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
+            window.open(whatsappUrl, '_blank');
+            alert(`✅ Thank you ${name}! You will be redirected to WhatsApp.`);
+            setTimeout(() => {
+                document.getElementById('contactForm').reset();
+            }, 2000);
+        }
+        
+        // Mobile Menu Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+        }
+        
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+        
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+        
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = '#0A0C1A';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 240, 255, 0.2)';
+            } else {
+                navbar.style.background = '#121417';
+                navbar.style.boxShadow = '0 0 20px rgba(0, 240, 255, 0.1)';
+            }
+        });
+        
+        console.log('⚡ GAWADZILLA - Professional Logo Reveal Animation Active ⚡');
+    </script>
 </body>
 </html>
