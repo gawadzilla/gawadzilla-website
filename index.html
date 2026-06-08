@@ -1,0 +1,1389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="description" content="Gawadzilla - Complete technology solutions: Web Development, POS Systems, Hardware Sales, Laptop Repair">
+<title>Gawadzilla | Where Business Meets Technology</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+/* ── RESET ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:'Plus Jakarta Sans',sans-serif;font-size:1rem;line-height:1.65;background:#07080F;color:#9BA3C2;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font-family:inherit}
+button{cursor:pointer;border:none;background:none}
+ul{list-style:none}
+
+/* ── TOKENS ── */
+:root{
+  --cyan:#05DEFF;--purple:#8B5CF6;--gold:#F0B429;
+  --grad:linear-gradient(135deg,#05DEFF 0%,#8B5CF6 100%);
+  --grad-r:linear-gradient(135deg,#8B5CF6 0%,#05DEFF 100%);
+  --bg:#07080F;--s1:#0C0E1A;--s2:#111325;--s3:#161929;
+  --hi:#F0F2FF;--text:#9BA3C2;--muted:#4A5278;
+  --border:rgba(255,255,255,0.07);--border-hi:rgba(5,222,255,0.25);
+  --r:14px;--r-sm:8px;--r-lg:20px;--r-pill:100px;
+  --max:1200px;--gap:clamp(16px,4vw,32px);
+  --ease:cubic-bezier(0.32,0.72,0,1);
+  --ease-spring:cubic-bezier(0.34,1.56,0.64,1);
+}
+
+/* ── GRAIN ── */
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.025;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");background-repeat:repeat}
+
+/* ── SCROLL PROGRESS ── */
+#scroll-progress{position:fixed;top:0;left:0;width:0%;height:2px;background:var(--grad);z-index:100001;transition:width .1s linear}
+
+/* ── SKIP LINK ── */
+.skip-link{position:absolute;top:-100%;left:16px;padding:10px 20px;background:var(--cyan);color:#000;font-weight:700;font-size:.875rem;border-radius:0 0 8px 8px;z-index:200000;transition:top .2s}
+.skip-link:focus{top:0}
+
+/* ── CONTAINER ── */
+.container{width:100%;max-width:var(--max);margin:0 auto;padding:0 var(--gap)}
+
+/* ── DOUBLE-BEZEL CARD ── */
+.dbezel{border:1px solid var(--border);border-radius:var(--r-lg);box-shadow:inset 0 0 0 1px rgba(255,255,255,0.04),0 0 0 4px rgba(255,255,255,0.01);background:var(--s1)}
+.dbezel-grad{border:1px solid transparent;border-radius:var(--r-lg);background:linear-gradient(var(--s1),var(--s1)) padding-box,var(--grad) border-box;box-shadow:inset 0 0 0 1px rgba(255,255,255,0.04)}
+
+/* ── EYEBROW PILL ── */
+.eyebrow-pill{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border:1px solid var(--border);border-radius:var(--r-pill);font-size:.65rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--cyan);background:rgba(5,222,255,0.05);margin-bottom:20px}
+.eyebrow-pill::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--cyan);flex-shrink:0;animation:pulse-dot 2s infinite}
+@keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+
+/* ── SECTION TYPOGRAPHY ── */
+.section-title{font-family:'Syne',sans-serif;font-size:clamp(1.75rem,5vw,3rem);font-weight:800;line-height:1.1;color:var(--hi);letter-spacing:-.03em}
+.section-sub{margin-top:14px;font-size:clamp(.9rem,2vw,1.05rem);color:var(--text);line-height:1.8;max-width:540px}
+.section-header-block{margin-bottom:clamp(48px,7vw,72px)}
+.text-grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* ── SCROLL ENTRY ANIMATION ── */
+.fade-entry{opacity:0;transform:translateY(64px);filter:blur(4px);transition:opacity 700ms var(--ease),transform 700ms var(--ease),filter 700ms var(--ease);transition-delay:var(--delay,0ms)}
+.fade-entry.in-view{opacity:1;transform:translateY(0);filter:blur(0)}
+
+/* ── REDUCED MOTION ── */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  .fade-entry{opacity:1;transform:none;filter:none}
+  .eyebrow-pill::before{animation:none}
+  #scroll-progress{transition:none}
+}
+
+/* ── BUTTON: BIB (Button-in-Button) ── */
+.btn-bib{display:inline-flex;align-items:center;gap:10px;padding:7px 7px 7px 22px;border-radius:var(--r);font-weight:700;font-size:.875rem;letter-spacing:.02em;color:#fff;position:relative;-webkit-tap-highlight-color:transparent;transition:transform 200ms var(--ease),box-shadow 200ms var(--ease)}
+.btn-bib.btn-grad{background:var(--grad)}
+.btn-bib.btn-grad:hover{box-shadow:0 16px 40px rgba(5,222,255,.28);transform:translateY(-2px)}
+.btn-bib:active{transform:scale(.98)!important}
+.btn-bib:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+.bib-icon{width:38px;height:38px;border-radius:9px;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-size:.8rem;flex-shrink:0;transition:transform 250ms var(--ease)}
+.btn-bib:hover .bib-icon{transform:translate(2px,-2px)}
+.btn-bib.btn-whatsapp{background:#25D366}
+.btn-bib.btn-whatsapp:hover{box-shadow:0 16px 40px rgba(37,211,102,.3);transform:translateY(-2px)}
+
+/* ── BUTTON: GHOST ── */
+.btn-ghost{display:inline-flex;align-items:center;gap:8px;min-height:52px;padding:0 24px;border:1px solid var(--border);border-radius:var(--r);color:var(--text);font-weight:600;font-size:.875rem;-webkit-tap-highlight-color:transparent;transition:border-color 200ms,color 200ms,background 200ms,transform 200ms var(--ease)}
+.btn-ghost:hover{border-color:var(--cyan);color:var(--cyan);background:rgba(5,222,255,.04);transform:translateY(-2px)}
+.btn-ghost:active{transform:scale(.98)}
+.btn-ghost:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+
+/* ── NAVBAR ── */
+.navbar{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:9000;width:calc(100% - 48px);max-width:1100px;height:60px;padding:0 8px 0 20px;display:flex;align-items:center;justify-content:space-between;background:rgba(7,8,15,.6);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);border:1px solid var(--border);border-radius:var(--r-pill);transition:background .3s,box-shadow .3s,top .3s}
+.navbar.scrolled{background:rgba(7,8,15,.85);box-shadow:0 8px 32px rgba(0,0,0,.5);top:10px}
+.nav-brand{display:flex;align-items:center;gap:10px;font-family:'Syne',sans-serif;font-weight:800;font-size:.875rem;letter-spacing:1.5px;color:var(--hi);min-height:44px;-webkit-tap-highlight-color:transparent}
+
+/* ── NAV LOGO SWEEP ANIMATION ── */
+.nav-logo-wrap{position:relative;width:38px;height:38px;border-radius:10px;overflow:hidden;flex-shrink:0;animation:logo-frame-in 0.55s cubic-bezier(0.34,1.56,0.64,1) both}
+@keyframes logo-frame-in{from{transform:scale(0.3) rotate(-18deg);opacity:0}to{transform:scale(1) rotate(0deg);opacity:1}}
+.nav-logo{width:100%;height:100%;object-fit:cover;border-radius:10px;display:block}
+.nav-sweep{position:absolute;inset:0;pointer-events:none;background:linear-gradient(105deg,transparent 15%,rgba(255,255,255,.6) 44%,rgba(5,222,255,.45) 50%,rgba(255,255,255,.6) 56%,transparent 85%);transform:translateX(-160%);animation:nav-sweep-run 0.75s cubic-bezier(0.32,0.72,0,1) 0.45s forwards}
+@keyframes nav-sweep-run{0%{transform:translateX(-160%)}100%{transform:translateX(260%)}}
+.nav-logo-wrap::after{content:'';position:absolute;inset:0;border-radius:10px;pointer-events:none;animation:logo-border-pulse 3.5s ease-in-out 1.3s infinite}
+@keyframes logo-border-pulse{0%,100%{box-shadow:0 0 0 1px rgba(5,222,255,.2),0 0 8px rgba(5,222,255,.08)}50%{box-shadow:0 0 0 1px rgba(5,222,255,.7),0 0 18px rgba(5,222,255,.4),0 0 36px rgba(5,222,255,.15)}}
+
+/* ── WORDMARK LETTER REVEAL ── */
+.nav-wordmark{display:flex;align-items:center;letter-spacing:1.5px}
+.wm-letter{display:inline-block;opacity:0;transform:translateY(-7px) scale(.85);animation:wm-drop 320ms cubic-bezier(0.32,0.72,0,1) forwards;animation-delay:calc(0.65s + var(--li) * 0.055s)}
+@keyframes wm-drop{to{opacity:1;transform:translateY(0) scale(1)}}
+.nav-links{display:flex;align-items:center;gap:clamp(16px,2.5vw,30px)}
+.nav-links a{font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);min-height:44px;display:flex;align-items:center;transition:color .2s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:1px;background:var(--cyan);transform:scaleX(0);transform-origin:left;transition:transform .25s var(--ease)}
+.nav-links a:hover{color:var(--hi)}
+.nav-links a:hover::after{transform:scaleX(1)}
+.nav-links a:focus-visible{outline:2px solid var(--cyan);outline-offset:4px;border-radius:4px}
+.nav-cta{display:flex;align-items:center;gap:8px;padding:8px 8px 8px 18px;background:var(--grad);border-radius:var(--r-pill);font-size:.72rem;font-weight:700;color:#fff;-webkit-tap-highlight-color:transparent;transition:opacity .2s,transform .2s,box-shadow .2s}
+.nav-cta:hover{opacity:.9;transform:translateY(-1px);box-shadow:0 8px 24px rgba(5,222,255,.25)}
+.nav-cta-icon{width:28px;height:28px;background:rgba(255,255,255,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.65rem;transition:transform 200ms var(--ease)}
+.nav-cta:hover .nav-cta-icon{transform:translate(1px,-1px)}
+.hamburger{display:none;flex-direction:column;gap:5px;padding:10px;margin-right:4px;-webkit-tap-highlight-color:transparent}
+.hamburger span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px;transition:all .3s var(--ease)}
+.hamburger[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger[aria-expanded="true"] span:nth-child(2){opacity:0;transform:scaleX(0)}
+.hamburger[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+@media(max-width:900px){.nav-links,.nav-cta{display:none}.hamburger{display:flex}}
+
+/* ── MOBILE NAV ── */
+.mobile-nav{position:fixed;top:86px;left:24px;right:24px;z-index:8999;background:rgba(11,13,26,.96);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid var(--border);border-radius:20px;padding:8px 0 calc(8px + env(safe-area-inset-bottom,0px));overflow:hidden;pointer-events:none;opacity:0;transform:translateY(-12px) scale(.97);transition:opacity .3s var(--ease),transform .3s var(--ease)}
+.mobile-nav.open{pointer-events:auto;opacity:1;transform:translateY(0) scale(1)}
+.mobile-nav li{opacity:0;transform:translateX(-12px);transition:opacity .3s var(--ease),transform .3s var(--ease);transition-delay:calc(var(--i,0) * 50ms)}
+.mobile-nav.open li{opacity:1;transform:translateX(0)}
+.mobile-nav ul a{display:flex;align-items:center;padding:14px 24px;min-height:52px;font-size:.95rem;font-weight:500;color:var(--text);border-bottom:1px solid var(--border);transition:color .2s,background .2s}
+.mobile-nav ul li:last-child a{border-bottom:none}
+.mobile-nav ul a:hover{color:var(--cyan);background:rgba(5,222,255,.04)}
+
+
+/* ── HERO ── */
+.hero{min-height:100dvh;display:flex;align-items:center;padding:calc(90px + env(safe-area-inset-top,0px)) var(--gap) 60px;position:relative;overflow:hidden;background:#04060F}
+.hero-glow-a{position:absolute;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(5,222,255,.05) 0%,transparent 65%);top:-10%;left:-5%;pointer-events:none}
+.hero-glow-b{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(5,100,255,.06) 0%,transparent 65%);bottom:-5%;right:10%;pointer-events:none}
+.hero-grid-lines{display:none}
+.hero-layout{position:relative;z-index:1;display:flex;flex-direction:column;align-items:flex-start;width:100%;max-width:var(--max);margin:0 auto}
+.hero-left{width:100%}
+/* Plain eyebrow label */
+.hero-eyebrow-label{font-size:.72rem;font-weight:700;letter-spacing:3.5px;text-transform:uppercase;color:var(--cyan);margin-bottom:18px;display:block}
+h1.hero-title{font-family:'Syne',sans-serif;font-size:clamp(2.6rem,6vw,5rem);font-weight:800;line-height:1.04;letter-spacing:-.04em;color:#fff;margin-bottom:22px}
+h1.hero-title em{font-style:normal;color:var(--cyan);background:none;-webkit-background-clip:unset;background-clip:unset}
+.hero-body{font-size:clamp(.9rem,1.6vw,1rem);color:rgba(255,255,255,.55);line-height:1.75;margin-bottom:36px;max-width:460px}
+.hero-ctas{display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin-bottom:40px}
+/* Primary button */
+.btn-hero-primary{display:inline-flex;align-items:center;gap:10px;padding:14px 28px;background:var(--cyan);color:#04060F;font-weight:700;font-size:.9rem;border-radius:var(--r-pill);-webkit-tap-highlight-color:transparent;transition:transform 200ms var(--ease),box-shadow 200ms var(--ease),background 200ms}
+.btn-hero-primary:hover{background:#2ae8ff;transform:translateY(-2px);box-shadow:0 12px 32px rgba(5,222,255,.4)}
+.btn-hero-primary:active{transform:scale(.98)}
+.btn-hero-primary i{font-size:.75rem}
+/* Ghost / watch video button */
+.btn-hero-ghost{display:inline-flex;align-items:center;gap:12px;color:#fff;font-weight:600;font-size:.9rem;-webkit-tap-highlight-color:transparent;transition:color 200ms}
+.btn-hero-ghost:hover{color:var(--cyan)}
+.btn-play-icon{width:40px;height:40px;border-radius:50%;border:2px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;font-size:.7rem;flex-shrink:0;transition:border-color 200ms,background 200ms}
+.btn-hero-ghost:hover .btn-play-icon{border-color:var(--cyan);background:rgba(5,222,255,.1)}
+
+/* ── HERO HOLO IMAGE ── */
+.hero-holo-img{width:100%;max-width:100%;display:block;border-radius:0;object-fit:contain;mix-blend-mode:screen}
+
+/* ── HERO INLINE STATS ── */
+.hero-inline-stats{display:flex;align-items:center;flex-wrap:wrap;gap:0;padding-top:24px;border-top:1px solid rgba(255,255,255,.1)}
+.hero-ist{display:flex;align-items:center;gap:9px;padding:0 18px}
+.hero-ist:first-child{padding-left:0}
+.hero-ist>i{font-size:.9rem;color:var(--cyan);flex-shrink:0}
+.hero-ist strong{display:block;font-family:'Syne',sans-serif;font-size:1rem;font-weight:800;color:#fff;line-height:1}
+.hero-ist span{display:block;font-size:.6rem;color:rgba(255,255,255,.45);letter-spacing:.04em;margin-top:2px}
+.hero-ist-div{width:1px;height:28px;background:rgba(255,255,255,.12);flex-shrink:0}
+
+/* ── HERO HOLO COLUMN ── */
+.hero-holo-col{display:flex;flex-direction:column;align-items:center;gap:0;position:relative}
+.hero-holo-stage{position:relative;display:flex;flex-direction:column;align-items:center;padding-bottom:72px;width:100%}
+
+/* Sparkle particles */
+.holo-particles{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.holo-dot{position:absolute;left:var(--x);top:var(--y);width:var(--s,3px);height:var(--s,3px);border-radius:50%;background:#fff;box-shadow:0 0 calc(var(--s,3px) * 3) rgba(5,222,255,.9);opacity:.4;animation:dot-twinkle 3s ease-in-out infinite;animation-delay:var(--d,0s)}
+@keyframes dot-twinkle{0%,100%{opacity:.1;transform:scale(1)}50%{opacity:1;transform:scale(2)}}
+
+/* Orbital arc rings (sweeping around the logo) */
+.holo-orbit-wrap{position:absolute;top:50%;left:50%;transform:translate(-50%,-54%);z-index:1;pointer-events:none}
+.holo-orbit{position:absolute;border-radius:50%}
+.holo-orbit::before{content:'';position:absolute;inset:0;border-radius:inherit;border:1.5px solid rgba(5,222,255,.85);box-shadow:0 0 10px rgba(5,222,255,.7),0 0 3px rgba(255,255,255,.9);-webkit-mask:conic-gradient(from 0deg,black 0% 25%,transparent 25% 100%);mask:conic-gradient(from 0deg,black 0% 25%,transparent 25% 100%)}
+.orbit-1{width:430px;height:130px;margin:-65px 0 0 -215px;animation:orbit-cw 9s linear infinite}
+.orbit-2{width:390px;height:118px;margin:-59px 0 0 -195px;animation:orbit-ccw 13s linear infinite}
+.orbit-2::before{border-color:rgba(139,92,246,.8);box-shadow:0 0 10px rgba(139,92,246,.6);-webkit-mask:conic-gradient(from 120deg,black 0% 20%,transparent 20% 100%);mask:conic-gradient(from 120deg,black 0% 20%,transparent 20% 100%)}
+.orbit-3{width:480px;height:145px;margin:-72px 0 0 -240px;animation:orbit-cw 16s linear infinite}
+.orbit-3::before{border-color:rgba(5,222,255,.35);box-shadow:none;-webkit-mask:conic-gradient(from 240deg,black 0% 18%,transparent 18% 100%);mask:conic-gradient(from 240deg,black 0% 18%,transparent 18% 100%)}
+@keyframes orbit-cw{to{transform:rotate(360deg)}}
+@keyframes orbit-ccw{to{transform:rotate(-360deg)}}
+
+/* Logo ring — neon square border */
+.hero-logo-ring{position:relative;width:min(300px,78%);aspect-ratio:1;border-radius:24px;border:2px solid rgba(5,222,255,.95);background:rgba(3,4,10,.96);box-shadow:0 0 28px rgba(5,222,255,.9),0 0 56px rgba(5,222,255,.5),0 0 110px rgba(5,222,255,.25),0 0 180px rgba(5,222,255,.1),inset 0 0 28px rgba(5,222,255,.06);animation:logo-neon-pulse 3s ease-in-out infinite;z-index:3}
+@keyframes logo-neon-pulse{0%,100%{box-shadow:0 0 22px rgba(5,222,255,.8),0 0 44px rgba(5,222,255,.4),0 0 90px rgba(5,222,255,.2);border-color:rgba(5,222,255,.9)}50%{box-shadow:0 0 45px rgba(5,222,255,1),0 0 90px rgba(5,222,255,.7),0 0 160px rgba(5,222,255,.35),0 0 240px rgba(5,222,255,.12);border-color:rgba(5,222,255,1)}}
+.hero-logo-img{width:100%;height:100%;object-fit:cover;border-radius:22px;display:block;position:relative;z-index:1}
+.hero-logo-shine{position:absolute;inset:3px;border-radius:20px;background:linear-gradient(135deg,rgba(5,222,255,.06) 0%,transparent 50%);pointer-events:none;z-index:2}
+
+/* Holographic platform — 7 rings + center light */
+.holo-base{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:100%;height:72px;pointer-events:none}
+.holo-beam{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:48%;height:160px;background:radial-gradient(ellipse 100% 100% at 50% 100%,rgba(5,222,255,.6) 0%,rgba(5,222,255,.2) 40%,transparent 70%);filter:blur(8px)}
+.holo-center-light{position:absolute;bottom:4px;left:50%;transform:translateX(-50%);width:8px;height:8px;border-radius:50%;background:#fff;box-shadow:0 0 6px #fff,0 0 14px rgba(5,222,255,1),0 0 30px rgba(5,222,255,.9),0 0 60px rgba(5,222,255,.5);animation:center-flicker 2s ease-in-out infinite}
+@keyframes center-flicker{0%,100%{opacity:.8;transform:translateX(-50%) scale(1)}50%{opacity:1;transform:translateX(-50%) scale(1.4)}}
+.holo-ring{position:absolute;bottom:2px;left:50%;transform:translateX(-50%);border-radius:50%;border:1px solid rgba(5,222,255,.5);animation:holo-pulse 2.8s ease-in-out infinite}
+.holo-r1{width:55px; height:7px; box-shadow:0 0 12px rgba(5,222,255,.9);animation-delay:0s}
+.holo-r2{width:100px;height:11px;opacity:.88;animation-delay:.18s}
+.holo-r3{width:150px;height:15px;opacity:.72;animation-delay:.36s}
+.holo-r4{width:200px;height:19px;opacity:.56;animation-delay:.54s}
+.holo-r5{width:255px;height:23px;opacity:.4; animation-delay:.72s}
+.holo-r6{width:310px;height:27px;opacity:.26;animation-delay:.9s}
+.holo-r7{width:365px;height:31px;opacity:.14;animation-delay:1.08s}
+@keyframes holo-pulse{0%,100%{border-color:rgba(5,222,255,.4)}50%{border-color:rgba(5,222,255,.9);box-shadow:0 0 18px rgba(5,222,255,.55)}}
+
+/* Service cards row */
+.hero-svc-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;width:100%;margin-top:0}
+.hero-svc-item{display:flex;flex-direction:column;align-items:center;padding:16px 10px;border:1px solid rgba(5,222,255,.18);border-radius:12px;background:rgba(5,20,50,.65);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);text-align:center;transition:border-color .25s,background .25s,transform .25s var(--ease)}
+.hero-svc-item:hover{border-color:rgba(5,222,255,.45);background:rgba(5,222,255,.07);transform:translateY(-3px)}
+.hero-svc-item>i{font-size:1.3rem;color:var(--cyan);margin-bottom:9px}
+.hero-svc-title{font-family:'Syne',sans-serif;font-size:.72rem;font-weight:700;color:#fff;margin-bottom:3px;line-height:1.2}
+.hero-svc-sub{font-size:.6rem;color:rgba(255,255,255,.45);line-height:1.3}
+
+@media(max-width:900px){
+  .hero-layout{grid-template-columns:1fr;gap:32px}
+  .hero{align-items:flex-start;padding-top:calc(88px + env(safe-area-inset-top,0px));padding-bottom:48px}
+  .hero-body{max-width:100%}
+  h1.hero-title{font-size:clamp(2.2rem,9vw,3.4rem);word-break:break-word}
+  .hero-holo-img{max-width:480px;margin:0 auto}
+}
+@media(max-width:600px){
+  h1.hero-title{font-size:clamp(1.9rem,8.5vw,2.6rem);letter-spacing:-.03em}
+  .hero-ctas{flex-wrap:wrap}
+  .hero-ist{padding:0 10px}
+  .hero-svc-row{grid-template-columns:1fr 1fr;gap:8px}
+  .hero-holo-img{max-width:100%}
+}
+@media(max-width:360px){
+  h1.hero-title{font-size:1.8rem}
+  .hero-ist-div{display:none}
+  .hero-ist{padding:0 6px}
+}
+
+/* ── SERVICES ── */
+.services{padding:clamp(96px,12vw,140px) 0}
+.services-bento{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:auto auto auto;gap:12px;margin-top:clamp(48px,6vw,72px)}
+.svc-card{padding:clamp(28px,4vw,40px);position:relative;overflow:hidden;cursor:default;transition:transform 300ms var(--ease)}
+.svc-card::before{content:'';position:absolute;inset:8px;border:1px solid rgba(255,255,255,0.04);border-radius:10px;pointer-events:none;transition:border-color 300ms}
+.svc-card:hover{transform:translateY(-3px)}
+.svc-card:hover::before{border-color:rgba(5,222,255,0.08)}
+.svc-card-top{height:2px;width:0;background:var(--grad);position:absolute;top:0;left:0;transition:width 400ms var(--ease);border-radius:0 2px 0 0}
+.svc-card:hover .svc-card-top{width:100%}
+.svc-num{font-size:.58rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:20px;display:block}
+.svc-icon{width:48px;height:48px;border-radius:12px;background:rgba(5,222,255,.06);border:1px solid rgba(5,222,255,.12);display:flex;align-items:center;justify-content:center;font-size:1rem;color:var(--cyan);margin-bottom:20px;transition:background .3s,transform .3s}
+.svc-card:hover .svc-icon{background:rgba(5,222,255,.12);transform:scale(1.08)}
+.svc-card h3{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:var(--hi);margin-bottom:10px;letter-spacing:-.01em}
+.svc-card p{font-size:.85rem;color:var(--text);line-height:1.7;margin-bottom:20px}
+.svc-link{display:inline-flex;align-items:center;gap:6px;font-size:.72rem;font-weight:700;color:var(--cyan);letter-spacing:.04em;min-height:36px;opacity:0;transform:translateX(-6px);transition:opacity .3s,transform .3s}
+.svc-card:hover .svc-link{opacity:1;transform:translateX(0)}
+.svc-link i{font-size:.6rem;transition:transform .2s}
+.svc-link:hover i{transform:translateX(3px)}
+.svc-large{grid-column:1;grid-row:1/3;padding:clamp(36px,5vw,52px)}
+.svc-large h3{font-size:1.3rem}
+.svc-large p{font-size:.92rem;max-width:320px}
+.svc-wide{grid-column:1/3;grid-row:3}
+@media(max-width:768px){.services-bento{grid-template-columns:1fr}.svc-large{grid-column:1;grid-row:auto}.svc-wide{grid-column:1;grid-row:auto}}
+
+/* ── POS ── */
+.pos-section{padding:clamp(96px,12vw,140px) 0;background:var(--s1);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.pos-layout{display:grid;grid-template-columns:1fr 1fr;gap:clamp(48px,7vw,96px);align-items:start}
+.feature-list{display:flex;flex-direction:column;gap:10px;margin:32px 0 40px}
+.feature-item{display:flex;align-items:flex-start;gap:14px;padding:16px 18px;border-radius:var(--r);border:1px solid var(--border);background:rgba(255,255,255,.01);transition:border-color .25s,background .25s;position:relative;overflow:hidden}
+.feature-item::after{content:'';position:absolute;inset:8px;border:1px solid rgba(255,255,255,0.03);border-radius:6px;pointer-events:none}
+.feature-item:hover{border-color:var(--border-hi);background:rgba(5,222,255,.025)}
+.feature-icon{width:44px;height:44px;flex-shrink:0;border-radius:11px;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:.95rem;color:#fff;box-shadow:0 6px 18px rgba(5,222,255,.22)}
+.feature-text strong{display:block;font-size:.9rem;font-weight:700;color:var(--hi);margin-bottom:2px}
+.feature-text span{font-size:.8rem;color:var(--text)}
+/* ── POS IMAGE FRAMES (premium) ── */
+.pos-visuals{display:flex;flex-direction:column;gap:0}
+/* POS image stack with floating overlay card */
+.pos-img-stack{position:relative;padding-bottom:96px}
+.pos-img-stack .pos-img-frame.pos-img-main img{max-height:360px}
+.pos-float-card{position:absolute;bottom:0;right:-8px;width:58%;border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,.1);background:rgba(10,12,22,.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 20px 48px rgba(0,0,0,.6),inset 0 0 0 1px rgba(255,255,255,.05);transition:transform 300ms var(--ease)}
+.pos-float-card:hover{transform:translateY(-3px)}
+.pos-float-img{overflow:hidden}
+.pos-float-img img{width:100%;display:block;height:130px;object-fit:cover;transition:transform .5s var(--ease)}
+.pos-float-card:hover .pos-float-img img{transform:scale(1.04)}
+.pos-float-info{padding:13px 15px;border-top:1px solid rgba(255,255,255,.07)}
+.pos-float-title{font-family:'Syne',sans-serif;font-size:.88rem;font-weight:700;color:var(--hi);margin-bottom:3px}
+.pos-float-sub{font-size:.72rem;color:var(--muted)}
+/* POS feature strip */
+.pos-feature-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:clamp(28px,4vw,44px)}
+.pos-feat-item{display:flex;align-items:flex-start;gap:12px;padding:18px 16px;border:1px solid var(--border);border-radius:var(--r);background:var(--s2);box-shadow:inset 0 0 0 1px rgba(255,255,255,.03);transition:border-color .25s,transform .25s var(--ease)}
+.pos-feat-item:hover{border-color:rgba(5,222,255,.2);transform:translateY(-2px)}
+.pos-feat-icon{width:38px;height:38px;flex-shrink:0;border-radius:9px;background:rgba(5,222,255,.08);border:1px solid rgba(5,222,255,.15);display:flex;align-items:center;justify-content:center;font-size:.85rem;color:var(--cyan)}
+.pos-feat-title{font-family:'Syne',sans-serif;font-size:.82rem;font-weight:700;color:var(--hi);margin-bottom:4px}
+.pos-feat-sub{font-size:.72rem;color:var(--muted);line-height:1.5}
+/* POS stats bar */
+.pos-stats-bar{display:grid;grid-template-columns:repeat(4,1fr);margin-top:12px;border:1px solid var(--border);border-radius:var(--r);background:var(--s1);overflow:hidden}
+.pos-stat-item{display:flex;align-items:center;gap:12px;padding:18px 20px;border-right:1px solid var(--border);transition:background .2s}
+.pos-stat-item:last-child{border-right:none}
+.pos-stat-item:hover{background:var(--s2)}
+.pos-stat-item>i{font-size:1.1rem;color:var(--cyan);flex-shrink:0}
+.pos-stat-num{font-family:'Syne',sans-serif;font-size:1.15rem;font-weight:800;color:var(--hi);line-height:1;margin-bottom:2px}
+.pos-stat-label{font-size:.65rem;color:var(--muted);line-height:1.3}
+@media(max-width:1024px){.pos-feature-strip{grid-template-columns:1fr 1fr}.pos-stats-bar{grid-template-columns:1fr 1fr}.pos-stat-item:nth-child(2){border-right:none}.pos-stat-item:nth-child(1),.pos-stat-item:nth-child(2){border-bottom:1px solid var(--border)}}
+@media(max-width:860px){.pos-img-stack{padding-bottom:80px}.pos-float-card{width:62%}}
+@media(max-width:540px){.pos-feature-strip{grid-template-columns:1fr}.pos-float-card{width:74%;right:0}}
+.pos-img-frame{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--border);box-shadow:inset 0 0 0 1px rgba(255,255,255,.04),0 8px 24px rgba(0,0,0,.3);transition:box-shadow 400ms var(--ease),transform 300ms var(--ease)}
+.pos-img-frame:hover{transform:translateY(-3px);box-shadow:inset 0 0 0 1px rgba(5,222,255,.25),0 20px 48px rgba(0,0,0,.5),0 0 0 1px rgba(5,222,255,.08),0 0 32px rgba(5,222,255,.08)}
+.pos-img-frame img{width:100%;display:block;object-fit:cover;transition:transform 550ms var(--ease)}
+.pos-img-frame:hover img{transform:scale(1.035)}
+.pos-img-frame.pos-img-main img{max-height:290px}
+.pos-img-frame.pos-sm img{height:120px}
+
+/* Live badge */
+.pos-live-badge{position:absolute;top:12px;left:12px;display:inline-flex;align-items:center;gap:7px;padding:5px 12px;background:rgba(7,8,15,.72);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(5,222,255,.2);border-radius:var(--r-pill);font-size:.6rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--hi);pointer-events:none}
+.pos-live-dot{width:6px;height:6px;border-radius:50%;background:#22C55E;flex-shrink:0;animation:live-pulse 1.8s ease-in-out infinite}
+@keyframes live-pulse{0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,.6)}60%{box-shadow:0 0 0 5px rgba(34,197,94,0)}}
+
+/* Bottom label */
+.pos-img-label{position:absolute;bottom:0;left:0;right:0;padding:28px 14px 13px;background:linear-gradient(to top,rgba(7,8,15,.88) 0%,transparent 100%);font-size:.68rem;font-weight:600;letter-spacing:.05em;color:rgba(240,242,255,.75);pointer-events:none}
+
+/* Hover shine sweep */
+.pos-img-shine{position:absolute;inset:0;background:linear-gradient(108deg,transparent 35%,rgba(255,255,255,.07) 50%,transparent 65%);transform:translateX(-120%);transition:transform 650ms var(--ease);pointer-events:none}
+.pos-img-frame:hover .pos-img-shine{transform:translateX(120%)}
+
+.pos-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pos-btns{display:flex;gap:12px;flex-wrap:wrap}
+@media(max-width:860px){.pos-layout{grid-template-columns:1fr}}
+
+/* ── VIDEO ── */
+.video-section{padding:clamp(96px,12vw,140px) 0}
+.video-header{text-align:center;margin-bottom:clamp(40px,5vw,64px)}
+.video-header .eyebrow-pill{justify-content:center}
+.video-header .section-sub{margin:14px auto 0;text-align:center}
+.video-wrap{border-radius:20px;overflow:hidden;border:1px solid var(--border);box-shadow:inset 0 0 0 1px rgba(255,255,255,.04),0 40px 80px rgba(0,0,0,.5);background:var(--s1)}
+.video-wrap video{width:100%;display:block}
+.video-caption{display:flex;align-items:center;gap:12px;padding:16px 24px;border-top:1px solid var(--border);background:var(--s2);font-size:.78rem;color:var(--muted)}
+.video-caption i{color:var(--cyan)}
+
+/* ── WEB DEV ── */
+.web-section{padding:clamp(96px,12vw,140px) 0;background:var(--s1);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.web-layout{display:grid;grid-template-columns:1fr 1fr;gap:clamp(48px,7vw,96px);align-items:center}
+.web-img-wrap{border-radius:20px;overflow:hidden;border:1px solid var(--border);position:relative;box-shadow:inset 0 0 0 1px rgba(255,255,255,.04)}
+.web-img-wrap img{width:100%;display:block;object-fit:cover}
+.web-img-wrap::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(5,222,255,.05) 0%,transparent 60%);pointer-events:none}
+.tech-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
+.tech-tag{padding:6px 13px;min-height:32px;border:1px solid var(--border);border-radius:6px;font-size:.7rem;font-weight:600;color:var(--muted);background:rgba(255,255,255,.02);transition:border-color .2s,color .2s,background .2s}
+.tech-tag:hover{border-color:var(--cyan);color:var(--cyan);background:rgba(5,222,255,.04)}
+.offer-banner{margin-top:28px;padding:18px 20px;border-radius:var(--r);border:1px solid rgba(240,180,41,.2);background:rgba(240,180,41,.03);display:flex;align-items:flex-start;gap:14px;position:relative;overflow:hidden}
+.offer-banner::after{content:'';position:absolute;inset:8px;border:1px solid rgba(240,180,41,.06);border-radius:6px;pointer-events:none}
+.offer-banner i{color:var(--gold);font-size:1.1rem;flex-shrink:0;margin-top:2px}
+.offer-banner strong{display:block;color:var(--hi);font-size:.88rem;margin-bottom:2px}
+.offer-banner p{font-size:.8rem;color:var(--text)}
+@media(max-width:860px){.web-layout{grid-template-columns:1fr}}
+
+/* ── DIGITAL SOLUTIONS ── */
+.digital-section{padding:clamp(96px,12vw,140px) 0}
+.digital-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:clamp(48px,6vw,72px)}
+.digital-card{padding:clamp(28px,4vw,44px) clamp(22px,3vw,36px);position:relative;overflow:hidden;transition:transform 300ms var(--ease)}
+.digital-card::before{content:'';position:absolute;inset:8px;border:1px solid rgba(255,255,255,0.04);border-radius:10px;pointer-events:none}
+.digital-card:hover{transform:translateY(-3px)}
+.digital-top{height:2px;width:0;background:var(--grad);position:absolute;top:0;left:0;transition:width 400ms var(--ease)}
+.digital-card:hover .digital-top{width:100%}
+.digital-icon{width:52px;height:52px;border-radius:14px;background:rgba(139,92,246,.07);border:1px solid rgba(139,92,246,.15);display:flex;align-items:center;justify-content:center;font-size:1.1rem;color:var(--purple);margin-bottom:24px;transition:transform .3s,background .3s}
+.digital-card:hover .digital-icon{transform:scale(1.08);background:rgba(139,92,246,.14)}
+.digital-card h3{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:700;color:var(--hi);margin-bottom:10px}
+.digital-card>p{font-size:.87rem;color:var(--text);line-height:1.7;margin-bottom:24px}
+.digital-card ul{display:flex;flex-direction:column;gap:8px}
+.digital-card ul li{display:flex;align-items:center;gap:9px;font-size:.82rem;color:var(--text)}
+.digital-card ul li::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--purple);flex-shrink:0;opacity:.7}
+@media(max-width:860px){.digital-grid{grid-template-columns:1fr}}
+
+/* ── QR ── */
+.qr-section{padding:clamp(96px,12vw,140px) 0;background:var(--s1);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.qr-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:clamp(48px,6vw,72px)}
+.qr-promo{grid-row:span 2;padding:clamp(28px,4vw,44px);display:flex;flex-direction:column;justify-content:space-between;gap:24px;position:relative;overflow:hidden}
+/* 3rd card (DROOLIES) spans cols 2-3 */
+.qr-img-card:last-child{grid-column:span 2}
+/* Brand card (no image) */
+.qr-brand-card{background:var(--s2)}
+.qr-brand-bg{width:100%;min-height:200px;height:100%;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;background:linear-gradient(135deg,var(--s2) 0%,#0d1025 60%,rgba(5,222,255,.03) 100%)}
+.qr-brand-bg::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 55% 90% at 85% 50%,rgba(5,222,255,.07) 0%,transparent 70%)}
+.qr-brand-bg::after{content:'';position:absolute;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(139,92,246,.06) 0%,transparent 65%);right:-80px;top:-80px}
+.qr-brand-content{position:relative;z-index:1;text-align:center;padding:40px 24px}
+.qr-brand-pill{display:inline-block;padding:3px 12px;border:1px solid rgba(5,222,255,.3);border-radius:var(--r-pill);font-size:.58rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--cyan);background:rgba(5,222,255,.06);margin-bottom:18px}
+.qr-brand-name{font-family:'Syne',sans-serif;font-size:clamp(2.2rem,5vw,3.6rem);font-weight:800;letter-spacing:.1em;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1;margin-bottom:10px}
+.qr-brand-sub{font-size:.72rem;color:var(--muted);letter-spacing:.18em;text-transform:uppercase;margin-bottom:20px}
+.qr-brand-url{font-size:.62rem;color:var(--muted);font-family:monospace;padding:4px 12px;border:1px solid var(--border);border-radius:4px;display:inline-flex;align-items:center;gap:6px}
+.qr-brand-url i{font-size:.55rem;color:var(--cyan)}
+
+/* Brand card accent variants */
+.qr-brand-gold .qr-brand-bg{background:linear-gradient(135deg,var(--s2) 0%,#120e08 60%,rgba(240,180,41,.04) 100%)}
+.qr-brand-gold .qr-brand-bg::before{background:radial-gradient(ellipse 55% 90% at 85% 50%,rgba(240,180,41,.1) 0%,transparent 70%)}
+.qr-brand-gold .qr-brand-bg::after{background:radial-gradient(circle,rgba(240,180,41,.07) 0%,transparent 65%)}
+.qr-brand-gold .qr-brand-name{background:linear-gradient(135deg,#F0B429 0%,#f5d27a 50%,#F0B429 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.qr-brand-gold .qr-brand-pill{border-color:rgba(240,180,41,.35);color:#F0B429;background:rgba(240,180,41,.07)}
+.qr-brand-gold .qr-brand-url i{color:#F0B429}
+.qr-brand-gold:hover{box-shadow:inset 0 0 0 1px rgba(240,180,41,.35),0 24px 56px rgba(0,0,0,.5),0 0 40px rgba(240,180,41,.08)!important}
+
+.qr-brand-rose .qr-brand-bg{background:linear-gradient(135deg,var(--s2) 0%,#0f0c18 60%,rgba(236,72,153,.04) 100%)}
+.qr-brand-rose .qr-brand-bg::before{background:radial-gradient(ellipse 55% 90% at 85% 50%,rgba(236,72,153,.09) 0%,transparent 70%)}
+.qr-brand-rose .qr-brand-bg::after{background:radial-gradient(circle,rgba(139,92,246,.08) 0%,transparent 65%)}
+.qr-brand-rose .qr-brand-name{background:linear-gradient(135deg,#EC4899 0%,#8B5CF6 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.qr-brand-rose .qr-brand-pill{border-color:rgba(236,72,153,.3);color:#EC4899;background:rgba(236,72,153,.06)}
+.qr-brand-rose .qr-brand-url i{color:#EC4899}
+.qr-brand-rose:hover{box-shadow:inset 0 0 0 1px rgba(236,72,153,.3),0 24px 56px rgba(0,0,0,.5),0 0 40px rgba(236,72,153,.08)!important}
+.qr-promo::after{content:'';position:absolute;inset:8px;border:1px solid rgba(255,255,255,.04);border-radius:10px;pointer-events:none}
+.qr-promo h3{font-family:'Syne',sans-serif;font-size:clamp(1.2rem,2.5vw,1.45rem);font-weight:800;color:var(--hi);margin-bottom:12px;line-height:1.25}
+.qr-promo>div>p{font-size:.87rem;color:var(--text);line-height:1.7;margin-bottom:24px}
+.qr-features{display:flex;flex-direction:column;gap:10px}
+.qr-feat{display:flex;align-items:center;gap:10px;font-size:.82rem;color:var(--text)}
+.qr-feat i{color:var(--gold);font-size:.72rem;width:14px;text-align:center;flex-shrink:0}
+/* ── QR IMAGE CARDS (premium) ── */
+.qr-img-card{overflow:hidden;position:relative;cursor:pointer;min-height:190px;border-radius:var(--r-lg);border:1px solid var(--border);box-shadow:inset 0 0 0 1px rgba(255,255,255,.04),0 8px 24px rgba(0,0,0,.3);transition:box-shadow 400ms var(--ease),transform 300ms var(--ease)}
+.qr-img-card:hover{transform:translateY(-4px);box-shadow:inset 0 0 0 1px rgba(5,222,255,.3),0 24px 56px rgba(0,0,0,.5),0 0 40px rgba(5,222,255,.1)}
+.qr-img-card img{width:100%;height:100%;min-height:190px;object-fit:cover;transition:transform .55s var(--ease),filter .55s var(--ease)}
+.qr-img-card:hover img{transform:scale(1.06);filter:brightness(1.08)}
+
+/* Gradient overlay - thicker for better text contrast */
+.qr-img-overlay{position:absolute;bottom:0;left:0;right:0;padding:40px 18px 16px;background:linear-gradient(to top,rgba(7,8,15,.95) 0%,rgba(7,8,15,.4) 60%,transparent 100%);transition:opacity .3s}
+.qr-img-overlay span{font-size:.8rem;font-weight:700;color:var(--hi);letter-spacing:.03em;display:block;margin-bottom:4px}
+.qr-img-overlay-sub{font-size:.65rem;color:var(--cyan);letter-spacing:.06em;text-transform:uppercase;font-weight:600;opacity:.8}
+
+/* Frosted "View Menu" pill — reveals on hover */
+.qr-img-view{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(.75);opacity:0;pointer-events:none;display:inline-flex;align-items:center;gap:7px;padding:8px 18px;background:rgba(7,8,15,.72);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(5,222,255,.3);border-radius:var(--r-pill);font-size:.72rem;font-weight:700;color:var(--cyan);letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;transition:opacity .3s var(--ease),transform .3s var(--ease)}
+.qr-img-card:hover .qr-img-view{opacity:1;transform:translate(-50%,-50%) scale(1)}
+
+/* Shine sweep on QR cards */
+.qr-img-shine{position:absolute;inset:0;background:linear-gradient(108deg,transparent 30%,rgba(255,255,255,.08) 50%,transparent 70%);transform:translateX(-130%);transition:transform 700ms var(--ease);pointer-events:none}
+.qr-img-card:hover .qr-img-shine{transform:translateX(130%)}
+@media(max-width:860px){.qr-grid{grid-template-columns:1fr}.qr-promo{grid-row:auto}.qr-img-card:last-child{grid-column:1}}
+
+/* ── HARDWARE ── */
+.hardware-section{padding:clamp(96px,12vw,140px) 0}
+.hardware-layout{display:grid;grid-template-columns:1fr 1fr;gap:clamp(48px,6vw,80px);align-items:start}
+.hw-sublabel{font-size:.6rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:20px;display:block}
+.product-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.product-card{padding:24px 20px;border-radius:var(--r);border:1px solid var(--border);background:var(--s1);box-shadow:inset 0 0 0 1px rgba(255,255,255,.03);transition:border-color .25s,background .25s,transform .3s var(--ease)}
+.product-card:hover{border-color:var(--border-hi);background:var(--s2);transform:translateY(-3px)}
+.product-card i{font-size:1.2rem;color:var(--cyan);margin-bottom:12px;display:block}
+.product-card h4{font-family:'Syne',sans-serif;font-size:.87rem;font-weight:700;color:var(--hi);margin-bottom:5px}
+.product-card p{font-size:.77rem;color:var(--text);line-height:1.5}
+.repair-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.repair-table{width:100%;border-collapse:collapse;font-size:.85rem;min-width:260px}
+.repair-table thead th{padding:10px 16px;text-align:left;font-size:.6rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border)}
+.repair-table tbody tr{border-bottom:1px solid var(--border);transition:background .2s}
+.repair-table tbody tr:last-child{border-bottom:none}
+.repair-table tbody tr:hover{background:rgba(5,222,255,.02)}
+.repair-table tbody td{padding:13px 16px;color:var(--text);vertical-align:middle}
+.repair-table tbody td:first-child{color:var(--hi);font-weight:500}
+.r-badge{display:inline-block;padding:3px 10px;border-radius:var(--r-pill);font-size:.68rem;font-weight:600}
+.r-badge.fast{background:rgba(5,222,255,.1);color:var(--cyan)}
+.r-badge.same-day{background:rgba(240,180,41,.1);color:var(--gold)}
+.warranty-strip{display:flex;align-items:center;gap:10px;margin-top:20px;padding:14px 18px;border:1px solid rgba(5,222,255,.12);border-radius:var(--r-sm);background:rgba(5,222,255,.03);box-shadow:inset 0 0 0 1px rgba(5,222,255,.04)}
+.warranty-strip i{color:var(--cyan);flex-shrink:0}
+.warranty-strip span{font-size:.8rem;color:var(--text)}
+@media(max-width:860px){.hardware-layout{grid-template-columns:1fr}}
+
+/* ── TESTIMONIALS ── */
+.testimonials-section{padding:clamp(96px,12vw,140px) 0;background:var(--s1);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.testimonials-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:clamp(40px,6vw,64px)}
+.tcard{padding:clamp(28px,4vw,44px);position:relative;overflow:hidden}
+.tcard::before{content:'';position:absolute;inset:8px;border:1px solid rgba(255,255,255,.04);border-radius:10px;pointer-events:none}
+.tcard-quote{position:absolute;top:20px;right:28px;font-family:'Syne',sans-serif;font-size:6rem;line-height:1;color:var(--cyan);opacity:.06;pointer-events:none}
+.stars{display:flex;gap:3px;margin-bottom:20px}
+.stars i{color:var(--gold);font-size:.72rem}
+.tcard-text{font-size:clamp(.88rem,2vw,.97rem);color:var(--text);line-height:1.85;margin-bottom:28px;font-style:italic}
+.tcard-author{display:flex;align-items:center;gap:12px}
+.author-avatar{width:42px;height:42px;border-radius:50%;flex-shrink:0;background:var(--grad);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:.85rem;color:#fff}
+.author-name{font-size:.87rem;font-weight:600;color:var(--hi)}
+.author-role{font-size:.73rem;color:var(--muted);margin-top:2px}
+@media(max-width:600px){.testimonials-grid{grid-template-columns:1fr}}
+
+/* ── CONTACT ── */
+.contact-section{padding:clamp(96px,12vw,140px) 0}
+.contact-layout{display:grid;grid-template-columns:1fr 1.3fr;gap:clamp(48px,6vw,96px);align-items:start}
+.contact-info{display:flex;flex-direction:column;gap:10px;margin-top:32px}
+.contact-item{display:flex;align-items:center;gap:14px;padding:18px;border:1px solid var(--border);border-radius:var(--r);background:rgba(255,255,255,.01);min-height:68px;transition:border-color .25s,background .25s;position:relative;overflow:hidden}
+.contact-item::after{content:'';position:absolute;inset:6px;border:1px solid rgba(255,255,255,.03);border-radius:8px;pointer-events:none}
+.contact-item:hover{border-color:var(--border-hi);background:rgba(5,222,255,.025)}
+.contact-item-icon{width:40px;height:40px;flex-shrink:0;border-radius:10px;background:rgba(5,222,255,.07);border:1px solid rgba(5,222,255,.13);display:flex;align-items:center;justify-content:center;font-size:.9rem;color:var(--cyan)}
+.contact-item-label{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:2px;font-weight:700}
+.contact-item-val{font-size:.88rem;color:var(--text);font-weight:500}
+.contact-item-val a{color:var(--text);transition:color .2s}
+.contact-item-val a:hover{color:var(--cyan)}
+.contact-form-wrap{padding:clamp(28px,4vw,44px);position:relative;overflow:hidden}
+.contact-form-wrap::after{content:'';position:absolute;inset:8px;border:1px solid rgba(255,255,255,.04);border-radius:10px;pointer-events:none}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form-group{margin-bottom:18px}
+.form-group label{display:block;font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.form-group input,.form-group select,.form-group textarea{width:100%;min-height:50px;padding:13px 16px;background:rgba(255,255,255,.025);border:1px solid var(--border);border-radius:var(--r-sm);color:var(--hi);font-size:.95rem;outline:none;-webkit-appearance:none;appearance:none;transition:border-color .25s,background .25s,box-shadow .25s}
+.form-group input::placeholder,.form-group textarea::placeholder{color:var(--muted)}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--cyan);background:rgba(5,222,255,.025);box-shadow:0 0 0 3px rgba(5,222,255,.08)}
+.form-group select option{background:#111325;color:var(--hi)}
+.form-group textarea{min-height:120px;resize:vertical;line-height:1.6}
+@media(max-width:860px){.contact-layout{grid-template-columns:1fr}.form-row{grid-template-columns:1fr}}
+
+/* ── FOOTER ── */
+.footer{border-top:1px solid var(--border);background:var(--bg);padding:clamp(56px,7vw,80px) 0 calc(clamp(32px,4vw,48px) + env(safe-area-inset-bottom,0px))}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:clamp(24px,4vw,48px);margin-bottom:clamp(40px,5vw,60px)}
+.footer-brand-img{width:34px;height:34px;border-radius:8px;object-fit:cover;margin-bottom:14px;border:1px solid var(--border)}
+.footer-brand-name{font-family:'Syne',sans-serif;font-weight:800;font-size:.9rem;letter-spacing:1.5px;color:var(--hi);margin-bottom:10px}
+.footer-brand-desc{font-size:.82rem;color:var(--muted);line-height:1.75;max-width:240px;margin-bottom:24px}
+.footer-social{display:flex;gap:8px;flex-wrap:wrap}
+.footer-social a{width:36px;height:36px;border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.78rem;color:var(--muted);-webkit-tap-highlight-color:transparent;transition:border-color .2s,color .2s,background .2s}
+.footer-social a:hover{border-color:var(--cyan);color:var(--cyan);background:rgba(5,222,255,.05)}
+.footer-col-title{font-size:.6rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);margin-bottom:18px}
+.footer-col ul{display:flex;flex-direction:column;gap:2px}
+.footer-col ul a{font-size:.82rem;color:var(--text);min-height:36px;display:flex;align-items:center;padding:2px 0;transition:color .2s}
+.footer-col ul a:hover{color:var(--cyan)}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;padding-top:clamp(24px,3vw,36px);border-top:1px solid var(--border);font-size:.75rem;color:var(--muted)}
+.footer-bottom-links{display:flex;gap:20px}
+.footer-bottom-links a{color:var(--muted);min-height:44px;display:flex;align-items:center;transition:color .2s}
+.footer-bottom-links a:hover{color:var(--cyan)}
+@media(max-width:900px){.footer-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.footer-grid{grid-template-columns:1fr}}
+
+/* ── MODAL ── */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.8);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);z-index:10000;display:none;align-items:center;justify-content:center;padding:clamp(16px,4vw,24px) var(--gap)}
+.modal-overlay.active{display:flex}
+.modal{background:var(--s2);border:1px solid var(--border);border-radius:20px;padding:clamp(24px,4vw,40px);max-width:560px;width:100%;position:relative;animation:modal-in .35s var(--ease);max-height:90dvh;overflow-y:auto;box-shadow:inset 0 0 0 1px rgba(255,255,255,.04)}
+@keyframes modal-in{from{opacity:0;transform:scale(.93) translateY(20px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.modal-close{position:absolute;top:16px;right:16px;width:36px;height:36px;border-radius:8px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.78rem;color:var(--muted);cursor:pointer;-webkit-tap-highlight-color:transparent;transition:border-color .2s,color .2s}
+.modal-close:hover{border-color:var(--cyan);color:var(--cyan)}
+.modal img{width:100%;border-radius:10px;margin-top:14px;display:block}
+
+/* ── COMING SOON BADGE ── */
+.soon-badge{display:inline-flex;align-items:center;padding:2px 7px;border-radius:var(--r-pill);font-size:.52rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);background:rgba(240,180,41,.1);border:1px solid rgba(240,180,41,.25);vertical-align:middle;margin-left:5px;line-height:1.6;white-space:nowrap}
+
+/* ── UTILITY ── */
+section{position:relative;z-index:1}
+.text-center{text-align:center}
+.text-center .section-sub{margin-left:auto;margin-right:auto}
+</style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<div id="scroll-progress" role="progressbar" aria-label="Page scroll progress"></div>
+
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar" aria-label="Main navigation">
+  <a href="#home" class="nav-brand" aria-label="Gawadzilla home">
+    <div class="nav-logo-wrap">
+      <img class="nav-logo" src="images/logo.jpg" alt="Gawadzilla">
+      <div class="nav-sweep"></div>
+    </div>
+    <div class="nav-wordmark" aria-label="GAWADZILLA">
+      <span class="wm-letter" style="--li:0">G</span><span class="wm-letter" style="--li:1">A</span><span class="wm-letter" style="--li:2">W</span><span class="wm-letter" style="--li:3">A</span><span class="wm-letter" style="--li:4">D</span><span class="wm-letter" style="--li:5">Z</span><span class="wm-letter" style="--li:6">I</span><span class="wm-letter" style="--li:7">L</span><span class="wm-letter" style="--li:8">L</span><span class="wm-letter" style="--li:9">A</span>
+    </div>
+  </a>
+  <ul class="nav-links" role="list">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#pos">POS Systems</a></li>
+    <li><a href="#web">Web Dev</a></li>
+    <li><a href="#hardware">Hardware</a></li>
+    <li><a href="store.html">Store <span class="soon-badge">Soon</span></a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">
+    <span>Contact Us</span>
+    <span class="nav-cta-icon"><i class="fas fa-arrow-right"></i></span>
+  </a>
+  <button class="hamburger" id="hamburger" aria-controls="mobileNav" aria-expanded="false" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
+  <ul role="list">
+    <li style="--i:0"><a href="#home">Home</a></li>
+    <li style="--i:1"><a href="#services">Services</a></li>
+    <li style="--i:2"><a href="#pos">POS Systems</a></li>
+    <li style="--i:3"><a href="#web">Web Development</a></li>
+    <li style="--i:4"><a href="#hardware">Hardware &amp; Repair</a></li>
+    <li style="--i:5"><a href="store.html">Store <span class="soon-badge">Coming Soon</span></a></li>
+    <li style="--i:6"><a href="#contact">Contact Us</a></li>
+  </ul>
+</div>
+
+<!-- HERO -->
+<section id="home" class="hero" aria-label="Hero">
+  <div class="hero-glow-a"></div>
+  <div class="hero-glow-b"></div>
+  <div class="hero-grid-lines"></div>
+  <div class="container">
+    <div class="hero-layout">
+      <div class="hero-left fade-entry" id="main-content">
+        <p class="hero-eyebrow-label">Lebanon's Tech Partner</p>
+        <h1 class="hero-title">
+          Where Business<br>
+          Meets <em>Technology</em>
+        </h1>
+        <p class="hero-body">Professional technology solutions for businesses and individuals across Lebanon. From custom software to hardware, we deliver results you can count on.</p>
+        <div class="hero-ctas">
+          <a href="#services" class="btn-hero-primary btn-mag">
+            Explore Services <i class="fas fa-arrow-right"></i>
+          </a>
+          <a href="#contact" class="btn-hero-ghost btn-mag">
+            <span class="btn-play-icon"><i class="fas fa-play"></i></span> Get Free Quote
+          </a>
+        </div>
+        <div class="hero-inline-stats">
+          <div class="hero-ist-div"></div>
+          <div class="hero-ist"><i class="fas fa-shield-alt"></i><div><strong>3+</strong><span>Years Experience</span></div></div>
+          <div class="hero-ist-div"></div>
+          <div class="hero-ist"><i class="fas fa-headset"></i><div><strong>24/7</strong><span>Tech Support</span></div></div>
+          <div class="hero-ist-div"></div>
+          <div class="hero-ist"><i class="fas fa-bolt"></i><div><strong>Fast</strong><span>Response Time</span></div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="services">
+  <div class="container">
+    <div class="section-header-block fade-entry">
+      <div class="eyebrow-pill">What We Offer</div>
+      <h2 class="section-title">Complete Technology<br>Solutions</h2>
+      <p class="section-sub">One trusted partner for all your business and personal technology needs.</p>
+    </div>
+    <div class="services-bento fade-entry" style="--delay:100ms">
+
+      <div class="svc-card svc-large dbezel">
+        <div class="svc-card-top"></div>
+        <span class="svc-num">01 — Web Dev</span>
+        <div class="svc-icon"><i class="fas fa-code"></i></div>
+        <h3>Web Development</h3>
+        <p>Custom websites, e-commerce stores, and web applications built for performance and results. We build things that convert visitors into customers.</p>
+        <a href="#web" class="svc-link">Learn More <i class="fas fa-arrow-right"></i></a>
+      </div>
+
+      <div class="svc-card dbezel">
+        <div class="svc-card-top"></div>
+        <span class="svc-num">02 — POS</span>
+        <div class="svc-icon"><i class="fas fa-cash-register"></i></div>
+        <h3>POS Systems</h3>
+        <p>Complete point-of-sale solutions for restaurants, cafes, and retail. Online and offline.</p>
+        <a href="#pos" class="svc-link">Learn More <i class="fas fa-arrow-right"></i></a>
+      </div>
+
+      <div class="svc-card dbezel">
+        <div class="svc-card-top"></div>
+        <span class="svc-num">03 — Hardware</span>
+        <div class="svc-icon"><i class="fas fa-microchip"></i></div>
+        <h3>Hardware Sales</h3>
+        <p>Computers, terminals, printers, peripherals and gaming gear at competitive prices.</p>
+        <a href="#hardware" class="svc-link">Learn More <i class="fas fa-arrow-right"></i></a>
+      </div>
+
+      <div class="svc-card dbezel">
+        <div class="svc-card-top"></div>
+        <span class="svc-num">04 — Repair</span>
+        <div class="svc-icon"><i class="fas fa-laptop-medical"></i></div>
+        <h3>Laptop Repair</h3>
+        <p>Fast, reliable repairs for all brands. Free diagnostics and 30-day warranty.</p>
+        <a href="#hardware" class="svc-link">Learn More <i class="fas fa-arrow-right"></i></a>
+      </div>
+
+      <div class="svc-card dbezel">
+        <div class="svc-card-top"></div>
+        <span class="svc-num">05 — Systems</span>
+        <div class="svc-icon"><i class="fas fa-building"></i></div>
+        <h3>Company Systems</h3>
+        <p>Custom internal systems for inventory, HR, sales dashboards and more.</p>
+        <a href="#digital" class="svc-link">Learn More <i class="fas fa-arrow-right"></i></a>
+      </div>
+
+      <div class="svc-card svc-wide dbezel">
+        <div class="svc-card-top"></div>
+        <span class="svc-num">06 — QR Menu</span>
+        <div class="svc-icon"><i class="fas fa-qrcode"></i></div>
+        <h3>QR Menu</h3>
+        <p>Digital restaurant menus customers scan instantly. Update items and prices in real time, no printing needed.</p>
+        <a href="#digital" class="svc-link">Learn More <i class="fas fa-arrow-right"></i></a>
+      </div>
+
+      <div class="svc-card dbezel">
+        <div class="svc-card-top"></div>
+        <span class="svc-num">07 — Apps</span>
+        <div class="svc-icon"><i class="fas fa-mobile-alt"></i></div>
+        <h3>Applications</h3>
+        <p>Web and mobile apps for booking, ordering, customer portals, and custom business workflows.</p>
+        <a href="#digital" class="svc-link">Learn More <i class="fas fa-arrow-right"></i></a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- POS -->
+<section id="pos" class="pos-section">
+  <div class="container">
+    <div class="pos-layout">
+      <div class="fade-entry">
+        <div class="eyebrow-pill">Point of Sale</div>
+        <h2 class="section-title">All-in-One<br>POS Solution</h2>
+        <p class="section-sub">A powerful, professional system designed to streamline your business operations. Works offline and online.</p>
+        <div class="feature-list">
+          <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-layer-group"></i></div>
+            <div class="feature-text">
+              <strong>Real-time Inventory</strong>
+              <span>Stock tracking with automatic low-stock alerts.</span>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-dollar-sign"></i></div>
+            <div class="feature-text">
+              <strong>Multi-currency Support</strong>
+              <span>USD/LBP with automatic exchange rate updates.</span>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-barcode"></i></div>
+            <div class="feature-text">
+              <strong>Barcode Scanning</strong>
+              <span>Fast product search for quick checkout.</span>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-percent"></i></div>
+            <div class="feature-text">
+              <strong>Discount Management</strong>
+              <span>Percentage or fixed amount discounts.</span>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-clock"></i></div>
+            <div class="feature-text">
+              <strong>Pay Later System</strong>
+              <span>Full payment history and tracking.</span>
+            </div>
+          </div>
+        </div>
+        <div class="pos-btns">
+          <a href="#digital" class="btn-bib btn-grad btn-mag">
+            <span>Explore Solutions</span>
+            <span class="bib-icon"><i class="fas fa-arrow-right"></i></span>
+          </a>
+          <a href="#contact" class="btn-ghost btn-mag">Get a Quote</a>
+        </div>
+      </div>
+
+      <div class="pos-visuals fade-entry" style="--delay:150ms">
+        <div class="pos-img-stack">
+          <div class="pos-img-frame pos-img-main">
+            <img src="images/pos-screenshots/pos-store-real.jpeg" alt="POS Live in Store" loading="lazy">
+            <div class="pos-live-badge"><span class="pos-live-dot"></span>Live in Store</div>
+            <div class="pos-img-shine"></div>
+          </div>
+          <div class="pos-float-card">
+            <div class="pos-float-img">
+              <img src="images/pos-screenshots/pos-terminal.jpeg" alt="Customer Display" loading="lazy">
+            </div>
+            <div class="pos-float-info">
+              <div class="pos-float-title">Customer Display</div>
+              <div class="pos-float-sub">Clear and easy transaction view.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pos-feature-strip fade-entry">
+      <div class="pos-feat-item">
+        <div class="pos-feat-icon"><i class="fas fa-desktop"></i></div>
+        <div>
+          <div class="pos-feat-title">Offline &amp; Online</div>
+          <div class="pos-feat-sub">Works smoothly both online and offline without data loss.</div>
+        </div>
+      </div>
+      <div class="pos-feat-item">
+        <div class="pos-feat-icon"><i class="fas fa-shield-alt"></i></div>
+        <div>
+          <div class="pos-feat-title">Secure &amp; Reliable</div>
+          <div class="pos-feat-sub">Your data is safe with daily backups and encryption.</div>
+        </div>
+      </div>
+      <div class="pos-feat-item">
+        <div class="pos-feat-icon"><i class="fas fa-cloud-upload-alt"></i></div>
+        <div>
+          <div class="pos-feat-title">Easy Backup</div>
+          <div class="pos-feat-sub">Auto backup to cloud and quick restore anytime.</div>
+        </div>
+      </div>
+      <div class="pos-feat-item">
+        <div class="pos-feat-icon"><i class="fas fa-chart-bar"></i></div>
+        <div>
+          <div class="pos-feat-title">Detailed Reports</div>
+          <div class="pos-feat-sub">Powerful reports to help you make better business decisions.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pos-stats-bar fade-entry">
+      <div class="pos-stat-item">
+        <i class="fas fa-users"></i>
+        <div><div class="pos-stat-num">+100</div><div class="pos-stat-label">Successful Installations</div></div>
+      </div>
+      <div class="pos-stat-item">
+        <i class="fas fa-smile"></i>
+        <div><div class="pos-stat-num">98%</div><div class="pos-stat-label">Customer Satisfaction</div></div>
+      </div>
+      <div class="pos-stat-item">
+        <i class="fas fa-headset"></i>
+        <div><div class="pos-stat-num">24/7</div><div class="pos-stat-label">Support Available</div></div>
+      </div>
+      <div class="pos-stat-item">
+        <i class="fas fa-trophy"></i>
+        <div><div class="pos-stat-num">10+</div><div class="pos-stat-label">Years of Experience</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO -->
+<section class="video-section">
+  <div class="container">
+    <div class="video-header section-header-block fade-entry text-center">
+      <div class="eyebrow-pill">Live Demo</div>
+      <h2 class="section-title">See Our POS in Action</h2>
+      <p class="section-sub">A real walkthrough of our system running live — from order entry to receipt printing.</p>
+    </div>
+    <div class="video-wrap fade-entry" style="--delay:100ms">
+      <video controls playsinline preload="metadata" poster="images/pos-screenshots/pos-store-demo.jpeg">
+        <source src="images/pos-videos/pos-demo.mp4" type="video/mp4">
+        <p style="padding:20px;color:var(--muted)">Your browser does not support video playback.</p>
+      </video>
+      <div class="video-caption">
+        <i class="fas fa-play-circle"></i>
+        Gawadzilla POS System — Live Restaurant Demo &nbsp;·&nbsp; Recorded on-site
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WEB DEV -->
+<section id="web" class="web-section">
+  <div class="container">
+    <div class="web-layout">
+      <div class="web-img-wrap fade-entry">
+        <img src="images/pos-screenshots/web-demo.jpeg" alt="Web Development Demo" loading="lazy">
+      </div>
+      <div class="fade-entry" style="--delay:150ms">
+        <div class="eyebrow-pill">Web Development</div>
+        <h2 class="section-title">Sites That Drive Results</h2>
+        <p class="section-sub">Responsive, fast, and SEO-friendly websites that attract customers and generate leads.</p>
+        <div class="feature-list" style="margin-top:32px">
+          <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-building"></i></div>
+            <div class="feature-text">
+              <strong>Business Websites</strong>
+              <span>Professional sites that build trust and attract clients</span>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-shopping-cart"></i></div>
+            <div class="feature-text">
+              <strong>E-commerce Stores</strong>
+              <span>Sell products online with a seamless experience</span>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-tools"></i></div>
+            <div class="feature-text">
+              <strong>Maintenance &amp; Support</strong>
+              <span>Keep your site secure, updated, and running smoothly</span>
+            </div>
+          </div>
+        </div>
+        <div class="tech-tags">
+          <span class="tech-tag">HTML / CSS</span>
+          <span class="tech-tag">JavaScript</span>
+          <span class="tech-tag">React</span>
+          <span class="tech-tag">Node.js</span>
+          <span class="tech-tag">SEO Ready</span>
+          <span class="tech-tag">Mobile First</span>
+        </div>
+        <div class="offer-banner">
+          <i class="fas fa-gift" aria-hidden="true"></i>
+          <div>
+            <strong>Limited Early-Bird Offer</strong>
+            <p>20% discount for the first 3 clients — building our portfolio</p>
+          </div>
+        </div>
+        <div style="margin-top:28px">
+          <a href="#contact" class="btn-bib btn-grad btn-mag">
+            <span>Get Early-Bird Pricing</span>
+            <span class="bib-icon"><i class="fas fa-arrow-right"></i></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIGITAL SOLUTIONS -->
+<section id="digital" class="digital-section">
+  <div class="container">
+    <div class="section-header-block fade-entry text-center">
+      <div class="eyebrow-pill">Digital Solutions</div>
+      <h2 class="section-title">Built for How You Work</h2>
+      <p class="section-sub">From internal company systems to customer-facing apps and digital menus — all custom-built.</p>
+    </div>
+    <div class="digital-grid fade-entry" style="--delay:100ms">
+      <div class="digital-card dbezel">
+        <div class="digital-top"></div>
+        <div class="digital-icon"><i class="fas fa-building"></i></div>
+        <h3>Company Systems</h3>
+        <p>Custom internal systems that streamline your operations, reduce manual work, and keep your team in sync.</p>
+        <ul>
+          <li>Inventory &amp; stock management</li>
+          <li>HR &amp; employee tracking</li>
+          <li>Sales &amp; reporting dashboards</li>
+          <li>Role-based access control</li>
+          <li>Works on desktop &amp; mobile</li>
+        </ul>
+      </div>
+      <div class="digital-card dbezel">
+        <div class="digital-top"></div>
+        <div class="digital-icon"><i class="fas fa-qrcode"></i></div>
+        <h3>QR Menu</h3>
+        <p>Digital menus your customers scan instantly — no app download required. Update items and prices in real time.</p>
+        <ul>
+          <li>Instant QR code generation</li>
+          <li>Full menu management panel</li>
+          <li>Categories, images &amp; prices</li>
+          <li>Works on any smartphone</li>
+          <li>No printing costs ever again</li>
+        </ul>
+      </div>
+      <div class="digital-card dbezel">
+        <div class="digital-top"></div>
+        <div class="digital-icon"><i class="fas fa-mobile-alt"></i></div>
+        <h3>Applications</h3>
+        <p>Web and mobile applications tailored to your business logic — from customer portals to ordering systems.</p>
+        <ul>
+          <li>Web &amp; mobile app development</li>
+          <li>Customer portals &amp; dashboards</li>
+          <li>Booking &amp; ordering systems</li>
+          <li>Push notifications &amp; alerts</li>
+          <li>API integrations</li>
+        </ul>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:48px" class="fade-entry" style="--delay:200ms">
+      <a href="#contact" class="btn-bib btn-grad btn-mag">
+        <span>Discuss Your Project</span>
+        <span class="bib-icon"><i class="fas fa-arrow-right"></i></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- QR MENU -->
+<section id="qr-showcase" class="qr-section">
+  <div class="container">
+    <div class="section-header-block fade-entry text-center">
+      <div class="eyebrow-pill">QR Menu Portfolio</div>
+      <h2 class="section-title">Menus That Leave an Impression</h2>
+      <p class="section-sub">We design and build branded digital QR menus for restaurants and cafes across Lebanon.</p>
+    </div>
+    <div class="qr-grid fade-entry" style="--delay:100ms">
+      <div class="qr-promo dbezel">
+        <div>
+          <h3>Your Menu,<br>Instantly Accessible</h3>
+          <p>A professional digital menu that customers scan with any phone — no app, no hassle. Update it yourself anytime from a simple dashboard.</p>
+          <div class="qr-features">
+            <div class="qr-feat"><i class="fas fa-check"></i> Real-time menu updates</div>
+            <div class="qr-feat"><i class="fas fa-check"></i> Custom branding &amp; design</div>
+            <div class="qr-feat"><i class="fas fa-check"></i> Categories, photos &amp; prices</div>
+            <div class="qr-feat"><i class="fas fa-check"></i> Works on every smartphone</div>
+            <div class="qr-feat"><i class="fas fa-star"></i> Zero printing costs</div>
+          </div>
+        </div>
+        <a href="#contact" class="btn-bib btn-grad btn-mag">
+          <span>Get Your QR Menu</span>
+          <span class="bib-icon"><i class="fas fa-qrcode"></i></span>
+        </a>
+      </div>
+      <div class="qr-img-card qr-brand-card qr-brand-gold" onclick="window.open('https://gawadzilla.github.io/al-souk-al-atiq/','_blank')" role="button" tabindex="0" aria-label="Visit Al-Souk Al-Atiq website">
+        <div class="qr-brand-bg">
+          <div class="qr-brand-content">
+            <div class="qr-brand-pill">QR Menu</div>
+            <div class="qr-brand-name" style="font-size:clamp(1rem,2.2vw,1.45rem);letter-spacing:.05em">AL-SOUK AL-ATIQ</div>
+            <div class="qr-brand-sub">مطعم السوق العتيق</div>
+            <div class="qr-brand-url"><i class="fas fa-link"></i> gawadzilla.github.io/al-souk-al-atiq</div>
+          </div>
+        </div>
+        <div class="qr-img-view"><i class="fas fa-external-link-alt"></i> Open Website</div>
+        <div class="qr-img-shine"></div>
+      </div>
+      <div class="qr-img-card qr-brand-card qr-brand-rose" onclick="window.open('https://gawadzilla.github.io/Lahen-Bel-Ajin/','_blank')" role="button" tabindex="0" aria-label="Visit Lahen Bel Ajin website">
+        <div class="qr-brand-bg">
+          <div class="qr-brand-content">
+            <div class="qr-brand-pill">QR Menu</div>
+            <div class="qr-brand-name" style="font-size:clamp(1rem,2.2vw,1.45rem);letter-spacing:.05em">LAHEN BEL AJIN</div>
+            <div class="qr-brand-sub">لحن بالعجين</div>
+            <div class="qr-brand-url"><i class="fas fa-link"></i> gawadzilla.github.io/Lahen-Bel-Ajin</div>
+          </div>
+        </div>
+        <div class="qr-img-view"><i class="fas fa-external-link-alt"></i> Open Website</div>
+        <div class="qr-img-shine"></div>
+      </div>
+      <div class="qr-img-card qr-brand-card" onclick="window.open('https://gawadzilla.github.io/DROOLIES/','_blank')" role="button" tabindex="0" aria-label="Visit DROOLIES website">
+        <div class="qr-brand-bg">
+          <div class="qr-brand-content">
+            <div class="qr-brand-pill">Now Live</div>
+            <div class="qr-brand-name">DROOLIES</div>
+            <div class="qr-brand-sub">Scan · Order · Enjoy</div>
+            <div class="qr-brand-url"><i class="fas fa-link"></i> gawadzilla.github.io/DROOLIES</div>
+          </div>
+        </div>
+        <div class="qr-img-view"><i class="fas fa-external-link-alt"></i> Open Website</div>
+        <div class="qr-img-shine"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HARDWARE -->
+<section id="hardware" class="hardware-section">
+  <div class="container">
+    <div class="section-header-block fade-entry text-center">
+      <div class="eyebrow-pill">Hardware &amp; Repair</div>
+      <h2 class="section-title">Quality Products, Fast Service</h2>
+      <p class="section-sub">We stock quality hardware and provide reliable repairs with genuine parts and a 30-day warranty.</p>
+    </div>
+    <div class="hardware-layout">
+      <div class="fade-entry">
+        <span class="hw-sublabel">Hardware For Sale</span>
+        <div class="product-grid">
+          <div class="product-card">
+            <i class="fas fa-laptop"></i>
+            <h4>Laptops</h4>
+            <p>HP, Dell, Lenovo, Apple — all major brands</p>
+          </div>
+          <div class="product-card">
+            <i class="fas fa-desktop"></i>
+            <h4>Desktops</h4>
+            <p>Custom &amp; branded builds available</p>
+          </div>
+          <div class="product-card">
+            <i class="fas fa-print"></i>
+            <h4>POS Hardware</h4>
+            <p>Printers, terminals, barcode scanners</p>
+          </div>
+          <div class="product-card">
+            <i class="fas fa-gamepad"></i>
+            <h4>Gaming Gear</h4>
+            <p>Mice, keyboards, headsets &amp; more</p>
+          </div>
+        </div>
+      </div>
+      <div class="fade-entry" style="--delay:150ms">
+        <span class="hw-sublabel">Repair Services</span>
+        <div class="repair-wrap">
+          <table class="repair-table">
+            <thead>
+              <tr>
+                <th>Service</th>
+                <th>Turnaround</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Screen Replacement</td><td><span class="r-badge fast">24–48 hrs</span></td></tr>
+              <tr><td>Battery Replacement</td><td><span class="r-badge same-day">Same day</span></td></tr>
+              <tr><td>Keyboard Replacement</td><td><span class="r-badge fast">24 hours</span></td></tr>
+              <tr><td>Hard-disk Replacement</td><td><span class="r-badge fast">24 hours</span></td></tr>
+              <tr><td>Virus Removal</td><td><span class="r-badge same-day">Same day</span></td></tr>
+              <tr><td>Other Repairs</td><td>Depends on issue</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="warranty-strip">
+          <i class="fas fa-shield-alt" aria-hidden="true"></i>
+          <span>30-day warranty on all repairs · Genuine replacement parts only</span>
+        </div>
+        <div style="margin-top:28px">
+          <a href="#contact" class="btn-bib btn-grad btn-mag">
+            <span>Book a Repair</span>
+            <span class="bib-icon"><i class="fas fa-arrow-right"></i></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section">
+  <div class="container">
+    <div class="section-header-block fade-entry text-center">
+      <div class="eyebrow-pill">Client Stories</div>
+      <h2 class="section-title">Trusted by Businesses &amp; Individuals</h2>
+    </div>
+    <div class="testimonials-grid fade-entry" style="--delay:100ms">
+      <div class="tcard dbezel">
+        <div class="tcard-quote">"</div>
+        <div class="stars">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        </div>
+        <p class="tcard-text">"Gawadzilla's POS system completely transformed how we run the cafe. We reduced order errors by 90% and the multi-currency support handles everything automatically."</p>
+        <div class="tcard-author">
+          <div class="author-avatar">C</div>
+          <div>
+            <div class="author-name">Cafe Owner</div>
+            <div class="author-role">Street Cafe, Aley</div>
+          </div>
+        </div>
+      </div>
+      <div class="tcard dbezel">
+        <div class="tcard-quote">"</div>
+        <div class="stars">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        </div>
+        <p class="tcard-text">"Fast repair service and great prices. My laptop was diagnosed and fixed the same day. Professional team with genuine parts — highly recommend."</p>
+        <div class="tcard-author">
+          <div class="author-avatar">S</div>
+          <div>
+            <div class="author-name">Sarah M.</div>
+            <div class="author-role">Small Business Owner</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-section">
+  <div class="container">
+    <div class="contact-layout">
+      <div class="fade-entry">
+        <div class="eyebrow-pill">Get In Touch</div>
+        <h2 class="section-title">Start Your Project Today</h2>
+        <p class="section-sub">Tell us about your project or repair needs and we'll get back to you promptly.</p>
+        <div class="contact-info">
+          <div class="contact-item">
+            <div class="contact-item-icon"><i class="fas fa-phone"></i></div>
+            <div>
+              <div class="contact-item-label">Phone</div>
+              <div class="contact-item-val"><a href="tel:+96179110894">+961 79 110 894</a></div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon"><i class="fab fa-whatsapp"></i></div>
+            <div>
+              <div class="contact-item-label">WhatsApp</div>
+              <div class="contact-item-val"><a href="https://wa.me/96179110894" target="_blank">+961 79 110 894</a></div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon"><i class="fas fa-map-marker-alt"></i></div>
+            <div>
+              <div class="contact-item-label">Location</div>
+              <div class="contact-item-val">Aley, Lebanon</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon"><i class="fas fa-clock"></i></div>
+            <div>
+              <div class="contact-item-label">Hours</div>
+              <div class="contact-item-val">Mon–Fri: 9AM – 6PM &nbsp;·&nbsp; Sat: 10AM – 4PM</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form-wrap dbezel fade-entry" style="--delay:150ms">
+        <form id="contactForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" placeholder="Ahmad Hassan" required>
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" placeholder="+961 XX XXX XXX" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="service">Service Needed</label>
+            <select id="service" required>
+              <option value="" disabled selected>Select a Service</option>
+              <option value="Web Development">Web Development</option>
+              <option value="POS System">POS System</option>
+              <option value="Hardware Sales">Hardware Sales</option>
+              <option value="Laptop Repair">Laptop Repair</option>
+              <option value="Company System">Company System</option>
+              <option value="QR Menu">QR Menu</option>
+              <option value="Application">Application</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" placeholder="Tell us about your needs..." required></textarea>
+          </div>
+          <button type="submit" class="btn-bib btn-whatsapp btn-mag" style="width:100%;justify-content:center;border:none;cursor:pointer;">
+            <i class="fab fa-whatsapp"></i>
+            <span>Send via WhatsApp</span>
+            <span class="bib-icon"><i class="fas fa-paper-plane"></i></span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <img class="footer-brand-img" src="images/logo.jpg" alt="Gawadzilla">
+        <div class="footer-brand-name">GAWADZILLA</div>
+        <p class="footer-brand-desc">Your complete technology partner in Lebanon. Professional solutions for businesses and individuals.</p>
+        <div class="footer-social">
+          <a href="https://www.facebook.com/share/18xqXUYxGR/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/gawadzilla.lb?igsh=MWsyemUweXZ2bW1r" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://wa.me/96179110894" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Services</div>
+        <ul>
+          <li><a href="#pos">POS Systems</a></li>
+          <li><a href="#web">Web Development</a></li>
+          <li><a href="#hardware">Hardware Sales</a></li>
+          <li><a href="#hardware">Laptop Repair</a></li>
+          <li><a href="#digital">Company Systems</a></li>
+          <li><a href="#digital">QR Menu</a></li>
+          <li><a href="#digital">Applications</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Navigate</div>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#pos">POS Systems</a></li>
+          <li><a href="#web">Web Dev</a></li>
+          <li><a href="store.html">Store <span class="soon-badge">Soon</span></a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Contact</div>
+        <ul>
+          <li><a href="tel:+96179110894">+961 79 110 894</a></li>
+          <li><a href="https://wa.me/96179110894">WhatsApp Us</a></li>
+          <li><a href="#contact">Aley, Lebanon</a></li>
+          <li><a href="#contact">Mon–Fri 9AM–6PM</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&#169; 2026 Gawadzilla. All rights reserved.</p>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- IMAGE MODAL -->
+<div class="modal-overlay" id="imageModal" onclick="closeModal()">
+  <div class="modal" onclick="event.stopPropagation()" role="dialog" aria-modal="true" aria-label="Image preview">
+    <button class="modal-close" onclick="closeModal()" aria-label="Close"><i class="fas fa-times"></i></button>
+    <img src="" id="modalImg" alt="Full Size">
+  </div>
+</div>
+
+<script>
+(function(){
+  'use strict';
+
+  /* ── Scroll progress ── */
+  var prog = document.getElementById('scroll-progress');
+  window.addEventListener('scroll', function(){
+    var pct = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+    prog.style.width = pct + '%';
+  }, {passive:true});
+
+  /* ── Navbar scroll ── */
+  var navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', function(){
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  }, {passive:true});
+
+  /* ── Hamburger ── */
+  var hamburger = document.getElementById('hamburger');
+  var mobileNav = document.getElementById('mobileNav');
+  hamburger.addEventListener('click', function(){
+    var isOpen = mobileNav.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    hamburger.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  });
+  document.querySelectorAll('.mobile-nav a').forEach(function(a){
+    a.addEventListener('click', function(){
+      mobileNav.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      hamburger.setAttribute('aria-label', 'Open menu');
+      document.body.style.overflow = '';
+    });
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && mobileNav.classList.contains('open')){
+      mobileNav.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      hamburger.setAttribute('aria-label', 'Open menu');
+      document.body.style.overflow = '';
+      hamburger.focus();
+    }
+  });
+
+  /* ── IntersectionObserver scroll animations ── */
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('in-view'); observer.unobserve(e.target); }
+    });
+  }, {threshold:0.08, rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.fade-entry').forEach(function(el){ observer.observe(el); });
+
+  /* ── Magnetic button hover ── */
+  document.querySelectorAll('.btn-mag').forEach(function(btn){
+    btn.addEventListener('mousemove', function(e){
+      var rect = btn.getBoundingClientRect();
+      var x = (e.clientX - rect.left - rect.width  / 2) * 0.18;
+      var y = (e.clientY - rect.top  - rect.height / 2) * 0.18;
+      btn.style.transform = 'translate(' + x + 'px,' + y + 'px)';
+    });
+    btn.addEventListener('mouseleave', function(){
+      btn.style.transform = '';
+    });
+  });
+
+  /* ── QR image cards keyboard ── */
+  document.querySelectorAll('.qr-img-card[tabindex]').forEach(function(card){
+    card.addEventListener('keydown', function(e){
+      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); card.click(); }
+    });
+  });
+
+  /* ── Modal ── */
+  function openModal(src){
+    document.getElementById('modalImg').src = src;
+    document.getElementById('imageModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal(){
+    document.getElementById('imageModal').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  window.openModal = openModal;
+  window.closeModal = closeModal;
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeModal(); });
+
+  /* ── WhatsApp form ── */
+  function sendWhatsAppMessage(event){
+    event.preventDefault();
+    var name    = document.getElementById('name').value.trim();
+    var phone   = document.getElementById('phone').value.trim();
+    var service = document.getElementById('service').value;
+    var message = document.getElementById('message').value.trim();
+    if(!name || !phone || !service || !message){ alert('Please fill in all required fields.'); return; }
+    var msg = 'Hello! I am ' + encodeURIComponent(name) + '%0A'
+            + 'Phone: '            + encodeURIComponent(phone)   + '%0A'
+            + 'Service Needed: '   + encodeURIComponent(service) + '%0A'
+            + 'Message: '          + encodeURIComponent(message) + '%0A'
+            + 'Date: '             + new Date().toLocaleString();
+    window.open('https://wa.me/96179110894?text=' + msg, '_blank');
+    alert('Thank you ' + name + '! Redirecting to WhatsApp.');
+    setTimeout(function(){ document.getElementById('contactForm').reset(); }, 2000);
+  }
+  document.getElementById('contactForm').addEventListener('submit', sendWhatsAppMessage);
+
+})();
+</script>
+</body>
+</html>
