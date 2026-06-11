@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="description" content="Gawadzilla Store — Coming Soon. Laptops, POS hardware, gaming gear and accessories shipped across Lebanon.">
+<title>Store — Coming Soon | Gawadzilla</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+/* ── RESET ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:#07080F;color:#9BA3C2;overflow-x:hidden;-webkit-font-smoothing:antialiased;min-height:100dvh;display:flex;flex-direction:column}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+button,input{font-family:inherit}
+button{cursor:pointer;border:none;background:none}
+
+/* ── TOKENS ── */
+:root{
+  --cyan:#05DEFF;--purple:#8B5CF6;--gold:#F0B429;
+  --grad:linear-gradient(135deg,#05DEFF 0%,#8B5CF6 100%);
+  --bg:#07080F;--s1:#0C0E1A;--s2:#111325;
+  --hi:#F0F2FF;--text:#9BA3C2;--muted:#4A5278;
+  --border:rgba(255,255,255,0.07);
+  --r:14px;--r-pill:100px;
+  --ease:cubic-bezier(0.32,0.72,0,1);
+  --ease-spring:cubic-bezier(0.34,1.56,0.64,1);
+}
+
+/* ── GRAIN ── */
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.028;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");background-repeat:repeat}
+
+/* ── BACKGROUND GLOWS ── */
+.bg-glow-a{position:fixed;width:800px;height:800px;border-radius:50%;background:radial-gradient(circle,rgba(5,222,255,.055) 0%,transparent 65%);top:-20%;left:-10%;pointer-events:none;z-index:0}
+.bg-glow-b{position:fixed;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(139,92,246,.06) 0%,transparent 65%);bottom:-15%;right:-8%;pointer-events:none;z-index:0}
+.bg-glow-c{position:fixed;width:350px;height:350px;border-radius:50%;background:radial-gradient(circle,rgba(5,222,255,.03) 0%,transparent 65%);top:45%;right:18%;transform:translateY(-50%);pointer-events:none;z-index:0}
+
+/* ── GRID LINES ── */
+.bg-grid{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(5,222,255,.022) 1px,transparent 1px),linear-gradient(90deg,rgba(5,222,255,.022) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 20%,transparent 100%);-webkit-mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 20%,transparent 100%)}
+
+/* ── WATERMARK ── */
+.bg-watermark{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Syne',sans-serif;font-size:clamp(8rem,25vw,22rem);font-weight:800;letter-spacing:.15em;color:rgba(255,255,255,.018);pointer-events:none;z-index:0;white-space:nowrap;user-select:none}
+
+/* ── FLOATING ORBS ── */
+.orb{position:fixed;border-radius:50%;pointer-events:none;z-index:0}
+.orb-1{width:280px;height:280px;background:radial-gradient(circle,rgba(5,222,255,.035) 0%,transparent 70%);top:22%;left:6%;animation:orb-drift 13s ease-in-out infinite}
+.orb-2{width:200px;height:200px;background:radial-gradient(circle,rgba(139,92,246,.045) 0%,transparent 70%);bottom:22%;right:10%;animation:orb-drift 16s ease-in-out 3s infinite}
+@keyframes orb-drift{0%,100%{transform:translateY(0) translateX(0)}33%{transform:translateY(-22px) translateX(12px)}66%{transform:translateY(12px) translateX(-8px)}}
+
+/* ── NAVBAR ── */
+.navbar{position:relative;z-index:10;padding:24px clamp(20px,4vw,40px);display:flex;align-items:center;justify-content:space-between}
+.nav-brand{display:flex;align-items:center;gap:10px;font-family:'Syne',sans-serif;font-weight:800;font-size:.875rem;letter-spacing:2px;color:var(--hi);-webkit-tap-highlight-color:transparent}
+.nav-logo-wrap{width:38px;height:38px;border-radius:10px;overflow:hidden;flex-shrink:0;border:1px solid rgba(5,222,255,.2)}
+.nav-logo{width:100%;height:100%;object-fit:cover;display:block}
+.nav-back{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border:1px solid var(--border);border-radius:var(--r-pill);font-size:.75rem;font-weight:600;color:var(--text);background:rgba(255,255,255,.03);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:border-color .2s,color .2s,background .2s,transform .2s;-webkit-tap-highlight-color:transparent}
+.nav-back:hover{border-color:var(--cyan);color:var(--cyan);background:rgba(5,222,255,.05);transform:translateX(-2px)}
+.nav-back i{font-size:.68rem}
+
+/* ── MAIN ── */
+main{flex:1;display:flex;align-items:center;justify-content:center;position:relative;z-index:1;padding:clamp(24px,5vw,56px) clamp(20px,4vw,40px)}
+.cs-wrap{text-align:center;max-width:680px;width:100%}
+
+/* ── EYEBROW ── */
+.cs-eyebrow{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border:1px solid var(--border);border-radius:var(--r-pill);font-size:.65rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--cyan);background:rgba(5,222,255,.05);margin-bottom:28px;opacity:0;animation:cs-rise 600ms var(--ease) 100ms forwards}
+.cs-eyebrow-dot{width:5px;height:5px;border-radius:50%;background:var(--cyan);flex-shrink:0;animation:pulse-dot 2s infinite}
+@keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+
+/* ── HEADLINE ── */
+.cs-title{font-family:'Syne',sans-serif;font-size:clamp(3rem,8vw,6rem);font-weight:800;line-height:1;letter-spacing:-.04em;color:var(--hi);margin-bottom:22px;opacity:0;animation:cs-rise 600ms var(--ease) 200ms forwards}
+.cs-title .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* ── SUBTITLE ── */
+.cs-sub{font-size:clamp(.9rem,2vw,1.05rem);color:var(--text);line-height:1.8;max-width:500px;margin:0 auto 44px;opacity:0;animation:cs-rise 600ms var(--ease) 300ms forwards}
+
+/* ── COUNTDOWN ── */
+.cs-countdown{display:flex;align-items:flex-start;justify-content:center;gap:10px;margin-bottom:48px;opacity:0;animation:cs-rise 600ms var(--ease) 400ms forwards}
+.cs-unit{display:flex;flex-direction:column;align-items:center;gap:10px;min-width:76px}
+.cs-unit-box{position:relative;width:100%;padding:20px 8px;text-align:center;background:var(--s1);border:1px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:inset 0 0 0 1px rgba(255,255,255,.04),0 8px 28px rgba(0,0,0,.4)}
+.cs-unit-box::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:var(--grad);opacity:.5}
+.cs-unit-box::after{content:'';position:absolute;top:50%;left:12px;right:12px;height:1px;background:rgba(255,255,255,.05)}
+.cs-unit-num{font-family:'Syne',sans-serif;font-size:clamp(2rem,5vw,3rem);font-weight:800;line-height:1;color:var(--hi);position:relative;z-index:1;display:block}
+.cs-unit-label{font-size:.56rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted)}
+.cs-sep{font-family:'Syne',sans-serif;font-size:clamp(1.4rem,3.5vw,2.2rem);font-weight:800;color:rgba(5,222,255,.3);padding-top:18px;flex-shrink:0}
+
+/* ── NOTIFY FORM ── */
+.cs-notify{display:flex;gap:10px;max-width:460px;margin:0 auto 36px;opacity:0;animation:cs-rise 600ms var(--ease) 500ms forwards}
+.cs-notify input{flex:1;min-height:54px;padding:0 20px;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:var(--r-pill);color:var(--hi);font-size:.88rem;outline:none;transition:border-color .25s,background .25s,box-shadow .25s;min-width:0}
+.cs-notify input::placeholder{color:var(--muted)}
+.cs-notify input:focus{border-color:var(--cyan);background:rgba(5,222,255,.04);box-shadow:0 0 0 3px rgba(5,222,255,.08)}
+.cs-notify-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:0 24px;min-height:54px;background:var(--grad);border-radius:var(--r-pill);font-size:.82rem;font-weight:700;color:#fff;white-space:nowrap;transition:transform .2s var(--ease),box-shadow .2s;flex-shrink:0}
+.cs-notify-btn:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(5,222,255,.35)}
+.cs-notify-btn:active{transform:scale(.97)}
+.cs-notify-btn.success{background:linear-gradient(135deg,#22c55e,#16a34a);box-shadow:0 8px 24px rgba(34,197,94,.3)}
+
+/* ── PRODUCT TAGS ── */
+.cs-tags{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px;margin-bottom:44px;opacity:0;animation:cs-rise 600ms var(--ease) 560ms forwards}
+.cs-tag-label{font-size:.6rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);width:100%;margin-bottom:4px}
+.cs-tag{display:inline-flex;align-items:center;gap:7px;padding:7px 15px;border:1px solid var(--border);border-radius:var(--r-pill);font-size:.72rem;font-weight:600;color:var(--text);background:rgba(255,255,255,.02);transition:border-color .2s,color .2s,background .2s,transform .2s}
+.cs-tag:hover{border-color:var(--cyan);color:var(--cyan);background:rgba(5,222,255,.05);transform:translateY(-2px)}
+.cs-tag i{font-size:.6rem;color:var(--cyan);flex-shrink:0}
+
+/* ── DIVIDER ── */
+.cs-divider{width:100%;height:1px;background:var(--border);margin-bottom:28px;opacity:0;animation:cs-rise 600ms var(--ease) 620ms forwards}
+
+/* ── SOCIAL ── */
+.cs-social{display:flex;align-items:center;justify-content:center;gap:10px;opacity:0;animation:cs-rise 600ms var(--ease) 680ms forwards}
+.cs-social-label{font-size:.6rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-right:8px}
+.cs-social a{width:40px;height:40px;border:1px solid var(--border);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:.82rem;color:var(--muted);transition:border-color .2s,color .2s,background .2s,transform .2s;-webkit-tap-highlight-color:transparent}
+.cs-social a:hover{border-color:var(--cyan);color:var(--cyan);background:rgba(5,222,255,.05);transform:translateY(-2px)}
+
+/* ── FOOTER ── */
+.cs-footer{position:relative;z-index:1;text-align:center;padding:20px clamp(20px,4vw,40px) calc(24px + env(safe-area-inset-bottom,0px));font-size:.72rem;color:var(--muted);opacity:0;animation:cs-rise 600ms var(--ease) 740ms forwards}
+.cs-footer a{color:var(--cyan);transition:opacity .2s}
+.cs-footer a:hover{opacity:.75}
+
+/* ── ENTRY ANIMATION ── */
+@keyframes cs-rise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── REDUCED MOTION ── */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+  .cs-eyebrow,.cs-title,.cs-sub,.cs-countdown,.cs-notify,.cs-tags,.cs-divider,.cs-social,.cs-footer{opacity:1;transform:none}
+}
+
+/* ── TABLET ── */
+@media(max-width:768px){
+  main{align-items:flex-start}
+  .cs-title{font-size:clamp(2.4rem,9vw,3.8rem)}
+}
+
+/* ── PHONE (≤540px) ── */
+@media(max-width:540px){
+  .navbar{padding:16px clamp(12px,4vw,20px)}
+  .nav-back{padding:9px 14px;font-size:.7rem}
+  main{padding:16px 16px clamp(24px,5vw,40px)}
+  .cs-eyebrow{margin-bottom:20px;font-size:.6rem}
+  .cs-title{font-size:clamp(2rem,10vw,2.8rem);letter-spacing:-.03em;line-height:1.06}
+  .cs-sub{font-size:.86rem;margin-bottom:28px}
+  .cs-countdown{gap:6px;margin-bottom:28px}
+  .cs-unit{min-width:0;flex:1}
+  .cs-unit-box{padding:14px 6px;border-radius:12px}
+  .cs-unit-num{font-size:clamp(1.5rem,7vw,2.2rem)}
+  .cs-sep{font-size:1.1rem;padding-top:13px}
+  .cs-notify{flex-direction:column;max-width:100%;margin-bottom:24px}
+  .cs-notify input{min-height:50px}
+  .cs-notify-btn{min-height:50px;justify-content:center}
+  .cs-tags{gap:6px;margin-bottom:28px}
+  .cs-tag{font-size:.68rem;padding:6px 12px}
+  .cs-social a{width:44px;height:44px}
+}
+
+/* ── SMALL PHONE (≤400px) ── */
+@media(max-width:400px){
+  .navbar{padding:14px 12px}
+  .nav-brand{font-size:.78rem;letter-spacing:1px}
+  .nav-back{padding:8px 12px;font-size:.65rem;gap:5px}
+  main{padding:12px 12px 20px}
+  .cs-title{font-size:clamp(1.8rem,9.5vw,2.4rem)}
+  .cs-sub{font-size:.82rem;margin-bottom:22px}
+  .cs-countdown{gap:4px;margin-bottom:22px}
+  .cs-unit-box{padding:11px 4px;border-radius:10px}
+  .cs-unit-num{font-size:clamp(1.3rem,7vw,1.7rem)}
+  .cs-sep{font-size:.88rem;padding-top:10px}
+  .cs-unit-label{font-size:.48rem;letter-spacing:1.5px}
+  .cs-tag{font-size:.64rem;padding:5px 10px}
+  .cs-notify{margin-bottom:20px}
+  .cs-tags{margin-bottom:22px}
+}
+
+/* ── TINY PHONE (≤330px) ── */
+@media(max-width:330px){
+  .nav-logo-wrap{width:32px;height:32px}
+  .nav-brand{font-size:.68rem;letter-spacing:.5px}
+  .nav-back{padding:7px 10px;font-size:.6rem}
+  .cs-title{font-size:1.6rem}
+  .cs-unit-num{font-size:1.15rem}
+  .cs-unit-box{padding:9px 2px}
+  .cs-sep{font-size:.75rem;padding-top:8px}
+  .cs-tag{font-size:.6rem;padding:4px 9px}
+}
+</style>
+</head>
+<body>
+
+<div class="bg-glow-a"></div>
+<div class="bg-glow-b"></div>
+<div class="bg-glow-c"></div>
+<div class="bg-grid"></div>
+<div class="bg-watermark">STORE</div>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <a href="index.html" class="nav-brand">
+    <div class="nav-logo-wrap">
+      <img class="nav-logo" src="images/logo.jpg" alt="Gawadzilla">
+    </div>
+    GAWADZILLA
+  </a>
+  <a href="index.html" class="nav-back">
+    <i class="fas fa-arrow-left"></i> Back to Home
+  </a>
+</nav>
+
+<!-- MAIN CONTENT -->
+<main>
+  <div class="cs-wrap">
+
+    <div class="cs-eyebrow">
+      <span class="cs-eyebrow-dot"></span>
+      <i class="fas fa-store"></i> Gawadzilla Store
+    </div>
+
+    <h1 class="cs-title">
+      Something Big<br>Is <span class="grad">Coming</span>
+    </h1>
+
+    <p class="cs-sub">
+      We're building a premium tech store packed with laptops, hardware, POS equipment, gaming gear, and accessories — at competitive prices, delivered across Lebanon.
+    </p>
+    <!-- NOTIFY FORM -->
+    <form class="cs-notify" id="notifyForm">
+      <input type="email" id="notifyEmail" placeholder="Your email — be first to know" required autocomplete="email" aria-label="Email address">
+      <button type="submit" class="cs-notify-btn" id="notifyBtn">
+        <i class="fas fa-bell"></i> Notify Me
+      </button>
+    </form>
+
+    <!-- PRODUCT TAGS -->
+    <div class="cs-tags">
+      <div class="cs-tag-label">What's coming to the store</div>
+      <span class="cs-tag"><i class="fas fa-laptop"></i> Laptops</span>
+      <span class="cs-tag"><i class="fas fa-desktop"></i> Desktops</span>
+      <span class="cs-tag"><i class="fas fa-cash-register"></i> POS Hardware</span>
+      <span class="cs-tag"><i class="fas fa-gamepad"></i> Gaming Gear</span>
+      <span class="cs-tag"><i class="fas fa-headset"></i> Accessories</span>
+      <span class="cs-tag"><i class="fas fa-print"></i> Printers</span>
+    </div>
+
+    <div class="cs-divider"></div>
+
+    <!-- SOCIAL -->
+    <div class="cs-social">
+      <span class="cs-social-label">Follow us</span>
+      <a href="https://www.facebook.com/share/18xqXUYxGR/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://www.instagram.com/gawadzilla.lb?igsh=MWsyemUweXZ2bW1r" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://wa.me/96179110894" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+    </div>
+
+  </div>
+</main>
+
+<footer class="cs-footer">
+  &copy; 2026 Gawadzilla &nbsp;&middot;&nbsp; Aley, Lebanon &nbsp;&middot;&nbsp;
+  <a href="index.html">Back to Home</a> &nbsp;&middot;&nbsp;
+  <a href="https://wa.me/96179110894" target="_blank">Contact Us</a>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+
+  /* Countdown — target: September 1, 2026 */
+  var target = new Date('2026-09-01T00:00:00').getTime();
+
+  function pad(n){ return String(n).padStart(2,'0'); }
+
+  function tick(){
+    var diff = target - Date.now();
+    if(diff <= 0){
+      document.getElementById('cd-days').textContent  = '00';
+      document.getElementById('cd-hours').textContent = '00';
+      document.getElementById('cd-mins').textContent  = '00';
+      document.getElementById('cd-secs').textContent  = '00';
+      return;
+    }
+    document.getElementById('cd-days').textContent  = pad(Math.floor(diff / 86400000));
+    document.getElementById('cd-hours').textContent = pad(Math.floor((diff % 86400000) / 3600000));
+    document.getElementById('cd-mins').textContent  = pad(Math.floor((diff % 3600000)  / 60000));
+    document.getElementById('cd-secs').textContent  = pad(Math.floor((diff % 60000)    / 1000));
+  }
+
+  tick();
+  setInterval(tick, 1000);
+
+  /* Notify form */
+  document.getElementById('notifyForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    var btn   = document.getElementById('notifyBtn');
+    var input = document.getElementById('notifyEmail');
+    btn.innerHTML = '<i class="fas fa-check"></i> You\'re on the list!';
+    btn.classList.add('success');
+    btn.disabled = true;
+    input.value = '';
+    input.disabled = true;
+    input.placeholder = 'See you at launch!';
+  });
+
+})();
+</script>
+</body>
+</html>
