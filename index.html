@@ -140,7 +140,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .hero-glow-b{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(5,100,255,.06) 0%,transparent 65%);bottom:-5%;right:10%;pointer-events:none}
 .hero-grid-lines{display:none}
 .hero-layout{position:relative;z-index:1;display:flex;flex-direction:column;align-items:flex-start;width:100%;max-width:var(--max);margin:0 auto}
-.hero-left{width:100%}
+
 /* Plain eyebrow label */
 .hero-eyebrow-label{font-size:.72rem;font-weight:700;letter-spacing:3.5px;text-transform:uppercase;color:var(--cyan);margin-bottom:18px;display:block}
 h1.hero-title{font-family:'Syne',sans-serif;font-size:clamp(2.6rem,6vw,5rem);font-weight:800;line-height:1.04;letter-spacing:-.04em;color:#fff;margin-bottom:22px}
@@ -526,12 +526,85 @@ h1.hero-title em{font-style:normal;color:var(--cyan);background:none;-webkit-bac
 .modal img{width:100%;border-radius:10px;margin-top:14px;display:block}
 
 /* ── COMING SOON BADGE ── */
-.soon-badge{display:inline-flex;align-items:center;padding:2px 7px;border-radius:var(--r-pill);font-size:.52rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);background:rgba(240,180,41,.1);border:1px solid rgba(240,180,41,.25);vertical-align:middle;margin-left:5px;line-height:1.6;white-space:nowrap}
+.soon-badge{display:inline-flex;align-items:center;padding:2px 7px;border-radius:var(--r-pill);font-size:.48rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:#fff;background:var(--grad);border:none;white-space:nowrap;line-height:1.5;box-shadow:0 2px 12px rgba(5,222,255,.4);animation:soon-glow 2.5s ease-in-out infinite}
+@keyframes soon-glow{0%,100%{box-shadow:0 2px 8px rgba(5,222,255,.35)}50%{box-shadow:0 2px 18px rgba(5,222,255,.7),0 0 28px rgba(139,92,246,.3)}}
+/* Corner position on desktop navbar */
+.nav-links .soon-badge{position:absolute;top:-9px;right:-6px;margin:0;padding:2px 6px;font-size:.44rem}
+/* Inline on mobile nav */
+.mobile-nav .soon-badge{position:static;margin-left:8px;font-size:.52rem}
 
 /* ── UTILITY ── */
 section{position:relative;z-index:1}
 .text-center{text-align:center}
 .text-center .section-sub{margin-left:auto;margin-right:auto}
+
+/* ── HERO RIGHT PANEL ── */
+.hero-right-panel{position:relative;display:flex;align-items:center;justify-content:center;min-height:380px}
+.hero-tech-card{width:100%;max-width:360px;background:rgba(12,14,26,.92);border:1px solid rgba(5,222,255,.18);border-radius:20px;padding:28px 24px;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);box-shadow:0 24px 64px rgba(0,0,0,.5),inset 0 0 0 1px rgba(255,255,255,.04),0 0 60px rgba(5,222,255,.05);position:relative;z-index:2;animation:htc-float 7s ease-in-out infinite}
+@keyframes htc-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.htc-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;padding-bottom:16px;border-bottom:1px solid rgba(255,255,255,.07)}
+.htc-status{display:flex;align-items:center;gap:7px;font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--hi)}
+.htc-status-dot{width:7px;height:7px;border-radius:50%;background:#22c55e;box-shadow:0 0 8px rgba(34,197,94,.8);animation:pulse-dot 2s infinite}
+.htc-badge-live{font-size:.6rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--cyan);background:rgba(5,222,255,.08);border:1px solid rgba(5,222,255,.18);padding:3px 10px;border-radius:var(--r-pill)}
+.htc-metrics{display:grid;grid-template-columns:1fr 1px 1fr;gap:0;margin-bottom:22px;align-items:center}
+.htc-metric{text-align:center;padding:14px 8px}
+.htc-metric-num{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;line-height:1;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;display:block}
+.htc-metric-label{font-size:.6rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-top:5px}
+.htc-metrics-div{background:rgba(255,255,255,.07);height:44px;align-self:center}
+.htc-bars{display:flex;flex-direction:column;gap:12px}
+.htc-bar-row{display:flex;align-items:center;gap:10px}
+.htc-bar-label{font-size:.64rem;color:var(--text);flex-shrink:0;min-width:96px}
+.htc-bar-track{flex:1;height:5px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden}
+.htc-bar-fill{height:100%;border-radius:3px;background:var(--grad);width:0;transition:width 1.8s cubic-bezier(0.32,0.72,0,1)}
+.htc-bar-fill.bars-in{width:var(--w)}
+.htc-bar-pct{font-size:.64rem;font-weight:700;color:var(--cyan);min-width:28px;text-align:right;flex-shrink:0}
+.htc-float-a,.htc-float-b{position:absolute;display:flex;align-items:center;gap:7px;padding:9px 14px;border-radius:var(--r-pill);font-size:.68rem;font-weight:600;color:var(--hi);background:rgba(10,12,22,.97);border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);white-space:nowrap;box-shadow:0 8px 24px rgba(0,0,0,.5);z-index:3;pointer-events:none}
+.htc-float-a{top:-14px;right:-14px;animation:htc-float 5s ease-in-out 1.5s infinite;border-color:rgba(34,197,94,.25)}
+.htc-float-b{bottom:-14px;left:-14px;animation:htc-float 6s ease-in-out 0.8s infinite;border-color:rgba(240,180,41,.25)}
+.htc-float-a i{color:#22c55e}
+.htc-float-b i{color:var(--gold)}
+@media(max-width:900px){.hero-right-panel{display:none!important}}
+
+/* ── MARQUEE STRIP ── */
+.marquee-strip{overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--s1)}
+.marquee-track{display:flex;align-items:center;width:max-content;animation:marquee-scroll 32s linear infinite}
+@keyframes marquee-scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.marquee-item{display:flex;align-items:center;gap:9px;padding:13px 24px;font-size:.67rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);white-space:nowrap;border-right:1px solid var(--border)}
+.marquee-item i{color:var(--cyan);font-size:.5rem;flex-shrink:0}
+.marquee-strip:hover .marquee-track{animation-play-state:paused}
+
+/* ── PROCESS SECTION ── */
+.process-section{padding:clamp(80px,10vw,120px) 0;background:var(--bg);border-top:1px solid var(--border)}
+.process-steps{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:0;align-items:flex-start;margin-top:clamp(48px,6vw,72px)}
+.process-step{text-align:center;padding:clamp(28px,4vw,40px) 24px;border:1px solid var(--border);border-radius:var(--r-lg);background:var(--s1);position:relative;overflow:hidden;transition:border-color .3s,transform .3s var(--ease),box-shadow .3s}
+.process-step:hover{border-color:rgba(5,222,255,.25);transform:translateY(-5px);box-shadow:0 20px 48px rgba(0,0,0,.3),0 0 40px rgba(5,222,255,.05)}
+.process-step::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad);transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease)}
+.process-step:hover::before{transform:scaleX(1)}
+.process-step-num{font-family:'Syne',sans-serif;font-size:.58rem;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin:0 auto 18px;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;border:1px solid var(--border);background:var(--bg)}
+.process-step-icon{width:60px;height:60px;border-radius:16px;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:#fff;margin:0 auto 20px;box-shadow:0 8px 24px rgba(5,222,255,.25);transition:transform .3s var(--ease-spring)}
+.process-step:hover .process-step-icon{transform:scale(1.1) rotate(-5deg)}
+.process-step h3{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:800;color:var(--hi);margin-bottom:12px}
+.process-step p{font-size:.84rem;color:var(--text);line-height:1.75}
+.process-arrow{display:flex;align-items:flex-start;justify-content:center;padding:0 12px;color:rgba(5,222,255,.35);font-size:.9rem;padding-top:72px}
+@media(max-width:860px){.process-steps{grid-template-columns:1fr;gap:0}.process-arrow{transform:rotate(90deg);padding:12px 0;padding-top:0;margin:0 auto;width:fit-content}}
+
+/* ── CTA BANNER ── */
+.cta-banner{padding:clamp(64px,8vw,96px) 0;background:var(--s1);border-top:1px solid var(--border)}
+.cta-inner{display:flex;align-items:center;justify-content:space-between;gap:40px;padding:clamp(36px,5vw,56px);border:1px solid rgba(5,222,255,.12);border-radius:24px;background:linear-gradient(135deg,rgba(5,222,255,.04) 0%,rgba(139,92,246,.03) 60%,transparent 100%);position:relative;overflow:hidden;box-shadow:inset 0 0 0 1px rgba(5,222,255,.05)}
+.cta-inner::before{content:'';position:absolute;width:400px;height:400px;background:radial-gradient(circle,rgba(5,222,255,.08) 0%,transparent 65%);top:-150px;right:-100px;pointer-events:none}
+.cta-inner::after{content:'';position:absolute;width:300px;height:300px;background:radial-gradient(circle,rgba(139,92,246,.06) 0%,transparent 65%);bottom:-100px;left:20%;pointer-events:none}
+.cta-text{position:relative;z-index:1}
+.cta-text h2{font-family:'Syne',sans-serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:800;color:var(--hi);line-height:1.15;margin-bottom:10px}
+.cta-text p{font-size:.9rem;color:var(--text);max-width:500px;line-height:1.7}
+.cta-actions{display:flex;gap:12px;flex-shrink:0;flex-wrap:wrap;position:relative;z-index:1;align-items:center}
+@media(max-width:768px){.cta-inner{flex-direction:column;text-align:center}.cta-actions{justify-content:center}}
+
+/* ── TESTIMONIALS EXPANDED ── */
+.testimonials-grid{grid-template-columns:repeat(3,1fr)!important}
+.tcard{transition:border-color .3s,transform .3s var(--ease),box-shadow .3s}
+.tcard:hover{border-color:rgba(5,222,255,.18)!important;transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.3)}
+@media(max-width:900px){.testimonials-grid{grid-template-columns:1fr 1fr!important}}
+@media(max-width:600px){.testimonials-grid{grid-template-columns:1fr!important}}
 </style>
 </head>
 <body>
@@ -612,10 +685,35 @@ section{position:relative;z-index:1}
           <div class="hero-ist"><i class="fas fa-bolt"></i><div><strong>Fast</strong><span>Response Time</span></div></div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
+
+<!-- MARQUEE STRIP -->
+<div class="marquee-strip" aria-hidden="true">
+  <div class="marquee-track">
+    <div class="marquee-item"><i class="fas fa-utensils"></i> Restaurants</div>
+    <div class="marquee-item"><i class="fas fa-shopping-bag"></i> Retail Shops</div>
+    <div class="marquee-item"><i class="fas fa-coffee"></i> Cafes</div>
+    <div class="marquee-item"><i class="fas fa-clinic-medical"></i> Clinics</div>
+    <div class="marquee-item"><i class="fas fa-store"></i> Supermarkets</div>
+    <div class="marquee-item"><i class="fas fa-hotel"></i> Hotels</div>
+    <div class="marquee-item"><i class="fas fa-pills"></i> Pharmacies</div>
+    <div class="marquee-item"><i class="fas fa-dumbbell"></i> Gyms</div>
+    <div class="marquee-item"><i class="fas fa-building"></i> Offices</div>
+    <div class="marquee-item"><i class="fas fa-car"></i> Auto Shops</div>
+    <div class="marquee-item"><i class="fas fa-utensils"></i> Restaurants</div>
+    <div class="marquee-item"><i class="fas fa-shopping-bag"></i> Retail Shops</div>
+    <div class="marquee-item"><i class="fas fa-coffee"></i> Cafes</div>
+    <div class="marquee-item"><i class="fas fa-clinic-medical"></i> Clinics</div>
+    <div class="marquee-item"><i class="fas fa-store"></i> Supermarkets</div>
+    <div class="marquee-item"><i class="fas fa-hotel"></i> Hotels</div>
+    <div class="marquee-item"><i class="fas fa-pills"></i> Pharmacies</div>
+    <div class="marquee-item"><i class="fas fa-dumbbell"></i> Gyms</div>
+    <div class="marquee-item"><i class="fas fa-building"></i> Offices</div>
+    <div class="marquee-item"><i class="fas fa-car"></i> Auto Shops</div>
+  </div>
+</div>
 
 <!-- SERVICES -->
 <section id="services" class="services">
@@ -690,6 +788,39 @@ section{position:relative;z-index:1}
         <a href="#digital" class="svc-link">Learn More <i class="fas fa-arrow-right"></i></a>
       </div>
 
+    </div>
+  </div>
+</section>
+
+<!-- HOW WE WORK -->
+<section class="process-section">
+  <div class="container">
+    <div class="section-header-block fade-entry text-center">
+      <div class="eyebrow-pill">How We Work</div>
+      <h2 class="section-title">Simple Process, <span class="text-grad">Real Results</span></h2>
+      <p class="section-sub">From first contact to a live, working solution — we make every step smooth and stress-free.</p>
+    </div>
+    <div class="process-steps fade-entry" style="--delay:100ms">
+      <div class="process-step">
+        <div class="process-step-num">01</div>
+        <div class="process-step-icon"><i class="fas fa-comments"></i></div>
+        <h3>Consult</h3>
+        <p>Free consultation — no commitment. We understand your needs and recommend the exact right solution for your business.</p>
+      </div>
+      <div class="process-arrow"><i class="fas fa-chevron-right"></i></div>
+      <div class="process-step">
+        <div class="process-step-num">02</div>
+        <div class="process-step-icon"><i class="fas fa-cog"></i></div>
+        <h3>Build &amp; Configure</h3>
+        <p>We develop, configure, and test your solution. Our team handles all technical setup with minimal disruption to your operations.</p>
+      </div>
+      <div class="process-arrow"><i class="fas fa-chevron-right"></i></div>
+      <div class="process-step">
+        <div class="process-step-num">03</div>
+        <div class="process-step-icon"><i class="fas fa-rocket"></i></div>
+        <h3>Go Live &amp; Support</h3>
+        <p>Full launch support with on-site training for your team. We stay available 24/7 long after the delivery day.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -799,20 +930,6 @@ section{position:relative;z-index:1}
       </div>
     </div>
 
-    <div class="pos-stats-bar fade-entry">
-      <div class="pos-stat-item">
-        <i class="fas fa-smile"></i>
-        <div><div class="pos-stat-num">98%</div><div class="pos-stat-label">Customer Satisfaction</div></div>
-      </div>
-      <div class="pos-stat-item">
-        <i class="fas fa-headset"></i>
-        <div><div class="pos-stat-num">24/7</div><div class="pos-stat-label">Support Available</div></div>
-      </div>
-      <div class="pos-stat-item">
-        <i class="fas fa-trophy"></i>
-        <div><div class="pos-stat-num">3+</div><div class="pos-stat-label">Years of Experience</div></div>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -1126,6 +1243,20 @@ section{position:relative;z-index:1}
           </div>
         </div>
       </div>
+      <div class="tcard dbezel">
+        <div class="tcard-quote">"</div>
+        <div class="stars">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        </div>
+        <p class="tcard-text">"Gawadzilla built our QR menu in record time and it looks incredible. Our customers love it — no more printing, no more outdated menus. Worth every penny."</p>
+        <div class="tcard-author">
+          <div class="author-avatar">R</div>
+          <div>
+            <div class="author-name">Restaurant Owner</div>
+            <div class="author-role">Casual Dining, Beirut</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1174,7 +1305,7 @@ section{position:relative;z-index:1}
           <div class="form-row">
             <div class="form-group">
               <label for="name">Your Name</label>
-              <input type="text" id="name" placeholder="Name" required>
+              <input type="text" id="name" placeholder="Ahmad Hassan" required>
             </div>
             <div class="form-group">
               <label for="phone">Phone Number</label>
@@ -1204,6 +1335,28 @@ section{position:relative;z-index:1}
             <span class="bib-icon"><i class="fas fa-paper-plane"></i></span>
           </button>
         </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-banner">
+  <div class="container">
+    <div class="cta-inner fade-entry">
+      <div class="cta-text">
+        <h2>Ready to modernize your business?</h2>
+        <p>Join us and be one of the businesses across Lebanon that ar running on Gawadzilla solutions. First consultation is free, no commitment required.</p>
+      </div>
+      <div class="cta-actions">
+        <a href="#contact" class="btn-bib btn-grad btn-mag">
+          <span>Get Started Free</span>
+          <span class="bib-icon"><i class="fas fa-arrow-right"></i></span>
+        </a>
+        <a href="https://wa.me/96179110894" target="_blank" class="btn-bib btn-whatsapp btn-mag">
+          <span>WhatsApp Us</span>
+          <span class="bib-icon"><i class="fab fa-whatsapp"></i></span>
+        </a>
       </div>
     </div>
   </div>
@@ -1359,6 +1512,40 @@ section{position:relative;z-index:1}
   window.openModal = openModal;
   window.closeModal = closeModal;
   document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeModal(); });
+
+  /* ── Animated counters ── */
+  var counterObs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(!e.isIntersecting) return;
+      var el = e.target;
+      var target = parseInt(el.dataset.count, 10);
+      var suffix = el.dataset.suffix || '';
+      var duration = 1800;
+      var startTime = null;
+      function tick(ts){
+        if(!startTime) startTime = ts;
+        var progress = Math.min((ts - startTime) / duration, 1);
+        var eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.floor(eased * target) + suffix;
+        if(progress < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+      counterObs.unobserve(el);
+    });
+  },{threshold:0.5});
+  document.querySelectorAll('[data-count]').forEach(function(el){ counterObs.observe(el); });
+
+  /* ── Hero tech card bar animations ── */
+  var barObs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        e.target.querySelectorAll('.htc-bar-fill').forEach(function(b){ b.classList.add('bars-in'); });
+        barObs.unobserve(e.target);
+      }
+    });
+  },{threshold:0.3});
+  var techCard = document.querySelector('.hero-tech-card');
+  if(techCard) barObs.observe(techCard);
 
   /* ── WhatsApp form ── */
   function sendWhatsAppMessage(event){
