@@ -375,8 +375,8 @@ h1.hero-title em{font-style:normal;color:var(--cyan);background:none;-webkit-bac
 .qr-section{padding:clamp(96px,12vw,140px) 0;background:var(--s1);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
 .qr-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:clamp(48px,6vw,72px)}
 .qr-promo{grid-row:span 2;padding:clamp(28px,4vw,44px);display:flex;flex-direction:column;justify-content:space-between;gap:24px;position:relative;overflow:hidden}
-/* 3rd card (DROOLIES) spans cols 2-3 */
-.qr-img-card:last-child{grid-column:span 2}
+/* promo spans 3 rows now that we have 3 brand cards */
+.qr-promo{grid-row:span 3!important}
 /* Brand card (no image) */
 .qr-brand-card{background:var(--s2)}
 .qr-brand-bg{width:100%;min-height:200px;height:100%;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;background:linear-gradient(135deg,var(--s2) 0%,#0d1025 60%,rgba(5,222,255,.03) 100%)}
@@ -405,6 +405,14 @@ h1.hero-title em{font-style:normal;color:var(--cyan);background:none;-webkit-bac
 .qr-brand-rose .qr-brand-pill{border-color:rgba(236,72,153,.3);color:#EC4899;background:rgba(236,72,153,.06)}
 .qr-brand-rose .qr-brand-url i{color:#EC4899}
 .qr-brand-rose:hover{box-shadow:inset 0 0 0 1px rgba(236,72,153,.3),0 24px 56px rgba(0,0,0,.5),0 0 40px rgba(236,72,153,.08)!important}
+.qr-brand-blackgold .qr-brand-bg{background:linear-gradient(135deg,#000 0%,#0a0800 60%,rgba(240,180,41,.06) 100%)}
+.qr-brand-blackgold .qr-brand-bg::before{background:radial-gradient(ellipse 55% 90% at 85% 50%,rgba(240,180,41,.14) 0%,transparent 70%)}
+.qr-brand-blackgold .qr-brand-bg::after{background:radial-gradient(circle,rgba(240,180,41,.1) 0%,transparent 65%)}
+.qr-brand-blackgold .qr-brand-name{background:linear-gradient(135deg,#c8960c 0%,#F0B429 40%,#ffe084 70%,#F0B429 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.qr-brand-blackgold .qr-brand-pill{border-color:rgba(240,180,41,.4);color:#F0B429;background:rgba(240,180,41,.09)}
+.qr-brand-blackgold .qr-brand-url i{color:#F0B429}
+.qr-brand-blackgold .qr-brand-url{border-color:rgba(240,180,41,.2);color:rgba(240,180,41,.65)}
+.qr-brand-blackgold:hover{box-shadow:inset 0 0 0 1px rgba(240,180,41,.4),0 24px 56px rgba(0,0,0,.7),0 0 50px rgba(240,180,41,.12)!important}
 .qr-promo::after{content:'';position:absolute;inset:8px;border:1px solid rgba(255,255,255,.04);border-radius:10px;pointer-events:none}
 .qr-promo h3{font-family:'Syne',sans-serif;font-size:clamp(1.2rem,2.5vw,1.45rem);font-weight:800;color:var(--hi);margin-bottom:12px;line-height:1.25}
 .qr-promo>div>p{font-size:.87rem;color:var(--text);line-height:1.7;margin-bottom:24px}
@@ -1110,25 +1118,37 @@ section{position:relative;z-index:1}
         <div class="qr-img-view"><i class="fas fa-external-link-alt"></i> Open Website</div>
         <div class="qr-img-shine"></div>
       </div>
-      <div class="qr-img-card qr-brand-card qr-brand-rose" onclick="window.open('https://gawadzilla.github.io/DROOLIES/','_blank')" role="button" tabindex="0" aria-label="Visit Lahen Bel Ajin website">
+      <div class="qr-img-card qr-brand-card qr-brand-rose" onclick="window.open('https://gawadzilla.github.io/Lahen-Bel-Ajin/','_blank')" role="button" tabindex="0" aria-label="Visit Lahen Bel Ajin website">
         <div class="qr-brand-bg">
           <div class="qr-brand-content">
             <div class="qr-brand-pill">QR Menu</div>
-            <div class="qr-brand-name" style="font-size:clamp(1rem,2.2vw,1.45rem);letter-spacing:.05em">DROOLIES</div>
-            <div class="qr-brand-sub">Scan · Order · Enjoy</div>
-            <div class="qr-brand-url"><i class="fas fa-link"></i> gawadzilla.github.io/DROOLIES</div>
+            <div class="qr-brand-name" style="font-size:clamp(1rem,2.2vw,1.45rem);letter-spacing:.05em">LAHEN BEL AJIN</div>
+            <div class="qr-brand-sub">لحن بالعجين</div>
+            <div class="qr-brand-url"><i class="fas fa-link"></i> gawadzilla.github.io/Lahen-Bel-Ajin</div>
           </div>
         </div>
         <div class="qr-img-view"><i class="fas fa-external-link-alt"></i> Open Website</div>
         <div class="qr-img-shine"></div>
       </div>
-      <div class="qr-img-card qr-brand-card" onclick="window.open('https://gawadzilla.github.io/Lahen-Bel-Ajin/','_blank')" role="button" tabindex="0" aria-label="Visit DROOLIES website">
+      <div class="qr-img-card qr-brand-card qr-brand-blackgold" onclick="window.open('https://gawadzilla.github.io/Golden-plate/','_blank')" role="button" tabindex="0" aria-label="Visit Golden Plate website">
         <div class="qr-brand-bg">
           <div class="qr-brand-content">
             <div class="qr-brand-pill">QR Menu</div>
-            <div class="qr-brand-name">LAHEN BEL AJIN</div>
-            <div class="qr-brand-sub">لحن بالعجين<</div>
-            <div class="qr-brand-url"><i class="fas fa-link"></i> gawadzilla.github.io/Lahen-Bel-Ajin</div>
+            <div class="qr-brand-name" style="font-size:clamp(1rem,2.2vw,1.45rem);letter-spacing:.05em">GOLDEN PLATE</div>
+            <div class="qr-brand-sub">The Golden Experience</div>
+            <div class="qr-brand-url"><i class="fas fa-link"></i> gawadzilla.github.io/Golden-plate</div>
+          </div>
+        </div>
+        <div class="qr-img-view"><i class="fas fa-external-link-alt"></i> Open Website</div>
+        <div class="qr-img-shine"></div>
+      </div>
+      <div class="qr-img-card qr-brand-card" onclick="window.open('https://gawadzilla.github.io/DROOLIES/','_blank')" role="button" tabindex="0" aria-label="Visit DROOLIES website">
+        <div class="qr-brand-bg">
+          <div class="qr-brand-content">
+            <div class="qr-brand-pill">Now Live</div>
+            <div class="qr-brand-name">DROOLIES</div>
+            <div class="qr-brand-sub">Scan · Order · Enjoy</div>
+            <div class="qr-brand-url"><i class="fas fa-link"></i> gawadzilla.github.io/DROOLIES</div>
           </div>
         </div>
         <div class="qr-img-view"><i class="fas fa-external-link-alt"></i> Open Website</div>
@@ -1295,7 +1315,7 @@ section{position:relative;z-index:1}
             <div class="contact-item-icon"><i class="fas fa-clock"></i></div>
             <div>
               <div class="contact-item-label">Hours</div>
-              <div class="contact-item-val">Mon–Sat: 9AM – 12AM</div>
+              <div class="contact-item-val">Mon–Fri: 9AM – 6PM &nbsp;·&nbsp; Sat: 10AM – 4PM</div>
             </div>
           </div>
         </div>
@@ -1305,7 +1325,7 @@ section{position:relative;z-index:1}
           <div class="form-row">
             <div class="form-group">
               <label for="name">Your Name</label>
-              <input type="text" id="name" placeholder="Username" required>
+              <input type="text" id="name" placeholder="Ahmad Hassan" required>
             </div>
             <div class="form-group">
               <label for="phone">Phone Number</label>
@@ -1405,7 +1425,7 @@ section{position:relative;z-index:1}
           <li><a href="tel:+96179110894">+961 79 110 894</a></li>
           <li><a href="https://wa.me/96179110894">WhatsApp Us</a></li>
           <li><a href="#contact">Aley, Lebanon</a></li>
-          <li><a href="#contact">Mon–Sat 9AM–12Am</a></li>
+          <li><a href="#contact">Mon–Fri 9AM–6PM</a></li>
         </ul>
       </div>
     </div>
